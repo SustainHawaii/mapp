@@ -1,0 +1,99 @@
+<div ng-class="{'has-error': (form.field.$dirty || form.$$parentForm.$submitted) && form.field.$error.required}"
+     ng-if="field.type == 'text'">
+    <div class="col-sm-3">
+        <label class="label"><span ng-bind="field.name"></span> <span ng-show="field.required">*</span></label>
+    </div>
+    <div ng-form="form" class="col-sm-9">
+        <div class="inputWrap">
+            <label class="input">
+                <input type="text" name="field" class="form-control" ng-required="field.required" ng-model="field.value" placeholder="[[field.placeholder]]" />
+            </label>
+            <div style="color: red;" ng-show="form.field.$error.required"> <b>This field is required</b> </div>
+            <div ng-bind="field.instructions"></div>
+        </div>
+    </div>
+</div>
+
+<div ng-class="{'has-error': (form.field.$dirty || form.$$parentForm.$submitted) && form.field.$error.required}" ng-if="field.type == 'textarea'">
+    <div class="col-sm-3">
+        <label class="label"><span ng-bind="field.name"></span> <span ng-show="field.required">*</span></label>
+    </div>
+    <div ng-form="form" class="col-sm-9">
+        <div class="inputWrap">
+            <label class="input">
+                <textarea name="field" class="form-control" ng-required="field.required" ng-model="field.value"
+                          placeholder="[[field.placeholder]]" maxlength="[[field.character_limit]]"
+                          style="height:10em;">
+                </textarea>
+            </label>
+            <div style="color: red;" ng-show="form.field.$error.required"> <b>This field is required</b> </div>                                    
+            <div ng-bind="field.instructions"></div>
+        </div>
+    </div>
+</div>
+
+<div ng-class="{'has-error': (form.field.$dirty || form.$$parentForm.$submitted) && (form.field.$error.required || form.field.$error.number || form.field.$error.min || form.field.$error.max)}"
+     ng-if="field.type == 'number'">
+    <div class="col-sm-3">
+        <label class="label"><span ng-bind="field.name"></span> <span ng-show="field.required">*</span></label>
+    </div>
+    <div ng-form="form" class="col-sm-9">
+        <div class="inputWrap">
+            <label class="input">
+                <input type="number" name="field" class="form-control" ng-required="field.required" ng-model="field.value" placeholder="[[field.placeholder]]" min="[[field.min_value]]" max="[[field.max_value]]" />
+            </label>
+            <div style="color: red;" ng-show="form.field.$error.number"> <b>Invalid format</b> </div>                                                            
+            <div style="color: red;" ng-show="form.field.$error.required"> <b>This field is required</b> </div>                                                
+            <div ng-bind="field.instructions"></div>
+        </div>
+    </div>
+</div>
+
+<div ng-class="{'has-error': (form.field.$dirty || form.$$parentForm.$submitted) && (form.field.$error.required || form.field.$error.email)}"
+     ng-if="field.type == 'email'">
+    <div class="col-sm-3">
+        <label class="label"><span ng-bind="field.name"></span> <span ng-show="field.required">*</span></label>
+    </div>
+    <div ng-form="form" class="col-sm-9">
+        <div class="inputWrap">
+            <label class="input">
+                <input type="email" name="field" class="form-control" ng-required="field.required" ng-model="field.value" placeholder="[[field.placeholder]]" />
+            </label>
+            <div style="color: red;" ng-show="form.field.$error.email"> <b>Invalid Format</b> </div>
+            <div style="color: red;" ng-show="form.field.$error.required"> <b>This field is required</b> </div>            
+            <div ng-bind="field.instructions"></div>
+        </div>
+    </div>
+</div>
+
+<div ng-class="{'has-error': (form.field.$dirty || form.$$parentForm.$submitted) && form.field.$error.required}"
+     ng-if="field.type == 'date'">
+    <div class="col-sm-3">
+        <label class="label"><span ng-bind="field.name"></span> <span ng-show="field.required">*</span></label>
+    </div>
+    <div ng-form="form" class="col-sm-9">
+        <div class="inputWrap">
+            <label class="input">
+                <input type="text" name="field" class="form-control" sh-datepicker="[[field.display_format]]" format="[[field.display_format]]" ng-required="field.required" ng-model="field.value" placeholder="[[field.placeholder]]" />
+            </label>
+            <div style="color: red;" ng-show="form.field.$error.required"> <b>This field is required</b> </div>                                                            
+            <div ng-bind="field.instructions"></div>
+        </div>
+    </div>
+</div>
+
+<div ng-class="{'has-error': (form.field.$dirty || form.$$parentForm.$submitted) && form.field.$error.required}"
+     ng-if="field.type == 'select'">
+    <div class="col-sm-3">
+        <label class="label"><span ng-bind="field.name"></span> <span ng-show="field.required">*</span></label>
+    </div>
+    <div ng-form="form" class="col-sm-9">
+        <div class="inputWrap">
+            <select name="field" style="width: 100%;" ui-select2 ng-model="field.value" ng-required="field.required" placeholder="[[field.placeholder]]" ng-multiple="field.multiple">
+                <option ng-repeat="item in field.choices" value="[[item.value]]" ng-bind="item.label"></option>
+            </select>
+            <div style="color: red;" ng-show="(form.field.$dirty || form.$$parentForm.$submitted) && form.field.$error.required)"> <b>This field is required</b> </div>            
+            <div ng-bind="field.instructions"></div>
+        </div>
+    </div>
+</div>

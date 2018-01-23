@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<div class="row member-header infographic-location">
+  <div class="col-sm-3">
+    <img ng-if="location.image" src="[[location.image]]"
+    class="img-circle img-responsive center-block">
+
+    <img ng-if="!location.image" src="/static/img/logo-sh.png" 
+    class="img-circle img-responsive center-block">
+  </div>
+
+  <div class="col-sm-9">
+    <div class="directory-Edit-Header" id="location-details">
+      <h2>[[location.name]]</h2>
+      <p class="location-address">
+      [[location.address1]], <br>[[location.city]], [[location.state]], [[location.zip]]
+      </p>
+    </div>
+    <div class="directory-Edit-Data">
+      <div class="row">
+        <div class="col-sm-2 data-icon">
+          <i class="fa fa-2x fa-fw fa-tag"></i>
+        </div>
+        <div class="col-sm-10 data-contents">
+          <a ng-repeat="tax in location.taxonomies track by $index" href class="tag-item">[[tax]]</a>
+        </div>
+      </div>
+    </div>
+    <div class="directory-Edit-Data" ng-bind-html="location.description">
+    </div>
+  </div>
+
+</div>
+

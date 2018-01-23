@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Admin",
+        "permissions": {"category": {"1": true,"0": true,"3": true,"2": true,"5": true,"4": true,"7": true,"6": true}, "forms": {"1": true,"0": true,"3": true,"2": true,"5": true,"4": true,"7": true,"6": true}, "locations": {"1": true,"0": true,"3": true,"2": true,"5": true,"4": true,"7": true,"6": true}, "users": {"1": true,"0": true,"3": true,"2": true,"5": true,"4": true,"7": true,"6": true}, "resources": {"0": true,"1": true,"2": true,"3": true,"4": true, "5": true}, "settings": {"0": true}},
+        "need_authorization": true,
+        "is_superuser": true,
+        "is_systemuser": true,
+        "allow_register": false
+    },
+    {
+        "name": "Buyer",
+        "permissions": {"category": {},"forms": {},"locations": {},"users": {}, "resources": {}, "settings": {}},
+        "need_authorization": true,
+        "is_superuser": false,
+        "is_systemuser": true,
+        "allow_register": true
+    },
+    {
+        "name": "Provider",
+        "permissions": {"category": {},"forms": {},"locations": {},"users": {}, "resources": {}, "settings": {}},
+        "need_authorization": true,
+        "is_superuser": false,
+        "is_systemuser": true,
+        "allow_register": true
+    },
+    {
+        "name": "Landholder",
+        "permissions": {"category": {},"forms": {},"locations": {},"users": {}, "resources": {}, "settings": {}},
+        "need_authorization": true,
+        "is_superuser": false,
+        "is_systemuser": true,
+        "allow_register": true
+    },
+    {
+        "name": "Grower",
+        "permissions": {"category": {},"forms": {},"locations": {},"users": {}, "resources": {}, "settings": {}},
+        "need_authorization": true,
+        "is_superuser": false,
+        "is_systemuser": true,
+        "allow_register": true
+    },
+    {
+        "name": "Learner",
+        "permissions": {"category": {},"forms": {},"locations": {},"users": {}, "resources": {}, "settings": {}},
+        "need_authorization": true,
+        "is_superuser": false,
+        "is_systemuser": true,
+        "allow_register": true
+    },
+    {
+        "name": "Member",
+        "permissions": {"category": {},"forms": {},"locations": {},"users": {}, "resources": {}, "settings": {}},
+        "need_authorization": true,
+        "is_superuser": false,
+        "is_systemuser": true,
+        "allow_register": true
+    }
+]

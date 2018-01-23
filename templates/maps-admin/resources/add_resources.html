@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load mapp_tags %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="resources" subsection="add-resources" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <div ng-controller="ResourceController">
+        <div id="ribbon" ng-init="init_backend('{{id}}')">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                    <h1 class="page-title">
+                        <i class="fa fa-2x fa-fw fa-map-marker"></i>
+                        Resource
+                        <span>
+                            Add Resource
+                        </span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div  id="messages" class="alert alert-success ng-cloak" ng-show="messages" ng-bind="messages"></div>
+            <form class="smart-form big-form" name="resource_form" id="resource_form" novalidate data-role="form">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="inputWrap">
+                            <label class="input">
+                                <input type="text" id="name" placeholder="Resource name" ng-model="resource.name" required>
+                            </label>
+                            <div class="form-error ng-cloak" ng-show="resource_form.$submitted && resource_form.name.$error.required">Resource Name required</div>
+                            <div class="form-error ng-cloak" ng-show="duplicate_name_error">[[duplicate_name_error]]</div>                            
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="label">Privacy:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap">
+                            <section>
+                                <label class="select">
+                                    <select class="input-lg" name="user_type"
+                                            ng-model="resource.privacy" required ng-init="resource.privacy = resource.privacy || 'private'">
+                                            <option value="everyone"> Everyone </option>
+                                            <option value="private"> Private </option>
+                                    </select> <i></i> </label>
+                            </section>
+                            <div class="form-error ng-cloak" ng-show="resource_form.$submitted && resource_form.resource_type.$error.required">
+                                Privay setting required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="inputWrap">
+                          <div summernote ng-model="resource.description"></div>
+                          <small> NOTE: If you are copy and pasting content from another website/source, please use the "Remove Font Style" button before submitting </small>                          
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="label">Page Background:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap">
+                            <div class="input input-file">
+                                <input type="text" placeholder="[[resource.page_background || 'Add File to display as infographic background']]"
+                                       readonly="[[resource.page_background]]"
+                                       class="pointer file-text">
+                                <div class="button" ng-file-select ng-file-change="addfile($files, 'background')">Browse</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="label">Page Logo:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap">
+                            <div class="input input-file">
+                                <input type="text" placeholder="[[resource.page_logo || 'Add File to display as infographic logo']]"
+                                       readonly="[[resource.page_logo]]"
+                                       class="pointer file-text">
+                                <div class="button" ng-file-select ng-file-change="addfile($files, 'logo')">Browse</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="label">Display Map?</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap">
+                            <section>
+                                <label class="select">
+                                    <select class="input-lg"
+                                            ng-model="resource.display_map"
+                                            ng-options="opt | trueFalseToYesNo for opt in tf"
+                                            ng-init="resource.display_map = resource.display_map || true"
+                                            required>
+                                    </select> <i></i> </label>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="label">Content Status:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap">
+                            <section>
+                                <label class="select">
+                                    <select class="input-lg" name="content_status"
+                                            ng-model="resource.content_status"
+                                            ng-init="resource.content_status = resource.content_status || 'draft'">
+                                            <option value="draft"> Draft </option>
+                                            <option value="published"> Published </option>
+                                    </select> <i></i> </label>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="resource.display_map" class="row section-new">
+                    <div class="col-sm-3">
+                        <h2>Geolocalizations</h2>
+                    </div>
+                </div>
+                <div ng-if="resource.display_map" class="row menu-wrapper">
+                    <div class="col-sm-3 menu-select">
+                        <h3>Location Types</h3>
+                        <fieldset>
+                            <div class="pagelist">
+                            
+                                <div ng-repeat="lt in location_types">
+                                    <label class="checkbox">
+                                        <input type="checkbox"
+                                        checklist-value="lt" 
+                                        checklist-model="widget.viz_datasets"
+                                        ng-click="show_loc_on_map()">
+                                        <i></i>
+                                        <span>[[lt.name | CapitalizeFilter:'first']]</span>
+                                    </label>
+                                </div>
+                            
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-sm-9">
+                          {% include 'data/partials/map.html' %}
+                    </div>
+                </div>
+                
+                <div class="resources-backend">
+
+                <div id="actual-viz" class="fe-actual-viz"
+                   back-img="[[resource.page_background_url]]">
+
+  <div ng-cloak class="infographic-header row">
+      <h1 class="col-sm-6">[[resource.name || "The name of your infographic."]]</h1>
+      <!--
+      <img ng-if="resource.page_logo" class="col-sm-3 pull-right" ng-src="[[resource.page_logo_url]]" class="img-circle img-responsive" height="265" width="265">
+      <h1 ng-if="!resource.page_logo" class="col-sm-3 pull-right">Infographic logo</h1>-->
+      <a href=# ng-click="dashboard_add_row()" class="btn btn-lg pull-right">Add Row</a>
+  </div>
+
+                   <infographic-layout></infographic-layout>
+                 </div>
+
+                </div>
+
+                <div class="row content-footer">
+                    <div class="col-sm-12">
+                        <button type="submit" ng-click="save_resource(resource, true)"
+                                class="btn btn-xl btn-primary pull-right" ng-disabled="submitting">
+                                Add Resource
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBwULR3-ki_vvce7vDmu317UoVvbfYeM9M&sensor=fals&libraries=geometry"></script>
+{% endblock page_rel_scripts %}

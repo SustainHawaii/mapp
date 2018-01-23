@@ -1,0 +1,174 @@
+{% load mapp_tags %}
+    <form class="smart-form big-form">
+        <!-- row -->
+        <div class="row section-divider">
+            <div class="col-sm-3">
+                <label class="label">
+                    Group Name
+                </label>
+            </div>
+            <div class="col-sm-9">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <label class="input">
+                        <input id="group-name" name="group-name" type="text"
+                        placeholder="Name for this Visualization"
+                        ng-model="currentviz.group_name">
+                    </label>
+                </div>
+                <!-- ends input -->
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row section-new nomargin">
+            <div class="col-sm-8">
+                <p>You can add one, or group multiple data-visualizations
+                together.
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <!--<button id="add_viz_btn" ng-click="add_widget()" class="btn btn-lg pull-right">
+                    Add Data Visualization Widgets
+                    </button>-->
+            </div>
+        </div>
+
+        <div id="viz-container">
+            <!-- row -->
+                <div id="viz-div-col" class="row data-wrap" 
+                  ng-repeat="widget in currentviz.widgets">
+
+                    <div class="data-header">
+                        <div class="col-sm-9 data-header-content">
+                            <i class="fa fa-lg pull-left"
+                              ng-class="getWidgetIcon(widget)"></i>
+
+                            <h2>[[widget.title]] Visualization</h2>
+                        </div>
+                        <div class="col-sm-3 data-header-buttons">
+                            <button class="btn btn-default btn-lg
+                              pull-right" ng-click="toggle_vis(widget)">
+                                <i class="fa fa-angle-down fa-lg"></i>
+                            </button>
+                            <button class="btn btn-default btn-lg pull-right"
+                              ng-click="delete_widget(widget)">
+                                <i class="fa fa-close fa-lg"></i>
+                            </button>
+                            <button class="btn btn-default btn-lg pull-right"
+                                ng-click="limit_data(widget, currentviz)">
+                                <i class="fa fa-wrench fa-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="visualization-grp" ng-show="widget.show" class="data-locations content-block">
+                      <div class="row">
+                        <div class="col-sm-3">
+                            <label class="label">
+                               Title 
+                            </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <label class="input">
+                                    <input id="title" type="text"
+                                    placeholder="Title for the current visualization"
+                                    ng-model="widget.title"
+                                    ng-change="updateChartTitle(widget)">
+                                </label>
+                            </div>
+                          </div>                        
+                        </div>
+                        <!-- row -->
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="label">Select your Data Set</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <!-- starts input wrap -->
+                                <div class="inputWrap">
+
+                                <ui-select multiple id="widget-datasets" style="width:100%"
+                                theme="select2" ng-model="$parent.widget.viz_datasets"
+                                on-select="addDataFields($item, widget)"
+                                on-remove="removeDataFields($item, widget)"> 
+                                  <ui-select-match placeholder="Select datasets for the current visualization...">[[$item.name]]</ui-select-match>
+                                  <ui-select-choices repeat="ds in current_datasets">
+                                    <div ng-bind-html="ds.name | highlight: $select.search"></div>
+                                  </ui-select-choices>
+                                </ui-select>
+                                </div>
+                                <!-- ends input -->
+                            </div>
+                        </div>
+                        <!-- ends row -->
+                        <!-- row -->
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="label">
+                                    Select Visualization Type
+                                </label>
+                            </div>
+                            <div class="col-sm-9">
+                              <div class="btn-group btn-group-justified" data-toggle="buttons">
+                              <label ng-class="activeClass(widget, 'table')" id="btn-table"
+                                ng-click="setActive(widget,'table')">
+                                <input type="radio" ng-model="widget.viz_type" value="table">
+                                  Table
+                               </label>
+                              <label ng-class="activeClass(widget, 'chart')"id="btn-chart"
+                                ng-click="setActive(widget,'chart')">
+                                <input type="radio" ng-model="widget.viz_type"
+                                value="chart">
+                                  Chart
+                               </label>
+                              <label ng-class="activeClass(widget,'map')"id="btn-map"
+                                ng-click="setActive(widget,'map')">
+                                <input type="radio"
+                                ng-model="widget.viz_type" value="map">
+                                  Map 
+                              </label>
+                              {% comment %}
+                              <label ng-class="activeClass(widget,'timeline')"id="btn-timeline"
+                                ng-click="setActive(widget,'timeline')">
+                                <input type="radio"
+                                  ng-model="widget.viz_type" value="timeline">
+                                  Timeline
+                              </label>
+                              {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ends row -->
+                        <div class="row hide-active" ng-show="isActive(widget,'table')">
+                            {% include 'data/partials/table.html' %}
+                        </div>
+                        <div class="row hide-active" ng-show="isActive(widget, 'chart')">
+                          {% include 'data/partials/charts.html' %}  
+                        </div>
+                        <!--timeline view start-->
+                        <div class="row hide-active" ng-show="isActive(widget, 'timeline')">
+                            {% include 'data/partials/timeline.html' %}
+                        </div>
+                        <!--timeline view end-->
+                        <!--map view starts-->
+                        <div class="row hide-active" ng-show="isActive(widget,'map')"> 
+                          {% include 'data/partials/map.html' with show_msg='True' %}
+                        </div>
+                        <!--map view end-->
+                    </div>
+                </div>
+            <!-- end data wrap -->
+            <!-- end row -->
+            <div class="row content-footer">
+                <div class="col-sm-12">
+                    <button type="button" id="preview-btn" ng-click="submit()"
+                      class="btn btn-xl btn-primary pull-right">
+                        Preview Visualization
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </form>

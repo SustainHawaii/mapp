@@ -1,0 +1,224 @@
+{% extends 'locations/base.html' %}
+{% load staticfiles %}
+{% load mapp_tags %}
+{% include 'widgets/mobile_nav.html' %}
+
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="locations" subsection="locations-addlocationtype" %}
+{% endblock left_panel %}
+
+<!-- MAIN PANEL -->
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    <i class="fa fa-2x fa-fw fa-map-marker"></i>
+                    <!-- PAGE HEADER -->
+                    Locations
+                    <span>
+                      Update Location Type
+                    </span>
+                </h1>
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content" data-ng-controller="LocationTypeController">
+        <form class="smart-form big-form" name="locationtype_form" id="locationtype_form" novalidate data-role="form">
+            {% csrf_token %}
+            <!-- row -->
+            <input type="hidden" ng-model="loc.id">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" data-ng-model="loc.name" placeholder="Location Type Name" name="name" required>
+                        </label>
+                        <div class="form-error" data-ng-show="submitted && locationtype_form.name.$error.required">Location type name required</div>
+                        <div class="form-error" data-ng-show="duplicate_name_error">[[duplicate_name_error]]</div>                       
+                    </div>
+                    <!-- ends input -->
+                </div>
+                <div class="col-sm-3">
+                    <label class="label">View Privacy:</label>
+                </div>
+                <div class="col-sm-3">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="view_privacy"
+                                        ng-model="loc.view_privacy" required>
+                                  <option value="everyone"> Everyone </option>
+                                  <option value="private"> Private </option>
+                                </select> <i></i> </label>
+                        </section>
+                        <div class="form-error" data-ng-show="submitted && locationtype_form.view_privacy.$error.required">Privacy type required</div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- end row -->
+            <!-- row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="textarea-top">
+                        </div>
+                        <div summernote ng-model="loc.desc">Enter Description of Location Type</div>
+                        <small> NOTE: If you are copy and pasting content from another website/source, please use the "Remove Font Style" button before submitting </small>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- end row -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">Location Icon</label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="input input-file">
+                            <input type="text" placeholder="[[ filePlaceholder ]]"
+                                   readonly="[[filePlaceholder]]"
+                                   class="pointer file-text">
+
+                            <div class="button" ng-file-select ng-file-change="addfile($files)">Browse</div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            {% comment %}
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider hidden">
+                <div class="col-sm-3">
+                    <label class="label">Allow Galleries?</label>
+                </div>
+                <div class="col-sm-3">
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="allow_galleries"
+                                        data-ng-model="loc.allow_galleries"
+                                        ng-options="opt | trueFalseToYesNo for opt in tf">                                        
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="label">Allow Media?</label>
+                </div>
+                <div class="col-sm-3">
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="allow_media"
+                                        data-ng-model="loc.allow_media"
+                                        ng-options="opt | trueFalseToYesNo for opt in tf">
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="row section-divider hidden">
+                <div class="col-sm-3">
+                    <label class="label">Allow Forms?</label>
+                </div>
+                <div class="col-sm-3">
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="allow_forms"
+                                        data-ng-model="loc.allow_forms"
+                                        ng-options="opt | trueFalseToYesNo for opt in tf">                                        
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="label">Allow Categories?</label>
+                </div>
+                <div class="col-sm-3">
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="allow_categories"
+                                        data-ng-model="loc.allow_categories"
+                                        ng-options="opt | trueFalseToYesNo for opt in tf">
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider hidden">
+                <div class="col-sm-3">
+                    <label class="label">Categories</label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="row">
+                            <div class="col col-6" ng-repeat="tx in taxonomy">
+                                <label class="checkbox">
+                                    <input type="checkbox"
+                                           checklist-value="tx.id"
+                                           checklist-model="loc.taxonomies"
+                                           ng-change="tax_changed(tx, checked)"
+                                           name="taxonomies">
+                                    <i></i>[[ tx.name ]]
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->
+            {% endcomment %}
+            <div id="custom-field-container">
+                <div sform-builder>
+                    <div name="builderForm" sform-builder-form></div>
+                </div>
+            </div>
+            <div id="custom-field-container">
+              <div sform-renderer>
+                <div name="rendererForm" sform-renderer-form></div>
+              </div>
+            </div>
+            <div class="row content-footer">
+                {% if request.user|check_permission:'locations,3' %}
+                <div class="col-sm-12">
+                    <button class="btn btn-xl btn-primary pull-right"
+                            data-ng-disabled="locationtype_form.$invalid"
+                            data-ng-click="submit()" id="submit">
+                            Update Location Type
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+            <!-- end row -->
+        </form>
+    </div>
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+<!-- END MAIN PANEL -->
+{% block page_rel_scripts %}
+    <!-- MAIN APP JS FILE -->
+    <script src="{% static 'js/angularjs/controllers/locationtype_controller.js' %}"></script>
+{% endblock page_rel_scripts %}

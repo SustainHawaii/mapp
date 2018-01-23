@@ -1,0 +1,795 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+
+	<title>Department of Agriculture: State of Hawaii - Data Visualizations</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta content="text/html;charset=utf-8" http-equiv="content-type">
+   <link href='https://fonts.googleapis.com/css?family=Lato:400,900,700,400italic' rel='stylesheet' type='text/css'>
+
+<style type="text/css">
+
+    @charset "utf-8";
+    /* CSS Document */
+    
+    @media screen and (max-width: 768px) and (min-width: 381px) {
+	    body {
+		    margin: 0 auto !important;
+		    width: 600px !important;
+	    }
+	    .wrapper_table {
+		    width: 600px !important;
+		    margin:0 auto;
+		    text-align:center;
+	    }
+	    .padding {
+		    width: 20px !important;
+	    }
+	    .logo{
+		    width: 200px !important;
+	    }
+	    .navbar{
+		    width: 400px !important;
+	    }
+	    .content{
+		    width: 600px !important;
+	    }
+	    .content_row {
+		    width: 560px !important;
+	    }
+	    .content_row img {
+		    max-width: 560px;
+		    height: auto !important;
+	    }	
+	    .content_row_inner {
+		    width: 520px !important;
+	    }
+	    .one_third {
+		    width: 170px !important;
+		    margin-bottom: 30px;
+	    }
+	    .one_third img {
+	    		max-width: 170px !important;
+	    }
+	    .one_half {
+		    width: 270px !important;
+	    }
+	    .one_half img {
+		    max-width: 270px !important;
+		    height: auto !important;
+	    }
+	    .noresponsive {
+		    display: none;
+	    }
+	    
+	    .fullwidth_image {
+		    max-width: 600px;
+	    }
+	    .one_fourth {
+		    width: 140px !important;
+	    }
+	    .header_third_space {
+		    width: 20px !important;
+	    }
+	    .hero_musician {
+		    width: 560px !important;
+		    margin: 0 20px !important;
+		    color: #ffffff !important;
+		    border-color: #ffffff !important;
+	    }
+	    .hero_musician a {
+		    color: #ffffff !important; 
+	    }
+	    .one_quarter {
+		    width: 140px !important;
+		    float: left;
+	    }
+	    .stacked_buttons {
+		   width: 120px !important;
+		   margin: 0 auto 15px !important;
+		   display:block !important;
+	    }
+	    .one_quarter_footer {
+		   width: 150px !important;
+		   margin: 0 auto 15px !important;
+		   float: left;
+	    }
+	    .one_quarter_header {
+		   width: 150px !important;
+		   margin: 0 auto 15px !important;
+		   float: left;
+	    }
+	    .one_quarter_header img {
+		   max-width: 150px !important;
+	    }
+	    .one_quarter_footer img {
+		   max-width: 150px !important;
+	    }
+  
+    }
+    @media screen and (max-width: 381px) {
+	    
+	    body {
+		    margin: 0 auto !important;
+		    width: 320px !important;
+	    }
+	    
+	    table[class="wrapper_table"] {
+		    width: 320px !important;
+	    }
+	    
+	    img[class="fullwidth_image"] {
+		    max-width: 320px !important;
+		    height: auto !important
+	    }
+	    
+	    td[class="padding"] {
+		    width: 10px !important;
+	    }
+	    
+	    td[class="content"] {
+		    width: 320px !important;
+	    }
+	    
+	    td[class="content"] img {
+	    		max-width: 320px !important;
+			height: auto !important;
+	    }
+	    
+	    td[class="content_row"] {
+		    width: 300px !important;
+	    }
+	    
+	    td[class="content_row_inner"] {
+		    width: 280px !important;
+	    }
+	    
+	    td[class="logo"] img {
+		    margin: 0 auto !important;
+	    }
+	    
+	    td[class="logo"] {
+		    margin: 0 auto;
+		    width: 300px !important;
+		    float: left;
+		    margin-bottom: 15px;
+	    }
+	    
+	    td[class="navbar"] {
+		    float: left;
+		    width: 300px !important;
+		    margin-bottom: 15px;
+		    text-align: center !important;
+	    }
+	    
+	    td[class="header_right"] {
+		    width: 300px !important;
+		    float: left;
+		    margin-bottom: 10px;
+		    text-align: center;
+	    }
+	    
+	    table[class="mobile_centered_table"] {
+		    margin: 0 auto !important;
+		    text-align: center !important;
+	    }
+	    
+	    td[class="one_third"] {
+		    display: block;
+		    width: 300px !important;
+		    margin-bottom: 30px;
+		    float: left;
+		    text-align: center !important;
+	    }
+	    
+	    td[class="one_third_no_border"] {
+		    border-right:0 !important;
+	    }
+	    
+	    td[class="one_third"] img {
+		    margin: 0 auto;
+		    max-width: 300px !important;
+		    height: auto !important;
+	    }
+	    
+	    td[class="one_third"] td[class="noresize"] {
+		    margin: 0 auto;
+	    }
+	    
+	    td[class="one_third_spacer"] {
+		    display: none;
+	    }
+	    
+	    td[class="one_half"] {
+		    width: 300px !important;
+		    display: block;
+		    margin-bottom: 20px;
+		    text-align: center;
+	    }
+	    
+	    td[class="one_quarter"] {
+		    width: 140px !important;
+	    }
+	    
+	    td[class="one_quarter"] img {
+		    max-width: 140px !important;
+		    text-align: center;
+	    }
+	    
+	    td[class="one_half_spacer"] {
+		    display: none;
+	    }
+	    
+	    td[class="one_half"] img{
+		    margin: 0 auto;
+		    max-width: 300px !important;
+		    height: auto !important;
+	    }
+	    
+	    td[class="text_center"] {
+		    text-align: center !important;
+	    }
+	    td[class="round_social_button"] img{
+		    width: 45px !important;
+		    height: auto !important;
+	    }
+	    table[id="social_bg"]{
+		    padding: 0 10px;
+	    }
+	    td[class="header_third_space"]{
+		    display: none;
+	    }
+	    span[class="mobile_black_text"]{
+	    		color: #464646 !important;
+	    }
+	    td[class="padding_mobile"] {
+		    width: 10px !important;
+	    }
+	    table[class="bg_half"] {
+		    width:300px !important;
+	    }
+	    td[class="one_half_stack_header"]{
+	    		width: 300px !important;
+			display: table-header-group !important;
+	    }
+	    td[class="one_half_stack_bottom"]{
+	    		width: 300px !important;
+			display: table-footer-group !important;
+	    }
+	    td[class="one_half_stack_bottom"] img{
+	    		max-width:300px !important;
+	    }
+	    td[class="one_half_stack_header"] img{
+	    		max-width:300px !important;
+	    }
+	    
+	    
+    }
+    
+    @media screen and (max-width: 381px) {
+	    td[class="nomobile"] {
+		    display: none !important;
+	    }
+	    td[class="noresponsive"] {
+		    display: none;
+	    }
+	    span[class="huge_h"]{
+		    font-size: 60px;
+	    }
+	    td[class="aligncenter"]{
+		    text-align: center !important;
+		    margin: 0 auto !important;
+	    }
+	    td[class="section_h"]{
+		    height: 25px !important;
+	    }
+	    td[class="padding_top_twenty"]{
+	    		padding-top: 20px !important;
+	    }
+	    span[class="big_h"]{
+	    		font-size: 16px;
+	    }
+	    table[id="bg1"]{
+	    		background: none !important;
+	    }
+	    td[class="hero_musician"]{
+		    width: 300px !important;
+	    }
+	    td[class="spacing_h"]{
+	    		height: 20px !important;
+	    }
+	    table[id="bg2"]{
+	    		background: none !important;
+			color: #464646 !important;
+	    }
+	    table[id="bg4"]{
+	    		background: none !important;
+	    }
+	    table[id="bg3"]{
+	    		background-size: 100% 350px!important;
+	    }
+	    table[id="bg5"]{
+	    		background-size: 100% 470px!important;
+	    }
+	    td[class="one_half_nomargins"]{
+	    		width: 300px !important;
+			float: left;
+	    }
+	    td[class="one_fourth"]{
+	    		width: 160px !important;
+			float: left;
+	    }
+	    td[class="one_half_nomargins"] img {
+	    		max-width: 300px !important;
+			height: auto !important;
+	    }
+	    td[class="two_thirds"]{
+	    		width: 300px !important;
+			float: left;
+			display: block;
+			margin-bottom: 20px;
+	    }
+	    td[class="two_thirds"] img {
+	    		max-width: 300px !important;
+			height: auto !important;
+	    }
+	    td[class="inst_text"]{
+			text-align:left;
+	    }
+	    td[class="one_third_nomargins"] {
+	    		width:300px !important;
+			display:block !important;
+	    }
+	    td[class="one_quarter"] {
+		    width:300px !important;
+		    display:block !important;
+	    }
+	    td[class="one_quarter"] img {
+		    margin-bottom:20px !important;
+	    }
+	    td[class="full_span"] {
+		    width:300px !important;
+		    display:block !important;
+	    }
+	    td[class="three_quarters"] {
+		    width:300px !important;
+		    display: table-footer-group !important;
+	    }
+	    td[class="one_quarter_head"] {
+		    width:300px !important;
+		    display: table-header-group !important;
+		    
+	    }
+	    td[class="one_quarter_head"] img {
+		    margin-bottom:20px !important;
+		    
+	    }
+	    td[class="display_table"] {
+		    display:table !important;
+		    margin:0 auto !important;
+	    }
+	    td[class="one_half_header"] {
+		    width:300px !important;
+		    display: table-header-group !important;
+		    
+	    }
+	    td[class="one_half_header"] img {
+		    margin-bottom:20px !important;
+	    }
+		    
+	    td[class="one_half_footer"] {
+		    width:300px !important;
+		    display: table-footer-group !important;
+		    
+	    }
+	    td[class="stack_img"] {
+		    width:300px !important;
+		    display:block !important;
+	    
+	    }
+	    td[class="stack_img"] img {
+		    padding-bottom:10px !important;
+	    
+	    }
+	    td[class="full_span"] img {
+		    max-width:300px !important;
+		    height:auto !important;
+	    
+	    }
+	    td[class="one_quarter_nomargins"] {
+	    		width:300px !important;
+			display:block !important;
+			padding: 0 10px !important;
+			float:left !important;
+	    }
+	    td[class="one_fifth"] {
+	    		width:104px !important;
+			display:block;
+			margin-bottom:20px !important;
+	    }
+	    table[id="face1"]{
+		    background-image: none !important;
+		    background-color: #08a9fa !important;
+	    }
+	    table[id="face2"]{
+		    background-image: none !important;
+		    background-color: #08a9fa !important;
+	    }
+	    td[class="one_fourth_full"] {
+		    width:300px !important;
+		    display:block !important;
+	    }
+	    td[class="lower_space"] {
+		    width:10px !important;
+	    }
+	    td[class="one_quarter_lower"] {
+		    width:150px !important;
+		    display:block;
+		    float:left;
+		    border:0 !important;
+	    }
+	    td[class="one_quarter_header"] {
+		    width:150px !important;
+		    display: table-header-group !important;
+		    
+	    }
+	    td[class="one_quarter_footer"] {
+		    width:150px !important;
+		    display: table-footer-group !important;
+		    
+	    }
+	    td[class="no_border"] {
+		    border:none !important;
+		    
+	    }
+	    td[class="stacked_buttons"] {
+		    width:120px !important;
+		    margin:0 auto 15px !important;
+		    display:block !important;
+		    
+	    }
+	    
+	    
+	    
+    }
+    
+    @media screen and (max-width: 768px) and (min-width: 381px) {
+	    .section_h{
+		    height: 30px !important
+	    }
+	    #bg2 {
+		    background-size: 100% 200px !important;
+	    }
+	    .spacing_h {
+	    		height: 20px !important;
+	    }
+	    #bg3 {
+	    		background-size: 100% 300px !important;
+	    }
+	    #bg {
+	    		background-size: 100% 300px !important;
+	    }
+	    #bg1 {
+	    		background-size: 100% 380px !important;
+	    }
+	    .padding_phone {
+	    		display: none;
+	    }
+	    .one_half_nomargins {
+	   		width: 300px !important;
+	    }
+	    .one_half_nomargins img {
+	    		max-width: 300px !important;
+	    }
+	    .one_fourth {
+	    		width: 150px !important;
+	    }
+	    .two_thirds {
+	    		width: 374px !important;
+	    }
+	    .two_thirds img {
+	    		width: 374px !important;
+			height: 140px !important;
+	    }
+	    .big_h {
+	    		font-size: 18px !important;
+			line-height: 22px !important;
+	    }
+	    .one_half img {
+	    		max-width: 270px !important;
+	    }
+	    .one_quarter img {
+	    		max-width: 130px !important;
+			height: auto !important;
+	    }
+	    .one_fifth {
+	    		width:104px !important;
+			display:block;
+	    }
+	    .one_third_nomargins{
+	    		width:186px !important;
+		 	display:block !important;
+			float:left !important;
+	    }
+	    .one_third_nomargins img{
+		    max-width:186px !important;
+		    height:auto !important;
+	    }
+	    .full_span {
+	    		width:600px !important;
+			display:block !important;
+			margin-bottom:15px !important;
+	    }
+	    .three_quarters{
+	    		width:400px !important;
+			display:block !important;
+	    }
+	    .one_half_footer{
+		    width:270px !important;
+		    display:block !important;
+		    float:left !important;
+	    }
+	    .one_half_header{
+		    width:270px !important;
+		    display:block !important;
+		    float:left !important;
+	    }
+	    .one_half_header img{
+		    max-width:270px !important;
+		    height:auto !important;
+	    }
+	    .no_tablet {
+		    display:none !important;
+	    }
+	    .full_button{
+	    		width:100% !important;
+			display:block !important;
+			margin-bottom:20px !important;
+	    }
+	    .one_quarter_nomargins {
+	    		width: 150px !important;
+			display:block;
+			float:left;
+	    }
+        .one_quarter_lower {
+	    		width: 139px !important;
+			display:block;
+			float:left;
+	    }
+	    #face1 {
+	    		background-size: 100% 400px !important;
+	    }
+	    #face2 {
+	    		background-size: 100% 400px !important;
+	    }
+        .one_quarter_nomargins img{
+            max-width:150px !important;
+            display: block !important;
+        }
+        .stack_img img{
+            max-width:150px !important;
+            display:block !important;
+        }
+        .bg_half {
+            max-width: 300px !important;
+            display:block !important;
+        }
+	   .one_half_stack_header {
+	   		width: 300px !important;
+	    }
+	    .one_half_stack_bottom {
+	   		width: 300px !important;
+	    }
+	    .one_half_stack_bottom img {
+	    		max-width: 300px !important;
+	    }
+	    .one_half_stack_header img {
+	    		max-width: 300px !important;
+	    }
+    }
+
+</style>
+
+</head>
+
+<body style="background-color: #EEEEEE; font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #393939; margin: 0 auto; width: 800px;">		
+	
+		<table class="wrapper_table" style="width: 800px; max-width: 800px;" align="center" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td align="center">
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<td height="25">
+							</td>
+						</tr>
+						<tr>
+							<td class="content" style="width: 800px;">
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="padding" style="width: 20px;">
+										</td>
+										<td class="content_row" style="width: 760px;" align="center">
+											<table class="mobile_centered_table" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody><tr>
+													<td class="one_half" align="left" width="158">
+														<table class="mobile_centered_table" border="0" cellpadding="0" cellspacing="0">
+															<tbody><tr>
+																<td>
+																	<a href="http://policyninja.org" target="_blank" style="text-decoration:none;">
+																		<img src="http://sustainhawaii.org/maps-mailing/logo.jpg" style="display:block;" alt="" height="50" border="0" width="158">
+																	</a>
+																</td>
+															</tr>
+														</tbody></table>
+													</td>
+													<td class="nomobile" width="60">
+													</td>
+													<td class="one_half" data-editable="" align="right" width="550">
+														<table class="mobile_centered_table" border="0" cellpadding="0" cellspacing="0">
+															<tbody><tr>
+																<td style="font-family: 'Lato', sans-serif; font-size: 12px; color: #3b3f40; font-weight:700; line-height:24px; text-transform:uppercase;">
+																	<a class="black_text" href="http://hawaiifoodsystem.com/" target="_blank" style="color: #3b3f40; text-decoration: none; font-weight:400;">
+																	Home &nbsp;&nbsp;
+																	</a>
+																	<a class="black_text" href="http://maps.hawaiifoodsystem.com/" target="_blank" style="color: #3b3f40; text-decoration: none; font-weight:400;">
+																	Geolocations &nbsp;&nbsp; 
+																	</a>
+																	<a class="black_text" href="http://maps.hawaiifoodsystem.com/maps-admin/resources/fe_resources" target="_blank" style="color: #3b3f40; text-decoration: none; font-weight:400;">
+																	Resources 
+																	</a>																	
+																</td>
+																<td width="15">
+																</td>
+																<td align="center">
+																	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																		<tbody><tr>
+																			<td data-editable="" class="button" style="font-family: 'Lato', sans-serif;font-size: 12px; line-height: 48px; color: #FFF; text-align:center; text-transform: uppercase; font-weight:bold; border:1px solid #263247; display:block;" height="30" align="center" bgcolor="#244D0B" width="105">
+																				<a href="http://maps.hawaiifoodsystem.com/access" target="_blank" style="text-decoration: none; color: #FFF; width:100%; display: block; line-height: 30px;">
+																					Login
+																				</a>
+																			</td>																		
+																		</tr>
+																	</tbody></table>
+																</td>
+															</tr>
+														</tbody></table>
+													</td>
+												</tr>
+											</tbody></table>
+										</td>
+										<td class="padding" style="width: 20px;">
+										</td>
+									</tr>
+								</tbody></table>
+							</td>
+						</tr>
+						<tr>
+							<td height="25">
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+		</tbody></table>
+	
+		<table class="wrapper_table" style="width: 800px; max-width: 800px;" align="center" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td align="center" bgcolor="#ffffff" width="100%">
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<td class="content" style="width: 800px;">
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="padding" width="60">
+										</td>
+										<td class="content_row" style="width: 680px;" align="center">
+											<table class="mobile_centered_table" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody><tr>
+													<td height="30">
+													</td>
+												</tr>
+												<tr>
+													<td class="content_row" data-editable="" style="font-family: 'Lato', sans-serif;font-size: 20px; color: #3b3f40; line-height: 22px; text-align:center; font-weight:700;text-transform:uppercase; font-weight:900;" align="center">
+													  <span class="black_text"> Password Recovery </span>
+													</td>
+												</tr>
+												<tr>
+													<td height="10">
+													</td>
+												</tr>
+											</tbody></table>
+										</td>
+										<td class="padding" width="60">
+										</td>
+									</tr>
+								</tbody></table>
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+		</tbody></table>
+	
+		<table class="wrapper_table" style="width: 800px; max-width: 800px;" align="center" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td align="center" bgcolor="#ffffff" width="100%">
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<td class="content" style="width: 800px;">
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="padding" width="115">
+										</td>
+										<td class="content_row" style="width: 570px; padding-bottom:40px;" align="center">
+											<table class="mobile_centered_table" border="0" cellpadding="0" cellspacing="0">
+												<tbody>
+												<tr>
+													<td class="one_half" data-editable="" style="font-family: 'Lato', sans-serif;font-size: 14px; color: #757879; line-height: 23px; text-align:center; font-weight:400;" align="center" valign="top" width="570">
+																			    <p class="black_text">Please click the link below within the next 48 hours to reset your password:</p>
+																			    <p></p>
+													</td>
+												</tr>
+											</tbody></table>
+										</td>
+										<td class="padding" width="60">
+										</td>
+									</tr>
+								</tbody></table>
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+			<tr style=" margin-top:30px;">
+				<td data-editable="" class="button blue_button" style="font-family: 'Lato', sans-serif;font-size: 26px; line-height: 2em; color: #ffffff; text-align:center; text-transform: uppercase; font-weight:bold;" height="60" align="center" bgcolor="#244D0B">
+					<a class="white_text" href="http://{{ site }}/password-reset/{{ key }}" target="_blank" style="text-decoration: none; color: #ffffff;  display: block; line-height: 30px;">
+						Reset Password
+					</a>
+				</td>														
+			</tr>			
+		</tbody></table>
+
+		<table class="wrapper_table" style="width: 800px; max-width: 800px;" align="center" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td align="center" width="100%">
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<td class="content" style="width: 800px;">
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									<tbody><tr>
+										<td class="padding" width="20">
+										</td>
+										<td class="content_row" style="width: 750px;" align="center">
+											<table class="mobile_centered_table" border="0" cellpadding="0" cellspacing="0">
+												<tbody><tr>
+													<td class="one_half" align="center" valign="top" width="750">
+														<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+															<tbody><tr>
+																<td height="30">
+																</td>
+															</tr>
+															<tr>
+																<td class="black_text" data-editable="" style="font-family: 'Lato', sans-serif;font-size: 12px; color: #666; line-height: 23px; text-align:left; font-weight:400; text-align:center;" align="center">
+																	<h3 style="font-weight:700; color: #666666; font-size:18px; margin:0px; line-height:1em;">Copyright © 2015, State of Hawaii. All rights reserved.</h3>
+																	<p>The Hawaii Department of Agriculture’s (HDOA) 240 employees statewide work to support, enhance, promote, and protect Hawaii’s agriculture and aquaculture industries.</p>
+																</td>
+
+															</tr>
+														</tbody></table>
+													</td>
+												</tr>
+											</tbody></table>
+										</td>
+										<td class="padding" width="30">
+										</td>
+									</tr>
+								</tbody></table>
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+		</tbody></table>
+
+		</body>
+</html>

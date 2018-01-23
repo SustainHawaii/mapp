@@ -1,0 +1,11 @@
+<div class="row section-new">
+    <div class="col-sm-6">
+        <h2>Advanced Custom Fields</h2>
+    </div>
+    <div class="col-sm-6">
+        <a href class="btn btn-lg pull-right" ng-click="addFieldGroupModal(sform)">Add Fields Group</a>
+    </div>
+</div>
+<div id="customFieldGroups">
+    <div sform-builder-field-group ng-repeat="fieldGroup in sform.fieldGroups"></div>
+</div>

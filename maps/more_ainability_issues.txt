@@ -1,0 +1,37 @@
+more ainability stuff:
+
+Store
+== Change label to be stock (unit / weight)
+
+
+
+·         Let users be able to sort the store by: Priority: Medium
+o   Sort by: Price (High, low)
+o   Sort by Review / rating
+·         The map version of the store is not working, so let’s fix it or remove it. Priority: Medium
+·         Services don’t have delivery methods, so that should be removed from the advanced search, and instead add a select box where they can pick days available (tags add more than one). Priority: Medium
+·         On services since we’re adding day availability, we should also add the hours in which they work right beside the category on the product block. Priority: Medium
+
+
+·         The store blocks is also lacking a store description, and average ratings. Priority: Low
+·         It’d be good if we made the store name and store thumbnail link to the store. Priority: Low
+·         Services can’t be seasonal, downloadable nor recurring buys, so on the service page we should remove those from the sidebar (below the images) and add the working days, working hours, and zones in which they work. Also the product price should say per hour, day or job besides the $180. . Priority: High
+·         Services don’t need shipping nor handling, so that whole box should disappear on the services page. Priority: High
+·         Services in orders should have slightly different columns: .Priority: High
+o   In Qty we should add the number and then Hours, days or weeks, which are the variables for how services are priced.
+o   We should change unit price to Price per *X where X is either Hour Day or Week, depending on which one they picked.
+o   Amount should be renamed sub-total, since it’s the sum of Qty x Price
+
+Note: give them a note about sending an email to provider to schedule services
+with the provider email.
+
+·         When using the WYSYWYG to send a message you have the add image
+field, just remove the image button
+Priority: Low
+*         At least one tag is required.
+·         Users should be able to add tags to the tag list if it doesn’t exist yet. Priority: Low
+·         We should have a confirmation before we actually delete products, otherwise people might accidentally delete stuff. Priority: Low
+·         The market idea is great though I see two things I overlooked. Priority: Low
+o   Can markets set a maximum amount of people that can add their market as drop off / pick up locations? Otherwise it might get overcrowded and not be able to sustain the amount of people trying to go to that one place.
+o   Can providers are their own place as a market, so that we allow markets to grow on their own instead of having an admin manage all that?
+o   How hard would it be for markets to accept / deny people from using their place as a pick up / drop off just with a table interface?

@@ -1,0 +1,209 @@
+{% load staticfiles %} {% load mapp_tags %}
+<!-- #NAVIGATION -->
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel">
+    <!-- HEADER -->
+    <header id="header">
+        <div id="logo-group">
+            <!-- PLACE YOUR LOGO HERE -->
+            <span id="logo"><img src="{% static 'img/HDOA.png' %}"></span>
+            <!-- END LOGO PLACEHOLDER -->
+            <span class="pull-right" data-action="minifequalyMenu">
+                        <i class="fa fa-bars fa-2x"></i>
+                    </span>
+            <a class="pull-right" href="/">
+                <i class="fa fa-home fa-2x"></i>
+            </a>
+        </div>
+    </header>
+    <!-- END HEADER -->
+    <!-- NAVIGATION : This navigation is also responsive
+    To make this navigation dynamic please make sure to link the node
+    (the reference to the nav > ul) after page load. Or the navigation
+    will not initialize.
+    -->
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit difequalferent than
+        traditional href="" links. See documentation for details.
+        -->
+        <ul>
+            <li {% ifequal section "profile" %} class="active open" {% endifequal %}>
+                <a href>
+                        {% if request.user.image and request.user.image != 'null' %}
+                            <img src="{{ MEDIA_URL}}{{ request.user.image }}" alt="me" class="online"/>
+                        {% else %}
+                            <img src="{% static 'img/avatars/male.png' %}" alt="me" class="online"/>
+                        {% endif %}
+                        <span class="menu-item-parent">{{ request.user.full_name }}</span>
+                    </a>
+                <ul>
+                    <li {% ifequal subsection "profile" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/profile/">My Profile</a>
+                    </li>
+                    <li {% ifequal subsection "profile-mylocations" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/profile-mylocations">My Locations</a>
+                    </li>
+                    <li {% ifequal subsection "profile-myentities" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/profile-myentities">My Entities</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </li>
+            <li {% ifequal section "dashboard" %} class="active open" {% endifequal %}>
+                <a href="/{{ role }}/dashboard"><i class="fa fa-2x fa-fw fa-tachometer"></i> <span
+                        class="menu-item-parent">Dashboard</span></a>
+            </li>
+            <li {% ifequal section 'locations' %} class="active open" {% endifequal %}>
+                <a href><i class="fa fa-2x fa-fw fa-map-marker"></i> <span
+                        class="menu-item-parent">Locations</span>
+                    <!--<span class="badge inbox-badge">14</span>--></a>
+                <ul>
+                    <li {% ifequal subsection "locations" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/locations">All Locations</a>
+                    </li>
+                    {% if request.user|check_permission:'locations,0' %}
+                    <li {% ifequal subsection "locations-addlocation" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/locations-addlocation">Add Location</a>
+                    </li>
+                    {% endif %}
+                    <li {% ifequal subsection "locations-locationtypes" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/locations-types">Location Types</a>
+                    </li>
+                    {% if request.user|check_permission:'locations,6' %}
+                    <li {% ifequal subsection "locations-addlocationtype" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/locations-addlocationtype">Add Location Type</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            <li {% ifequal section 'categories' %} class="open active" {% endifequal %}>
+                <a href><i class="fa fa-2x fa-fw fa-tag"></i> <span
+                        class="menu-item-parent">Categories</span></a>
+                <ul>
+                    <li {% ifequal subsection "categories" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/categories">All Categories</a>
+                    </li>
+                    {% if request.user|check_permission:'category,0' %}
+                    <li {% ifequal subsection "categories-addcategory" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/categories/add-category">Add Category</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            <li {% ifequal section 'users' %} class="open active" {% endifequal %}>
+                <a href><i class="fa fa-2x fa-fw fa-user"></i> <span
+                        class="menu-item-parent">Users</span></a>
+                <ul>
+                    <li {% ifequal subsection 'users' %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/users">All Users & Organizations</a>
+                    </li>
+                    {% if request.user|check_permission:'users,0' %}
+                    <li {% ifequal subsection 'users-adduser' %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/users/add-user">Add User</a>
+                    </li>
+                    {% endif %}
+                    <li {% ifequal subsection 'users-addorg' %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/org-add">Add Organization</a>
+                    </li>
+                    <li {% ifequal subsection 'users-usertypes' %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/users/user-types">User Types</a>
+                    </li>
+                    {% if request.user|check_permission:'users,6' %}
+                    <li {% ifequal subsection 'users-addusertype' %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/users/add-usertype">Add User Type</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% comment %}
+            <li {% ifequal section "forms" %} class="active open" {% endifequal %}>
+                <a href><i class="fa fa-2x fa-fw fa-file-text-o"></i> <span
+                        class="menu-item-parent">Forms</span></a>
+                <ul>
+                    <li {% ifequal subsection "forms" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/forms">All Forms</a>
+                    </li>
+                    {% if request.user|check_permission:'forms,0' %}
+                    <li {% ifequal subsection "forms-addform" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/forms-addform">Add Form</a>
+                    </li>
+                    {% endif %}
+                    <li {% ifequal subsection "forms-settings" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/forms-settings">Settings</a>
+                    </li>
+                </ul>
+            </li>
+            {% endcomment %}
+            <li {% ifequal section "datavisualizations" %} class="active open" {% endifequal %}>
+                <a href><i class="fa fa-2x fa-fw fa-pie-chart"></i> <span
+                        class="menu-item-parent">Data Visualization</span></a>
+                <ul>
+                    <li {% ifequal subsection "datavisualizations" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/data/visualizations">All Visualizations</a>
+                    </li>
+                    <li {% ifequal subsection "data-addvisualization" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/data/addvisualization">Add Visualizations</a>
+                    </li>
+                    {% comment %}
+                    <li {% ifequal subsection "data-datasubtypes" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/data/datasubtypes">Data Sub-types</a>
+                    </li>
+                    <li {% ifequal subsection "data-dataconversions" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/data/dataconversions">Data Conversions</a>
+                    </li>
+                    <li {% ifequal subsection "data-settings" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/data/settings">Settings</a>
+                    </li>
+                    {% endcomment %}
+                </ul>
+            </li>
+            <li {% ifequal section "resources" %} class="active open" {% endifequal %}>
+                <a href><i class="fa fa-2x fa-fw fa-paperclip"></i> <span
+                        class="menu-item-parent">Resources</span></a>
+                <ul>
+                    <li {% ifequal subsection "all-resources" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/resources/all-resources">All Resources</a>
+                    </li>
+                    {% if request.user|check_permission:'resources,0' %}                    
+                    <li {% ifequal subsection "add-resources" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/resources/add-resources">Add Resource</a>
+                    </li>
+                    {% endif %}
+                    {% if request.user|check_permission:'resources,5' %}                                        
+                    <!--<li {% ifequal subsection "resources-settings" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/resources/resources-settings">Settings</a>
+                    </li>
+                    {% endif %}-->
+                </ul>
+            </li>
+            {% if request.user|check_permission:'settings,0' %}
+            <li {% ifequal section "settings" %} class="active open" {% endifequal %}>
+                <a href><i class="fa fa-2x fa-fw fa-gear"></i> <span
+                        class="menu-item-parent">Data Import</span></a>
+                <ul>
+                   <!-- <li {% ifequal subsection "settings" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/settings">Settings</a>
+                    </li>
+                    <li {% ifequal subsection "settings-plugins" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/settings-plugins">Plugins</a>
+                    </li>
+                    <li {% ifequal subsection "settings-menus" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/settings-menus">Menus</a>
+                    </li>-->
+                    <li {% ifequal subsection "settings-import" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/settings-import">Import External Data</a>
+                    </li>
+                    <li {% ifequal subsection "settings-importsystem" %} class="active" {% endifequal %}>
+                        <a href="/{{ role }}/settings-importsystem">Import System Data</a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</aside>
+<!-- END NAVIGATION -->

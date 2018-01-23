@@ -1,0 +1,153 @@
+{% extends 'homepage/base-visualizations.html' %}
+{% load staticfiles %}
+{% block aside %}
+    {% include 'homepage/widgets/aside.html' with section="resources" %}
+{% endblock aside %}
+{% block main_panel %}
+    {% include 'homepage/widgets/header_menu.html' with section='resources' %}
+    <div ng-controller="ResourceController">
+
+        <div id="subheader" ng-init="init_frontend()">
+            <div class="hidden-xs">
+                <ul class="header-nav">
+                    <li id="header-nav-toggle">
+                        <!--<span> <a href="javascript:void(0);" ng-click data-action="minifyMenu"><i class="fa fa-reorder"></i></a> </span>
+                        -->
+                    </li>
+                </ul>
+                <ul class="header-nav pull-right">
+                    <li><a href ng-click="go_fullscreen()">View Fullscreen</a></li>
+                    <li><a ng-click="menu_toggle('page_order')" id="infographic-settings" href>Page Settings</a></li>
+                </ul>             
+
+            </div>
+        </div>
+        <aside id="left-panel">
+            <nav class="hidden-xs">
+                <ul>
+                    <!--<li id="visualizations-locations" ng-class="{open: first_level.active=='location'}">
+		    -->
+<li id="visualizations-locations">
+                        <a ng-click="menu_toggle('location')" href><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Locations</span></a>
+                        <ul>
+                           <li class="menu-locations" ng-repeat="lt in location_types">
+                                <div class="pull-right">
+                                  <img src="/media/[[lt.icon || 'map-pin-1.png' ]]"></div>
+                                <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox" class="checkbox style-0"
+                                        checklist-value="lt" 
+                                        checklist-model="widget.viz_datasets"
+                                        ng-click="show_loc_on_map()">
+                                        <span>[[lt.name | CapitalizeFilter:'first']]</span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="visualizations-data" ng-class="{open: first_level.active=='dataviz'}">
+                        <a ng-click="menu_toggle('dataviz')" href><i class="fa fa-lg fa-fw fa-pie-chart"></i> <span class="menu-item-parent">Data Visualization</span></a>
+                        <ul>
+                            <li>
+                                <a ng-click="menu_toggle('dataviz', 'chart')" href>Chart</a>
+                            </li>
+                            <li>
+                                <a ng-click="menu_toggle('dataviz', 'table')" href>Table</a>
+                            </li>                            
+                            <li>
+                                <a ng-click="menu_toggle('dataviz', 'map')" href>Map</a>
+                            </li>
+                            <!--<li>
+                                <a ng-click="menu_toggle('dataviz','timeline')" href>Timeline</a>
+                            </li>-->                                                        
+                        </ul>
+                    </li>
+                    <li id="visualizations-resources" ng-class="{open: first_level.active=='resources'}">
+                        <a ng-click="menu_toggle('resources')" href><i class="fa fa-lg fa-fw fa-folder-open"></i> <span class="menu-item-parent">Resources</span></a>
+                        <ul>
+                            <li ng-repeat="resource in allResources">
+                                <a href ng-click="load_resource(resource.id)">[[resource.name]]</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- END NAVIGATION -->
+        <div id="options-panel" click-outside="hide_page_order()" 
+          class="show" outside-if-not="infographic-settings, remove-item" ng-show="show_page_order">
+            <ng-include  src="'/maps-admin/resources/partials/resource-page-order'"></ng-include>
+        </div>
+
+        <div id="Listings" class="second-level" ng-class="{open: second_level.active}">
+            <ng-include src="'/maps-admin/resources/partials/resource-listings'"></ng-include>
+        </div>
+
+        <div id="directory-Edit" class="third-level" ng-class="{open: third_level.active}">
+            <div ng-if="first_level.active == 'location'" class="scroll-content">
+              <preview-location locid="[[active_item.properties.id]]">
+              </preview-location>
+              <div class="directory-Edit-Data-Add"
+                ng-class="{ 'gradient-green': !can_add}" 
+                ng-click="add_to_infographic(active_item)">
+                <label class="checkbox">
+                      <i></i>[[add_to_infographic_btn_text]]
+                  </label>					
+              </div>
+            </div>
+            <div ng-if="first_level.active == 'dataviz'" class="scroll-content">
+              <div class="row preview-viz-header center-block"
+                ng-if="active_item.widgets[0]">
+                <preview-viz viz="active_item" cache="false" widgetnum="0" 
+                showtabs="false" preview="true"></preview-viz>
+              </div>
+              <div class="row directory-Edit-Header" id="location-details">
+                <h2>[[active_item.group_name]]</h2>
+              </div>
+              <div class="row directory-Edit-Data-Add"
+                ng-class="{ 'gradient-green': !can_add}" 
+                ng-click="add_to_infographic(active_item)">
+                <label class="checkbox">
+                      <i></i>[[add_to_infographic_btn_text]]
+                  </label>					
+              </div>
+            </div>
+        </div>
+        <div id="content">
+
+            <div id="main" role="main">
+                <!-- MAIN CONTENT -->
+                <!--don't show the map until things are setup correctly -->
+                <div id="da_map" ng-if="widget.chart_options">
+                  {% include 'data/partials/map.html' %}
+                </div>
+            </div>
+             <div id="actual-viz" class="fe-actual-viz"
+               back-img="[[resource.page_background_url]]">
+               <infographic-layout noheader="true"></infographic-layout>
+             </div>
+        </div>
+    </div>
+{% endblock main_panel %}
+{% block footer_scripts %}
+    
+<script type="text/javascript">
+            (function($){
+                /* Added Functionality for Front-end Visualizations */ 
+                $(window).load(function(){
+
+                    /* We calculate the size of the screen and deduct the size of the header & subheader to create the scrolls */
+                    var pageHeight = $( window ).height();
+                    var headerHeight = $( '#header' ).height();
+                    var subheaderHeight = $( '#subheader' ).height();
+                    var $scrollHeight = pageHeight - subheaderHeight - headerHeight;
+
+                    //alert($scrollHeight);
+                    /* We add the height tho those scrolls */
+                    $(".scroll-content").css('height', $scrollHeight);
+                    $(".contnet-scroll-container").css('height', $scrollHeight);
+
+                });
+            })(jQuery);     
+</script>
+{% endblock footer_scripts %}

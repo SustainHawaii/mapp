@@ -1,0 +1,295 @@
+{% extends 'profile/base.html' %}
+{% load staticfiles %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section='settings' subsection='settings-plugins' %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    <i class="fa fa-2x fa-fw fa-gear"></i>
+                    <!-- PAGE HEADER -->
+                    Settings
+                    <span>Plugins</span>
+                </h1>
+            </div>
+            <!-- end col -->
+            <!-- right side of the page with the sparkline graphs -->
+            <!-- col -->
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            </div>
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content">
+        <h2>Plugin List <span>12 active - 3 inactive</span></h2>
+
+        <div class="plugins">
+            <!-- row -->
+            <div class="row plugin-divider active">
+                <div class="col-sm-10">
+                    <h3>Stores Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-default btn-lg pull-right">Deactivate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider">
+                <div class="col-sm-10">
+                    <h3>Events Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-primary btn-lg pull-right">Activate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider">
+                <div class="col-sm-10">
+                    <h3>Forum Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-primary btn-lg pull-right">Activate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider">
+                <div class="col-sm-10">
+                    <h3>Multiple user types per user Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-primary btn-lg pull-right">Activate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider">
+                <div class="col-sm-10">
+                    <h3>Blogs Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-primary btn-lg pull-right">Activate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider active">
+                <div class="col-sm-10">
+                    <h3>Private Messages Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-default btn-lg pull-right">Deactivate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider active">
+                <div class="col-sm-10">
+                    <h3>User Matchmaking Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-default btn-lg pull-right">Deactivate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider active">
+                <div class="col-sm-10">
+                    <h3>Advanced User Profiles Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-default btn-lg pull-right">Deactivate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider">
+                <div class="col-sm-10">
+                    <h3>Stores Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-primary btn-lg pull-right">Activate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider">
+                <div class="col-sm-10">
+                    <h3>User Subscriptions Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-primary btn-lg pull-right">Activate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider">
+                <div class="col-sm-10">
+                    <h3>User Moderation Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-primary btn-lg pull-right">Activate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider">
+                <div class="col-sm-10">
+                    <h3>Appearance Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-primary btn-lg pull-right">Activate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row plugin-divider">
+                <div class="col-sm-10">
+                    <h3>Help Plugin <span>( Version 1.2 )</span></h3>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien dolor. Nulla in ipsum
+                        lobortis
+                        nulla porta ultrices eget sed enim. Duis ut orci dui. Nam dictum enim id vehicula
+                        interdum.</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href class="btn btn-primary btn-lg pull-right">Activate</a>
+                </div>
+            </div>
+            <!-- ends row divider -->
+        </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <!-- JQUERY SUMMERNOTE -->
+    <script src="{% static 'js/plugin/summernote/summernote.min.js' %}"></script>
+    <!--[if IE 8]>
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+		<![endif]-->
+    <!-- MAIN APP JS FILE -->
+    <!-- PAGE RELATED PLUGIN(S)
+    <script src="..."></script>-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /* DO NOT REMOVE : GLOBAL FUNCTIONS!
+             *
+             * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+             *
+             * // activate tooltips
+             * $("[rel=tooltip]").tooltip();
+             *
+             * // activate popovers
+             * $("[rel=popover]").popover();
+             *
+             * // activate popovers with hover states
+             * $("[rel=popover-hover]").popover({ trigger: "hover" });
+             *
+             * // activate inline charts
+             * runAllCharts();
+             *
+             * // setup widgets
+             * setup_widgets_desktop();
+             *
+             * // run form elements
+             * runAllForms();
+             *
+             ********************************
+             *
+             * pageSetUp() is needed whenever you load a page.
+             * It initializes and checks for all basic elements of the page
+             * and makes rendering easier.
+             *
+             */
+            pageSetUp();
+            /* // DOM Position key index //
+             l - Length changing (dropdown)
+             f - Filtering input (search)
+             t - The Table! (datatable)
+             i - Information (records)
+             p - Pagination (paging)
+             r - pRocessing
+             < and > - div elements
+             <"#id" and > - div with an id
+             <"class" and > - div with a class
+             <"#id.class" and > - div with an id and class
+             Also see: http://legacy.datatables.net/usage/features
+             */
+            runAllForms();
+            $('#summernote').summernote();
+            /* END BASIC */
+        })
+    </script>
+{% endblock page_rel_scripts %}

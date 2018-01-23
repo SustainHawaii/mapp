@@ -1,0 +1,47 @@
+language: python
+
+python:
+  - 2.7
+
+addons:
+  selenium: "2.44"
+
+# Mongo binds to 127.0.0.1 by default
+services:
+  - mongodb
+  - selenium
+
+before_script:
+  - mkdir -p ~/.aws
+  - echo '[profile eb-cli]' > ~/.aws/config
+  - echo "aws_access_key_id = $AWSAccessKeyId" >> ~/.aws/config
+  - echo "aws_secret_access_key = $AWSSecretKey" >> ~/.aws/config
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
+
+env:
+  global:
+    - AWSAccessKeyId=AKIAIQNMGRKOLOZP4S7Q
+    - secure: e7NAzbwwJq/ascy7ULslaeV9vGhyMxj59ue186a4IVQs5hD+b2Ft5XbSZyx0rcM4RzcNTCu1KpP7G/FIhJsn3ykWY2AGs/JmSULRIhYCRHiwWNKSC4bEAgSbykwYnbjKNnJgtxfT9/jf86E9rXlIdFM1rMdMOARwHxcAIWu+P65JB29Nl/LJa29bLOnbn2SiAu33C0HuMp9IDPaaa/NLp9m/sBavk5wojQY+fqH65Zu7bg3yYWQxVu+Vz7ByYsuKpbIVgtFf9k0PytqfIn8UTVe+OW+RQg2F5Gx07dDiOEOevMaDG9CvwCZ6GZMa9atyzKKOJTcWQ7pJwrGF/W6lUA==
+install:
+  - SUDO=$(which sudo) && $SUDO pip install awsebcli
+  - pip install -r requirements.txt
+
+
+script:
+  - mkdir -p .elasticbeanstalk
+  - cp config.yml .elasticbeanstalk/
+  - python manage.py test --with-coverage --cover-package="." --cover-erase --cover-branches --cover-xml --cover-xml-file="shippable/codecoverage/coverage.xml" --with-xunit --xunit-file="shippable/testresults/nosetests.xml"
+
+after_success:
+  - eb deploy --debug
+
+Notifications:
+     email:
+         recipients:
+             - sultan.maiyaki@softworks.com.my
+             - jeremy@softworks.com.my
+             - aaron.myatt@softworks.com.my
+             
+         on_success: always
+         on_failure: always

@@ -1,0 +1,34 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en-us" data-ng-app="myApp">
+    <head>
+        <meta charset="utf-8">
+        <title> Mapps -- Shared Data Visualization</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/smartadmin-production.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/nv.d3.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mapp_style.css' %}">
+    </head>
+    <body>
+  {% include 'data/show_viz.html' %}
+  </body>
+    <script src="{% static 'js/libs/jquery-2.0.2.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBwULR3-ki_vvce7vDmu317UoVvbfYeM9M&sensor=false&libraries=geometry"></script>
+    <script src="{% static 'js/angularjs/angular.min.js' %}"></script>
+    <script src="{% static 'js/libs/smart-table.min.js' %}"></script>
+    <script src="{% static 'js/libs/highcharts.js' %}"></script>
+    <script src="{% static 'js/libs/highcharts-more.js' %}"></script>
+    <script src="{% static 'js/libs/highcharts-ng.min.js' %}"></script>
+    <script src="{% static 'js/angularjs/angular-route.min.js' %}"></script>
+    <script src="{% static 'js/angularjs/angular-sanitize.min.js' %}"></script>
+    <script src="{% static 'js/angularjs/components/sysdata/sysdata_factory.js' %}"></script>
+    <script src="/static/js/libs/angular-social-links.js"></script>
+    <script src="{% static 'js/angularjs/controllers/dataviz_controller.js' %}"></script>
+    <script src="{% static 'js/libs/angular-select.min.js' %}"></script>
+    <script src="{% static 'js/libs/ng-maps.js' %}"></script>
+    <script src="{% static 'js/libs/angular-file-upload-shim.min.js' %}"></script>
+    <script src="{% static 'js/libs/angular-file-upload.min.js' %}"></script>
+</html>

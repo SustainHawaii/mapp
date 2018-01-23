@@ -1,0 +1,184 @@
+{% extends 'forms/base.html' %}
+{% load staticfiles %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="forms" subsection="forms-settings" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    <i class="fa fa-2x fa-fw fa-file-text-o"></i>
+                    <!-- PAGE HEADER -->
+                    Forms
+                    <span>Settings</span>
+                </h1>
+            </div>
+            <!-- end col -->
+            <!-- right side of the page with the sparkline graphs -->
+            <!-- col -->
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            </div>
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content">
+        <form class="smart-form big-form">
+            <div class="row">
+                <h2 class="row-Title noborder">Settings</h2>
+            </div>
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Where can Forms be added?
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="row">
+                            <div class="col col-4">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="checkbox" checked="checked">
+                                    <i></i>Location Types</label>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="checkbox">
+                                    <i></i>Pages</label>
+                            </div>
+                            <div class="col col-4">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="checkbox" checked="checked">
+                                    <i></i>User Types</label>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="checkbox">
+                                    <i></i>Tags</label>
+                            </div>
+                            <div class="col col-4">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="checkbox" checked="checked">
+                                    <i></i>Dashboard Widgets</label>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="checkbox">
+                                    <i></i>Custom Categories</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Where can Forms be added?
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg">
+                                    <option value="0">Enable Notifications</option>
+                                    <option value="1">Disable Notifications</option>
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Where can Forms be added?
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" placeholder="something@websiteapplication.com">
+                        </label>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-xl btn-primary pull-right">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <!-- PAGE RELATED PLUGIN(S)
+    <script src="..."></script>-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /* DO NOT REMOVE : GLOBAL FUNCTIONS!
+             *
+             * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+             *
+             * // activate tooltips
+             * $("[rel=tooltip]").tooltip();
+             *
+             * // activate popovers
+             * $("[rel=popover]").popover();
+             *
+             * // activate popovers with hover states
+             * $("[rel=popover-hover]").popover({ trigger: "hover" });
+             *
+             * // activate inline charts
+             * runAllCharts();
+             *
+             * // setup widgets
+             * setup_widgets_desktop();
+             *
+             * // run form elements
+             * runAllForms();
+             *
+             ********************************
+             *
+             * pageSetUp() is needed whenever you load a page.
+             * It initializes and checks for all basic elements of the page
+             * and makes rendering easier.
+             *
+             */
+            pageSetUp();
+            /* // DOM Position key index //
+             l - Length changing (dropdown)
+             f - Filtering input (search)
+             t - The Table! (datatable)
+             i - Information (records)
+             p - Pagination (paging)
+             r - pRocessing
+             < and > - div elements
+             <"#id" and > - div with an id
+             <"class" and > - div with a class
+             <"#id.class" and > - div with an id and class
+             Also see: http://legacy.datatables.net/usage/features
+             */
+            runAllForms();
+            $('#summernote').summernote();
+            /* END BASIC */
+        })
+    </script>
+{% endblock page_rel_scripts %}

@@ -1,0 +1,10 @@
+<preview-viz viz="currentviz"></preview-viz>
+    <div class="row section-divider">
+        <div class="col-sm-12">
+                {% csrf_token %}
+                <button type="button" id="save-btn" class="btn btn-xl btn-primary pull-right"
+                        ng-click="submit()"> Save Visualization</button>                
+        </div>
+        <div class="form-error pull-right" style="color:red;" data-ng-show="duplicate_name_error"><strong>[[duplicate_name_error]]</strong></div>                                                     
+    </div>
+

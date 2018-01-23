@@ -1,0 +1,115 @@
+{% extends 'categories/base.html' %}
+{% load staticfiles %}
+{% load mapp_tags %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="categories" subsection="categories-addtaxonomy" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <div id="ribbon">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <i class="fa fa-2x fa-fw fa-tag"></i>
+                    Categories
+                    {% if not data.id %}
+                        <span>Add Category</span>
+                    {% else %}
+                        <span>Update Category</span>
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div id="content" ng-controller="TaxonomyFormController">
+        <div class="alert alert-success" ng-cloak ng-show="alert.status" ng-model="alert.status">
+            <p style="text-align: center;" ng-bind="alert.msg"></p>
+        </div>
+        <input type="hidden" ng-init="loadData('{{ data.id }}')" />
+
+        <form class="smart-form big-form" name="taxonomy_form" id="taxonomy_form" novalidate data-role="form">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" placeholder="Name of the Category" ng-model="taxonomy.name"
+                                   name="name" ng-cloak required>
+                        </label>
+                        <div class="form-error ng-cloak" ng-show="taxonomy_form.$submitted && taxonomy_form.name.$error.required">Name required</div>
+                        <div class="form-error ng-cloak" ng-show="taxonomy_form.$submitted && taxonomy_form.not_unique">Name must be unique</div>                        
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="label">View Privacy</label>
+                </div>
+                <div class="col-sm-3">
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="privacy"
+                                        ng-model="taxonomy.privacy" required
+                                        ng-options="opt for opt in privacyOptions">
+                                </select> <i></i> </label>
+                        </section>
+                        <div class="form-error ng-cloak" ng-show="taxonomy_form.$submitted && taxonomy_form.privacy.$error.required">Privacy required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="inputWrap ng-cloak">
+                        <div class="textarea-top">
+                        </div>
+                        <div summernote ng-model="taxonomy.description">
+                            Enter Description of Category
+                        </div>
+                        <small> NOTE: If you are copy and pasting content from another website/source, please use the "Remove Font Style" button before submitting </small>
+                        <div class="form-error ng-cloak" ng-show="taxonomy_form.$submitted && description_error">Description required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label" style="margin-left: 0px;">Parent Category</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="inherit" ng-model="taxonomy.inherit"
+                                        ng-options="opt.id as opt.name for opt in parent_tax | excludeOption:taxonomy.id">
+                                    <option value="">--Parent Category--</option>
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div id="custom-field-container">
+                <div sform-builder>
+                    <div name="builderForm" sform-builder-form></div>
+                </div>
+            </div>
+            <div class="row content-footer">
+                {% if request.user|check_permission:'category,4' %}
+                <div class="col-sm-12">
+                    <button type="submit" ng-click="submit()" id="add-tax"
+                            class="btn btn-xl btn-primary pull-right">
+                        {% if not data.id %}
+                            Add Category
+                        {% else %}
+                            Update Category
+                        {% endif %}
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+
+    <script src="{% static 'js/angularjs/controllers/taxonomy_controller.js' %}"></script>
+
+{% endblock page_rel_scripts %}

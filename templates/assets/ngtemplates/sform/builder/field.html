@@ -1,0 +1,7 @@
+<div class="col-xs-1"><span class="btn-order" ng-bind="field.id">1</span></div>
+<div class="col-xs-4" ng-bind="field.name"></div>
+<div class="col-xs-2" ng-bind="field.type | toFieldTypeString"></div>
+<div class="col-xs-1 col-sm-2" ng-bind="field.required | TrueFalsetoYesNo"></div>
+<div class="col-xs-4 col-sm-3">
+    <a href ng-click="updateFieldModal(field)">Edit</a> | <a href ng-click="deleteFieldModal(fieldGroup, field)">Delete</a>
+</div>

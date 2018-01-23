@@ -1,0 +1,327 @@
+{% extends 'profile/base.html' %}
+{% load staticfiles %}
+
+
+{% include 'widgets/mobile_nav.html' %}
+
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section='settings' subsection='settings-import' %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    <i class="fa fa-2x fa-fw fa-pie-chart"></i>
+                    <!-- PAGE HEADER -->
+                    Data Import 
+                    <span>External Data</span>
+                </h1>
+            </div>
+            <!-- end col -->
+            <!-- right side of the page with the sparkline graphs -->
+            <!-- col -->
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            </div>
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content">
+        <ul id="myTab1" class="nav nav-tabs">
+            <li id="nav_upload" {% if not step %}class="active"{% endif %}>
+                <a href="#upload" data-toggle="tab">1. Upload File</a>
+            </li>
+            <li id="nav_normalize" {% if step = 'normalize' %}class="active"{% endif %}>
+                <a href="#normalize" data-toggle="tab">2. Normalization</a>
+            </li>
+            <li id="nav_conversion" {% if step = 'conversion' %}class="active"{% endif %}>
+                <a href="#conversion" data-toggle="tab">3. Conversion</a>
+            </li>
+            <li id="nav_table" {% if step = 'table' %}class="active"{% endif %}>
+                <a href="#table" data-toggle="tab">4. Table</a>
+            </li>
+        </ul>
+        <div id="myTabContent1" class="tab-content nopadding">
+            {% include 'settings/partials/importfile-upload.html' %}
+            {% include 'settings/partials/importfile-normalize.html' %}
+            {% include 'settings/partials/importfile-conversion.html' %}
+            {% include 'settings/partials/importfile-table.html' %}
+        </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <!-- PAGE RELATED PLUGIN(S)
+    <!-- Morris Chart Dependencies -->
+    <script src="{% static 'js/plugin/morris/raphael.min.js' %}"></script>
+    <script src="{% static 'js/plugin/morris/morris.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#summernote').summernote();
+
+            /// change upload type
+            function change_fields() {
+                var value = $('#MySelect').val();
+                if (value == 0) {
+                    $('#upload_file').show();
+                    $('#upload_file select, #upload_file input').attr('disabled', false);
+                    $('#upload_url').hide();
+                    $('#upload_url select, #upload_url input').attr('disabled', true);
+                    $("[name='upload_format'] option[value=2]").removeAttr('disabled');
+                    $("[name='upload_format'] option[value=0]").removeAttr('disabled');
+
+                }
+                else if (value == 1) {
+                    $('#upload_file').hide();
+                    $('#upload_file select, #upload_file input').attr('disabled', true);
+                    $('#upload_url').show();
+                    $('#upload_url select, #upload_url input').attr('disabled', false);
+                    $("[name='upload_format'] option[value=2]").attr('disabled','');
+                    $("[name='upload_format'] option[value=0]").attr('disabled','');
+                }
+            }
+            change_fields();
+            $("#MySelect").change(function () {
+                change_fields();
+            });
+
+            $('form').submit(function () {
+                var value = $('#MySelect').val();
+                if (value == 0) {
+                    $('#upload_url select, #upload_url input').attr('name', '');
+                }
+                else if (value == 1) {
+                    $('#upload_file select, #upload_file input').attr('name', '');
+                }
+            });
+
+            /// data conversion
+            $('#add-field').click(function () {
+                var tmpl = $('#conversion-row').text();
+                $('#conversions').append(tmpl);
+            });
+
+            $(document).on('click', '.remove-field', function(){
+                $(this).parents('.conversion-row').remove();
+            });
+
+            $(document).on('change', '.type', function() {
+                var weight = ['lb', 'oz', 'ton', 'kg', 'g'];
+                var length = ['in', 'ft', 'km', 'm'];
+                var from = $(this).closest('.conversion-row').find('[class*="from"]');
+                var to = $(this).closest('.conversion-row').find('[class*="to"]');
+                from.html('');
+                to.html('');
+
+                if ($(this).val() == 'weight') {
+                    for (i in weight) {
+                        from.append($('<option></option>').val(weight[i]).html(weight[i]));
+                        to.append($('<option></option>').val(weight[i]).html(weight[i]));
+                    }
+                }
+                if ($(this).val() == 'length') {
+                    for (i in length) {
+                        from.append($('<option></option>').val(length[i]).html(length[i]));
+                        to.append($('<option></option>').val(length[i]).html(length[i]));
+                    }
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /* DO NOT REMOVE : GLOBAL FUNCTIONS!
+             *
+             * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+             *
+             * // activate tooltips
+             * $("[rel=tooltip]").tooltip();
+             *
+             * // activate popovers
+             * $("[rel=popover]").popover();
+             *
+             * // activate popovers with hover states
+             * $("[rel=popover-hover]").popover({ trigger: "hover" });
+             *
+             * // activate inline charts
+             * runAllCharts();
+             *
+             * // setup widgets
+             * setup_widgets_desktop();
+             *
+             * // run form elements
+             * runAllForms();
+             *
+             ********************************
+             *
+             * pageSetUp() is needed whenever you load a page.
+             * It initializes and checks for all basic elements of the page
+             * and makes rendering easier.
+             *
+             */
+            /* pageSetUp(); */
+            /* // DOM Position key index //
+             l - Length changing (dropdown)
+             f - Filtering input (search)
+             t - The Table! (datatable)
+             i - Information (records)
+             p - Pagination (paging)
+             r - pRocessing
+             < and > - div elements
+             <"#id" and > - div with an id
+             <"class" and > - div with a class
+             <"#id.class" and > - div with an id and class
+             Also see: http://legacy.datatables.net/usage/features
+             */
+            /* runAllForms(); */
+            /* end bar chart */
+            /* END BASIC */
+
+            $('#data-table').dataTable({
+                "scrollY": 600,
+                "ScrollX": true,
+                "bLengthChange": false
+            });
+            /*final preview data */
+
+            var responsiveHelper_dt_basic = undefined;
+            var responsiveHelper_datatable_fixed_column = undefined;
+            var responsiveHelper_datatable_col_reorder = undefined;
+            var responsiveHelper_datatable_tabletools = undefined;
+            var breakpointDefinition = {
+                tablet: 1024,
+                phone: 480
+            };
+
+            {% ifequal step 'table' %}
+            $('#preview-table').dataTable({
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
+                        "t" +
+                        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_dt_basic) {
+                        responsiveHelper_dt_basic = new
+                        ResponsiveDatatablesHelper($('#preview-table'), breakpointDefinition);
+                    }
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_dt_basic.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_dt_basic.respond();
+                },
+                //"bPaginate": false
+                "bFilter": false,
+                "bProcessing": true,
+                "bServerSide": true,
+                  "sAjaxSource": "{% url 'data-datatable' import_id %}",
+            });
+
+          {% endifequal %}                  
+        })
+    </script>
+    <script src="{% static 'js/plugin/papa-parse/papaparse.min.js' %}"></script>
+    <script>
+        function preview_csv(file) {
+            Papa.parse(file, {
+                header: false,
+                dynamicTyping: true,
+                complete: function(results) {
+                    var out = '<table class="csv-table">';
+
+                    out += '<tr><td></td>';
+                    for (k in results.data[0]) {
+                        out += '<td>' + eval(parseInt(k) +1) + '</td>';
+                    }
+                    out += '</tr>';
+
+                        for (i in results.data.slice(0, 13)) {
+                            out += '<tr><td>' + eval(parseInt(i) + 1) + '</td>';
+                            for (j in results.data[i]) {
+                                out += '<td>' + results.data[i][j] + '</td>';
+                            }
+                            out += '</tr>';
+                        }
+                    out += '</table>';
+                    $('#csv-content').html(out);
+                    $('#modal-csv').modal('show');
+                }
+            });
+        }
+
+        $('#upload_file').change(function(e) {
+            var file = e.target.files[0];
+            var fname = file.name.split('\\').pop();
+            $('#file_name').val(fname);
+
+            if (fname.split('.').pop() == 'csv') {
+                preview_csv(file);
+            }
+        });
+    </script>
+    <script type="text/plain" id="conversion-row">
+    <li>
+        <div class="row conversion-row">
+            <div class="col-sm-3">
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg" name="fields[]">
+                                {% for fld in numfields %}
+                                    <option value="{{ fld }}">{{ fld }}</option>
+                                {% endfor %}
+                            </select> <i></i>
+                        </label>
+                    </section>
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg type" name="type[]">
+                                <option disabled selected></option>
+                                <option value="weight">Weight</option>
+                                <option value="length">Length</option>
+                            </select> <i></i>
+                        </label>
+                    </section>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg from" name="from[]">
+                            </select> <i></i>
+                        </label>
+                    </section>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg to" name="to[]">
+                            </select> <i></i>
+                        </label>
+                    </section>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="btn btn-default btn-lg pull-left remove-field">  -  </div>
+            </div>
+        </div>
+    </li>
+    </script>
+{% endblock page_rel_scripts %}

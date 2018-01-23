@@ -1,0 +1,245 @@
+{% load mapp_tags %}
+
+<div class="tab-pane fade {% if not step %}in active{% endif %}" id="upload">
+    <span class="row error-msg">{% for i in errors.msg %}<li>{{ i }}</li>{% endfor %}</span>
+    <form class="smart-form big-form" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if object %}
+        <input type="hidden" name="id" value="{{ object.id }}">
+    {% endif %}
+        <!-- row -->
+        <div class="row section-divider">
+            <div class="col-sm-3">
+                <label class="label">
+                    Name
+                </label>
+            </div>
+            <div class="col-sm-9">
+                 <div class="inputWrap">
+                    <div class="input input-file">
+                        <input type="text" value="{{ object.name }}" name="name" placeholder="Import Name">
+                        <div class="error-msg">{% for i in errors.name %}<li>{{ i }}</li>{% endfor %}</div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        <div class="row section-divider">
+            <div class="col-sm-3">
+                <label class="label">
+                    Description
+                </label>
+            </div>            
+            <div class="col-sm-9">
+                <div class="inputWrap">
+                    <div class="input">
+                        <input type="text" placeholder="Description" name="Enter a description of your data" value="{{ object.description|default:'' }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row section-divider" ng-controller="DataImportController"
+            ng-init="get_obj('{{object.id}}')">
+            <div class="col-sm-3">
+                <!--support old fashion form submission-->
+                <input type="text" style="display:none" id="cats" name="cats"
+                value="[[selectedtagnames]]">
+                <label style="margin-left: 0px;" class="label">Categories</label>
+            </div>
+            <div class="col-sm-9">
+                <div class="inputWrap">
+                    <div class="row">
+                        <ui-select ng-keypress="keypress($event)"
+                         multiple id="tag_select" style="width:100%"
+                        theme="select2" ng-model="$parent.selectedtags"
+                        on-remove="tag_changed($model)"
+                        on-select="tag_changed($model, true)"
+                        >
+                          <ui-select-match placeholder="Select categories for data import">[[$item.name]]</ui-select-match>
+                          <ui-select-choices repeat="tag in tags | filter: {name: $select.search,}"
+                          refresh="refresh_tags($select.search)"
+                          refresh-delay="0">
+                            <div ng-bind-html="tag.name | highlight: $slect.search"></div>
+                          </ui-select-choices>
+                        </ui-select>
+                    </div>                
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row section-divider">
+            <div class="col-sm-3">
+                <label class="label">
+                    Upload Type
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg" id="MySelect" name="upload_type" onselect="select(this);">
+                                {% for k, v in options.upload_type.items|dictsort:'0' %}
+                                <option value="{{ k }}" {% if object.upload_type == k %}selected{% endif %}>
+                                    {{ v }}
+                                </option>
+                                {% endfor %}
+                            </select> <i></i>
+                        </label>
+                    </section>
+                </div>
+                <!-- ends input -->
+            </div>
+            <div class="col-sm-3">
+                <label class="label">
+                    Upload Format
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg" name="upload_format">
+                                {% for k, v in options.upload_format.items %}
+                                <option value="{{ k }}" {% if object.upload_format == k %}selected{% endif %}>
+                                    {{ v }}
+                                </option>
+                                {% endfor %}
+                            </select> <i></i>
+                        </label>
+                    </section>
+                </div>
+                <!-- ends input -->
+            </div>
+        </div>
+        <!-- ends row divider -->
+
+        <!-- row -->
+        <div id="upload_file">
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Upload File
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="input input-file">
+                            <input type="text" placeholder="Add File" readonly="Add File"
+                                   class="txt-file-import" id="file_name" value="{{ object.upload_file|split:'/'|last|default:'' }}">
+                            <span class="button">
+                                <input type="file" id="file" name="upload_file">
+                                Browse
+                            </span>
+                            <div class="error-msg">{% for i in errors.upload_file_error %}<li>{{ i }}</li>{% endfor %}</div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            <div class="col-sm-3">
+                <label class="label">
+                    Duplicated Contents
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg" name="duplicate_content">
+                                {% for k, v in options.duplicate_content.items %}
+                                <option value="{{ k }}" {% if object.duplicate_content == k %}selected{% endif %}>
+                                    {{ v }}
+                                </option>
+                                {% endfor %}
+                            </select> <i></i>
+                        </label>
+                    </section>
+                </div>
+                <!-- ends input -->
+            </div>
+            </div>
+        </div>
+        <!-- ends row divider -->
+
+        <!-- row -->
+        <div id="upload_url">
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Upload URL
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="input input-file">
+                            <input type="text" placeholder="Enter URL" name="upload_url" value="{{ object.upload_url }}">
+                            <div class="error-msg">{% for i in errors.upload_url %}<li>{{ i }}</li>{% endfor %}</div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Run Every
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="upload_freq">
+                                    {% for k, v in options.upload_freq.items %}
+                                    <option value="{{ k }}" {% if object.upload_freq == k %}selected{% endif %}>
+                                        {{ v }}
+                                    </option>
+                                    {% endfor %}
+                                </select> <i></i>
+                            </label>
+                        </section>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            <div class="col-sm-3">
+                <label class="label">
+                    Duplicated Contents
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg" name="duplicate_content">
+                                {% for k, v in options.duplicate_content.items %}
+                                <option value="{{ k }}" {% if object.duplicate_content == k %}selected{% endif %}>
+                                    {{ v }}
+                                </option>
+                                {% endfor %}
+                            </select> <i></i>
+                        </label>
+                    </section>
+                </div>
+                <!-- ends input -->
+            </div>
+            </div>
+        </div>
+        <!-- ends row divider -->
+        {% include 'settings/partials/modal-csv.html' %}
+        <div class="row section-divider">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-xl btn-primary pull-right">
+                    Upload
+                </button>
+            </div>
+        </div>
+        <!-- end row -->
+    </form>
+</div>

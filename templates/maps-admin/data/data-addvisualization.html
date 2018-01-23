@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load mapp_tags %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="datavisualizations" subsection="data-addvisualization" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    <i class="fa fa-2x fa-fw fa-pie-chart"></i>
+                    <!-- PAGE HEADER -->
+                    Data Visualization
+                    <span>Add Visualization</span>
+                </h1>
+            </div>
+            <!-- end col -->
+            <!-- right side of the page with the sparkline graphs -->
+            <!-- col -->
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            </div>
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+
+    <div id="content"
+         data-ng-controller="TabsCtrl">
+        <input type="hidden" id="dataviz-id" value="{{id}}"/>
+        
+        <ul id="myTab1" class="nav nav-tabs">
+            <li ng-class="tabClass(tab)"
+                ng-repeat="tab in tabs">
+                <a href="[[tab.link]]" ng-click="setSelectedTab(tab)"
+                   data-toggle="tab">[[tab.label]]</a>
+            </li>
+        </ul>
+        <div id="myTabContent1" class="tab-content nopadding">
+            <div ng-view></div>
+        </div>
+    </div>
+
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <!-- PAGE RELATED PLUGIN(S) -->
+    <!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
+    <!--<script src="{% static 'js/libs/timeline.js' %}"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBwULR3-ki_vvce7vDmu317UoVvbfYeM9M&sensor=false&libraries=geometry"></script>
+{% endblock page_rel_scripts %}

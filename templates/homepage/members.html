@@ -1,0 +1,114 @@
+{% extends 'homepage/base.html' %}
+{% block aside %}
+    {% include 'homepage/widgets/aside.html' with section="members" %}
+{% endblock aside %}
+{% block main_panel %}
+    {% include 'homepage/widgets/header_menu.html' with section='members' %}
+    <!-- MAIN CONTENT -->
+    <div id="content" class="container">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{ orgs|length }} Results</h2>
+            </div>
+        </div>
+        <div class="row members-row">
+            {% for org in orgs %}
+            <div class="col-sm-6">
+                <!-- Starts Directory Block -->
+                <div class="directory-block">
+                    <div class="col-sm-4">
+                        <div id="map-{{ org.id }}" class="members-map"></div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><a href="/members-profile/{{ org.id }}/?type=org">{{ org.name }}</a></h3>
+
+                        <div class="directory-address">
+                            <i class="fa fa-2x fa-fw fa-map-marker"></i>
+                            <span>{{ org.address }}, {{ org.city }} {{ org.state }} {{ org.zip }}</span>
+                        </div>
+                        <p>{{ org.description|default:''|safe }}</p>
+                    </div>
+                </div>
+                <!-- ends Directory Block -->
+            </div>
+            {% endfor %}
+            {% for user in users %}
+                {% if user.point %}
+                    <div class="col-sm-6">
+                        <!-- Starts Directory Block -->
+                        <div class="directory-block">
+                            <div class="col-sm-4">
+                                <div id="map-{{ user.id }}" class="members-map"></div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h3><a href="/members-profile/{{ user.id }}/?type=user">{{ user.full_name }}</a></h3>
+        
+                                <div class="directory-address">
+                                    <i class="fa fa-2x fa-fw fa-map-marker"></i>
+                                    <span>{{ user.address }}, {{ user.city }} {{ user.state }} {{ user.zip }}</span>
+                                </div>
+                                <p>{{ user.description|default:''|safe }}</p>
+                            </div>
+                        </div>
+                        <!-- ends Directory Block -->
+                    </div>
+                {% endif %}
+            {% endfor %}            
+        </div>
+        <!-- ends row -->
+        {% include 'homepage/widgets/login_modal.html' %}
+        {% include 'homepage/widgets/register_modal.html' %}
+    </div>
+    <!-- END MAIN CONTENT -->
+    {% include 'homepage/widgets/footer.html' %}
+{% endblock main_panel %}
+
+{% block footer_scripts %}
+    {% for org in orgs %}
+        {% if org.point %}
+        <script type="text/javascript">
+            function initialize() {
+                var pos = new google.maps.LatLng({{ org.point.coordinates.1 }}, {{ org.point.coordinates.0 }});
+                var mapOptions = {
+                    zoom: 16,
+                    center: pos,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    disableDefaultUI: true,
+                    zoomControl: true
+                };
+                var map = new google.maps.Map(document.getElementById("map-{{ org.id }}"), mapOptions);
+                map.setCenter(pos);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: pos
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+       </script>
+        {% endif %}
+    {% endfor %}
+    {% for user in users %}
+        {% if user.point %}
+        <script type="text/javascript">
+            function initialize() {
+                var pos = new google.maps.LatLng({{ user.point.coordinates.1 }}, {{ user.point.coordinates.0 }});
+                var mapOptions = {
+                    zoom: 16,
+                    center: pos,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    disableDefaultUI: true,
+                    zoomControl: true
+                };
+                var map = new google.maps.Map(document.getElementById("map-{{ user.id }}"), mapOptions);
+                map.setCenter(pos);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: pos
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+       </script>
+        {% endif %}
+    {% endfor %}        
+{% endblock %}

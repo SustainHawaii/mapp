@@ -1,0 +1,53 @@
+{% extends 'dashboard/base.html' %}
+{% load staticfiles %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="dashboard" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <div ng-controller="ResourceController">
+        <div id="ribbon" 
+          ng-init="init_dashboard('{{mapp_user.id}}','{{mapp_user.dashboard_resource_id|default:''}}')">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                    <h1 class="page-title">
+                        <i class="fa fa-2x fa-fw fa-map-marker"></i>
+                        Dashboard
+                    </h1>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <a href=# ng-click="dashboard_add_row()" class="btn btn-lg
+                  pull-right">Add Row</a>
+            </div>
+            </div>
+        </div>
+        <div id="content">
+            <div  id="messages" class="alert alert-success ng-cloak" ng-show="messages" ng-bind="messages"></div>
+            <div class="row">    
+                <infographic-layout showcontrols="true"></infographic-layout>
+              </div>
+            <form class="smart-form big-form" name="resource_form" id="resource_form" novalidate data-role="form">
+                <div class="row content-footer">
+                    <div class="col-sm-8">
+                      <alert ng-show="dashboard_saved" type="success"
+                      close="hide_dashboard_saved_msg()">Dashboard Saved
+                      Successfully</alert>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit"
+                          ng-click="save_dashboard_resource(resource)"
+                                class="btn btn-xl btn-primary pull-right" ng-disabled="submitting">
+                               Save Dashboard 
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBwULR3-ki_vvce7vDmu317UoVvbfYeM9M&sensor=fals&libraries=geometry"></script>
+{% endblock page_rel_scripts %}

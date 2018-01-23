@@ -1,0 +1,76 @@
+{% if show_msg %}
+<div class="row"> 
+  <div class="col-sm-3">
+    <label class="label">
+      Data Type
+    </label>
+  </div>
+  <div class="col-sm-9">
+    <!-- starts input wrap -->
+    <div class="inputWrap">
+      <p>For map data, system data types and geojson files will automatically
+      be mapped.  No need to do anything!</p>
+      <!--<section>
+        <label class="select">
+          <select id="chart-type" class="input-lg"
+            ng-model="widget.config_fields.map_data_type"
+            ng-options="data for data in map_data_types"
+            ng-change="setMapDataType(widget)">
+          </select> <i></i>
+        </label>
+      </section>-->
+    </div>
+  </div>
+  <!-- row -->
+</div>
+{% endif %}
+<div class = "row">
+  <!--<div class="col-sm-3">
+    <fieldset>
+      <section>
+        <label class="label">LatLong Field</label>
+
+        <div class="inputWrap">
+          <label class="select">
+            <select class="input-lg" 
+              ng-model = "widget.config_fields.x_axis"
+              ng-change="updateBarChartXAxis(widget)"
+              ng-options = "field as field.name for field in widget.data_fields">
+            </select> <i></i>
+          </label>
+        </div>
+      </section>
+      <section>
+        <label class="label">Data</label>
+
+        <div class="inputWrap">
+          <ui-select multiple id="bar-y" style="width:100%"
+          theme="select2"
+          ng-model="$parent.widget.config_fields.y_axis"
+          on-select="updateBarChartFields($item, widget)"
+          on-remove="updateBarChartFields($item, widget)">
+          <ui-select-match placeholder="multiple fields cause stacked bar">
+          [[$item.name]]</ui-select-match>
+          <ui-select-choices repeat="field in widget.data_fields">
+          <div ng-bind-html="field.name | highlight: $select.search"></div>
+          </ui-select-choices>
+          </ui-select>
+        </div>
+      </section>
+    </fieldset>
+  </div>-->
+  <div class="col-sm-12" >
+    <map ng-transclude class="dataviz-map"
+      center="widget.chart_options.map_center"
+      options="widget.chart_options.map_options"
+      zoom="widget.chart_options.map_zoom">
+      <div ng-repeat="layer in widget.chart_options.layers">
+      <geojson url="layer.url",
+      pointoptions="layer.options",
+      polygonoptions="layer.options",
+      events="layer.events",
+      data="widget.raw_data"></geopoints>
+    </div>
+  </map>
+  </div>
+</div>

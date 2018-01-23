@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% include 'widgets/mobile_nav.html' %}
+
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section='users' subsection='users-adduser' %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <div id="ribbon">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <i class="fa fa-2x fa-fw fa-user"></i>
+                    Users
+                    {% if not object.id %}
+                        <span>Add User</span>
+                    {% else %}
+                        <span>Update User</span>
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div id="content" ng-controller="UserController">
+        <input type="hidden" ng-init="loadData('{{ object.id }}')"/>
+
+        <form class="smart-form big-form" name="user_form" id="user_form" novalidate data-role="form">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">Full Name</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" placeholder="User Full Name" ng-model="user.full_name"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">User Types</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <ui-select multiple theme="select2" ng-model="user.user_types" style="width: 100%;">
+                            <ui-select-match placeholder="Select user types...">[[$item.name]]</ui-select-match>
+                            <ui-select-choices repeat="item.id as item in usertypes | filter: {name: $select.search,}">
+                                <div ng-bind="item.name | highlight: $select.search"></div> 
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">Email Address</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="email" placeholder="Email" name="email" ng-model="user.email"/>
+                        </label>
+                        <div class="form-error ng-cloak" ng-show="user_form.email.$error.email">Invalid Email Address</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">Password</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="password" placeholder="Password" name="password" ng-model="user.password">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">Confirm Password</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="password" name="confirm_password" placeholder="Confirm Password"
+                                   ng-model="user.confirm_password" data-password-verify="user.password">
+                        </label>
+                        <div class="form-error ng-cloak" ng-show="user_form.confirm_password.$error.passwordVerify">Password Do Not Match</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">Address</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" placeholder="Address" name="address" ng-model="user.address" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">Zip</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" placeholder="Zip" name="zip" ng-model="user.zip" >
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">City</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" placeholder="City" name="city" ng-model="user.city" >
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">State</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" placeholder="State" name="state" ng-model="user.state" >
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">Description</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <summernote ng-model="user.description"></summernote>
+                        <small> NOTE: If you are copy and pasting content from another website/source, please use the "Remove Font Style" button before submitting </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label" style="padding-top: 15px;">User Organization</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <ui-select ng-model="user.organization" theme="select2" style="width: 100%;">
+                            <ui-select-match placeholder="Select organization...">[[ $select.selected.name ]]</ui-select-match>
+                            <ui-select-choices repeat="item in orgs | filter: {name: $select.search}">
+                                <div ng-bind="item.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-horizontal">
+                        <div sform-renderer>
+                            <div name="rendererForm" sform-renderer-form></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div id="custom-field-container">
+                <div sform-builder>
+                    <div name="builderForm" sform-builder-form></div>
+                </div>
+            </div>-->
+            <div class="text-danger ng-cloak" style="font-size: 16px;" ng-show="user_form.$submitted && user_form.$invalid">Please review all required fields again.</div>
+            <div class="text-danger ng-cloak" style="font-size: 16px;" ng-bind="formErrorMessage"></div>
+            <div class="row content-footer">
+                <div class="col-sm-12">
+                    <button ng-click="submit()" type="submit" class="btn btn-xl btn-primary pull-right">
+                        {% if not object.id %}
+                            Add User
+                        {% else %}
+                            Update User
+                        {% endif %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <script src="{% static 'js/angularjs/controllers/user_controller.js' %}"></script>
+{% endblock page_rel_scripts %}

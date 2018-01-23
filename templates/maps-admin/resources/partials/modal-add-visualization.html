@@ -1,0 +1,58 @@
+    <div id="content">
+        <!-- widget grid -->
+        <section id="widget-grid">
+            <!-- row -->
+            <div class="row">
+                <!-- NEW WIDGET START -->
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false">
+                        <header>
+                            <h2>Data Visualizations</h2>
+                        </header>
+                        <!-- widget div-->
+                        <div class="widget-content">
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="row">
+                                <h3 class="text-center"> Visualizations </h3>
+                                <p class="text-center"> You can add a visualization you've created from here: </p>
+                                <ui-select class="col-sm-12" ng-model="viz.selected" theme="select2" on-select="add_item($item.id, $item.group_name, 'dataviz')">
+                                    <ui-select-match placeholder="Select a Visualization...">[[$select.selected.group_name]]</ui-select-match>
+                                    <ui-select-choices repeat="viz in allViz | filter:$select.search">
+                                        <div ng-bind-html="viz.group_name | highlight: $select.search"></div>
+                                        <small>
+                                            ID: [[viz.id]]
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="row">
+                                <h3 class="text-center"> Locations </h3>
+                                <p class="text-center"> You can add any location available from here: </p>
+                                <ui-select class="col-sm-12" ng-model="viz.selected" theme="select2" on-select="add_item($item.id, $item.name, 'location')">
+                                    <ui-select-match placeholder="Select a Location...">[[$select.selected.group_name]]</ui-select-match>
+                                    <ui-select-choices repeat="viz in allLocations | filter:$select.search">
+                                        <div ng-bind-html="viz.name | highlight: $select.search"></div>
+                                        <small>
+                                            ID: [[viz.id]]
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>                            
+                            </div>
+                            <!-- end widget content -->
+                        </div>
+                    </div>
+                    <!-- end widget -->
+                </article>
+                <!-- WIDGET END -->
+            </div>
+            <!-- end row -->
+        </section>
+        <!-- end widget grid -->
+    </div>

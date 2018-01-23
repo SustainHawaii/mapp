@@ -1,0 +1,110 @@
+{% extends 'homepage/base.html' %}
+
+{% load staticfiles %}
+{% load mapp_tags %}
+
+{% block aside %}
+    {% include 'homepage/widgets/aside.html' with section="members" %}
+{% endblock aside %}
+
+{% block main_panel %}
+    {% include 'homepage/widgets/header_menu.html' with section='members' %}
+    <!-- MAIN CONTENT -->
+    <div id="content-header" ng-controller="IndexController">
+        <input type="hidden" ng-init="initMapping('{{object.id}}')">
+        
+        
+      <div ng-if="map">
+          <map ng-transclude class="dataviz-map"
+            center="map.map_center"
+            options="map.map_options">
+               <geojson url="map.url"
+                  pointoptions="map.pointoptions"
+                  events="map.events">
+               </geojson>
+          </map>
+        </div>
+    </div>
+    <div id="content" class="container" ng-controller="MemberController">
+    <div class="row member-header">
+      <input type="hidden" ng-init="getUser('{{request.user.id}}')">
+      <input type="hidden" ng-init="getOwner('{{owner}}')">
+      <input type="hidden" ng-init="getLocation('{{object.id}}')">
+        <div class="col-sm-3">
+            {% if object.image %}
+                <img src="{{ object.image }}" class="img-circle img-responsive" height="265" width="265">
+            {% else %}
+                <img src="{% static 'img/logo-sh.png' %}" class="img-circle img-responsive">
+            {% endif %}
+        </div>
+        <div class="col-sm-9">
+            <h1>{{ object.name }}</h1>
+
+            <div class="member-info">
+                <span>Location:</span>
+                {{ object.address1 }}, {{ object.city }} {{ object.state }} {{ object.zip }}
+            </div>
+            <div class="member-info">
+                    <div class="">
+                        <a ng-if="!loc.also_editable_by" class="btn" ng-click="claim_location('{{request.user.id}}')">Claim Location</a>
+                        <button disabled ng-if="loc.also_editable_by" class="btn">Location Claimed</button>
+                    </div>                        
+            </div>            
+            <div class="member-info">
+                <span>Categories:</span>
+
+                <div class="directory-tags">
+                    {% for cat in categories  %}
+                        <a href="" ng-click="setActiveAndRedirect('category', '{{cat.id}}')" class="tag-item">{{ cat.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="member-info">
+                <span>Keywords:</span>
+
+                <div class="directory-tags">
+                    {% for tag in object.tags|json_load %}
+                        <a href="" ng-click="setActiveAndRedirect('tags', '{{tag}}')" class="tag-item">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row member-description">
+        <div class="col-sm-12">
+            <p> {{ object.description|safe }} </p>
+        </div>
+    </div>
+    <div class="row" style="padding: 40px 15px" data-ng-controller="CustomFieldController">
+        <div ng-if="loc.location_type.custom_field_form"  class="col-xs-12" style="background-color: #FFF; padding: 15px 15px 50px;">
+            <form name="formCustomField" id="custom-field-container" class="smart-formxx form-horizontal" ng-submit="submit()" novalidate>
+                <input type="hidden" ng-init="setObjectId('location/{{ object.id }}')" />
+                <style>
+                    label > span {
+                        color: black;
+                        font-size: x-large;
+                    }
+                </style>
+
+                <div sform-renderer>
+                    <div name="rendererForm" sform-renderer-form></div>
+                </div>                
+
+                <div class="alert alert-success" role="alert" ng-bind="formMessage"></div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" style="padding: 10px 15px;">Submit</button>
+                </div>
+            </form> 
+        </div>
+    </div>
+
+    {% include 'homepage/widgets/login_modal.html' %}
+    {% include 'homepage/widgets/register_modal.html' %}
+    </div>
+    <!-- END MAIN CONTENT -->
+    {% include 'homepage/widgets/footer.html' %}
+{% endblock main_panel %}
+
+{% block footer_scripts %}
+
+{% endblock footer_scripts %}

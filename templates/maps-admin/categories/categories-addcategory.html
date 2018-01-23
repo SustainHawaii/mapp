@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load mapp_tags %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="categories" subsection="categories-addcategory" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <div id="ribbon">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <i class="fa fa-2x fa-fw fa-tag"></i>
+                    Categories
+                    {% if not data.id %}
+                        <span>Add Category</span>
+                    {% else %}
+                        <span>Update Category</span>
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div id="content" ng-controller="CategoryFormController">
+        <div class="alert alert-success" ng-cloak ng-show="alert.status" ng-model="alert.status">
+            <p style="text-align: center;" ng-bind="alert.msg"></p>
+        </div>
+        <input type="hidden" ng-init="loadData('{{ data.id }}')" />
+        <form class="smart-form big-form" name="categories_form" id="categories_form" novalidate data-role="form">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" id="cat-name" placeholder="Name of the Category"
+                                   ng-model="category.name" name="name"
+                                   required />
+                        </label>
+                        <div class="form-error ng-cloak" ng-show="categories_form.$submitted && categories_form.name.$error.required">Name required</div>
+                        <div class="form-error ng-cloak" ng-show="categories_form.$submitted && categories_form.not_unique">Name must be unique</div>                        
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="label">View Privacy</label>
+                </div>
+                <div class="col-sm-3">
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="privacy"
+                                        ng-model="category.privacy"
+                                        required
+                                        ng-options="opt for opt in privacyOptions">
+                                </select> <i></i>
+                            </label>
+                            <div class="form-error ng-cloak" ng-show="categories_form.$submitted && categories_form.privacy.$error.required">Privacy required</div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="inputWrap ng-cloak">
+                        <div class="textarea-top"></div>
+                        <div summernote ng-model="category.description"></div>
+                        <small> NOTE: If you are copy and pasting content from another website/source, please use the "Remove Font Style" button before submitting </small>                        
+                        <div class="form-error ng-cloak" ng-show="categories_form.$submitted && description_error">Description required</div>
+                    </div>
+                </div>
+            </div>
+       <!--     <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">Categories</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="inputWrap">
+                        <div class="row">
+                            <div class="col col-6" ng-repeat="tx in taxonomy">
+                                <label class="checkbox">
+                                    <input id='tx.id' type="checkbox" name="taxonomies" ng-model="category.taxonomies[tx.id]">
+                                    <i></i><span ng-bind="tx.name"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>-->
+            <div id="custom-field-container">
+                <div sform-builder>
+                    <div name="builderForm" sform-builder-form></div>
+                </div>
+            </div>
+            <div class="row content-footer">
+                {% if request.user|check_permission:'category,1' %}
+                <div class="col-sm-12">
+                    <button type="submit" ng-click="submit()" id="add-cat"
+                            class="btn btn-xl btn-primary pull-right">
+                        {% if not data.id %}
+                            Add Category
+                        {% else %}
+                            Update Category
+                        {% endif %}
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+
+    <script src="{% static 'js/angularjs/controllers/category_controller.js' %}"></script>
+
+{% endblock page_rel_scripts %}

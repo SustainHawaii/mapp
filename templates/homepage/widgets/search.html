@@ -1,0 +1,78 @@
+<div class="search-basic">
+    <form id="search-form" class="smart-form big-form" method="get" action="" data-api-url="">
+        <!-- row -->
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- starts input wrap -->
+                <div id="search_div" class="inputWrap headerWrap">
+                    <label class="input">
+                        <i id="submit-icon" class="icon-append fa fa-search"></i>
+                        <input placeholder="Input your search..." type="text" id="q">
+                    </label>
+                </div>
+                <!-- ends input -->
+            </div>
+            <div class="col-sm-3">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <a href="#adv_search_row" id="adv_search" class="btn btn-default btn-lg btn-block" data-toggle="collapse">Advanced Search</a>
+                </div>
+                <!-- ends input -->
+            </div>
+            <div class="col-sm-3">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <div class="btn-group btn-group-justified">
+                        <a class="btn btn-default {% ifequal section 'index' %} active {% endifequal %}" href="/">Map</a>
+                        <a class="btn btn-default {% ifequal section 'index-directory' %} active {% endifequal %} " href="/directory">Directory</a>
+                    </div>
+                </div>
+                <!-- ends input -->
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row collapse" id="adv_search_row">
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <section><label class="select">
+                        <select class="input-lg" id="location_type">
+                            <option value="">Show All Locations</option>
+                            {% for loc in loc_types %}
+                                <option value="{{ loc.id }}" label="{{ loc.name }}">{{ loc.name }}</option>
+                            {% endfor %}
+                        </select> <i></i>
+                    </labeL>
+                    </section>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <section><label class="select">
+                        <select class="input-lg" id="search_cats">
+                            <option value="">Select Categories</option>
+                            {% for cat in categories %}
+                                <option value="{{ cat.id }}" label="{{ cat.name }}">{{ cat.name }}</option>
+                            {% endfor %}
+                        </select> <i></i>
+                    </labeL>
+                    </section>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <section><label class="select">
+                        <select class="input-lg" id="search_tags">
+                            <option value="">Select Tags</option>
+                            {% for tag in tags %}
+                                <option value="{{ tag.id }}" label="{{ tag.name }}">{{ tag.name }}</option>
+                            {% endfor %}
+                        </select> <i></i>
+                    </labeL>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </form>
+</div>
+

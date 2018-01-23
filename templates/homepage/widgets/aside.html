@@ -1,0 +1,56 @@
+{% load staticfiles %}
+
+<div id="mobile-navigation" class="hidden-lg">
+    <!-- HEADER -->
+    <header id="header">
+        <div id="logo-group">
+            <!-- PLACE YOUR LOGO HERE -->
+            <span id="logo-mobile"><img src="{% static 'img/HDOA.png' %}"></span>
+            <!-- END LOGO PLACEHOLDER -->
+            <div class="header-buttons">
+                <a class="pull-right" data-action="toggleMenu" href>
+                    <i class="fa fa-bars fa-2x"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- END HEADER -->
+</div>
+<!-- Ends mobile navigation -->
+<aside id="left-panel" class="hidden-lg">
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit different than
+        traditional href="" links. See documentation for details.
+        -->
+        <ul>
+            <li {% ifequal section 'about' %} class="active" {% endifequal %}>
+                <a href="/index"><i class="fa fa-2x fa-fw fa-home"></i> <span
+                        class="menu-item-parent">Home</span></a>
+            </li>
+            <li {% ifequal section 'about' %} class="active" {% endifequal %}>
+                <a href="/about"><i class="fa fa-2x fa-fw fa-file"></i> <span class="menu-item-parent">About</span></a>
+            </li>
+            <li {% ifequal section 'about' %} class="active" {% endifequal %}>
+                <a href="/"><i class="fa fa-2x fa-fw fa-globe"></i> <span
+                        class="menu-item-parent">Geolocations</span></a>
+            </li>
+            <li {% ifequal section 'members' %} class="active" {% endifequal %}>
+                <a href="/members"><i class="fa fa-2x fa-fw fa-users"></i> <span
+                        class="menu-item-parent">Members</span></a>
+            </li>
+            <li {% ifequal section 'visualizations' %} class="active" {% endifequal %}>
+                <a href="/members"><i class="fa fa-2x fa-fw fa-bar-chart"></i> <span
+                        class="menu-item-parent">Visualizations</span></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="row login-mobile-buttons">
+        <div class="col-xs-6 col-md-6 col-sm-6">
+            <a data-toggle="modal" href="#modal-login" class="btn">Login</a>
+        </div>
+        <div class="col-xs-6 col-md-6 col-sm-6">
+            <a data-toggle="modal" href="#modal-signup" class="btn">Sign up</a>
+        </div>
+    </div>
+</aside>

@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-sm-6">
+        <infographic-layout preview="true"></infographic-layout>
+    </div>
+    
+    
+    <div class="col-sm-6">
+        <div class="scroll-content smart-form">
+            <div class="optionsHeader">
+                <a href ng-click="hide_page_order()" class="btn btn-default pull-right"><i class="fa fa-times"></i></a>
+                <h2>Page Options</h2>
+            </div>
+            <div class="form-group">
+                <label>Title of the Page</label>
+                <input type="text" class="form-control"
+                ng-model="resource.name" required>
+            </div>
+            <div class="form-group">
+                <label>Page Background</label>
+                  <div class="input input-file">
+                      <input type="text" placeholder="[[resource.page_background]]"
+                             readonly="[[resource.page_background]]"
+                             class="pointer file-text">
+                      <div class="button" ng-file-select ng-file-change="addfile($files, 'background')">Browse</div>
+                  </div>
+            </div>
+            <div class="form-group">
+                <label>Logo for the Page</label>
+                  <div class="input input-file">
+                      <input type="text" placeholder="[[resource.page_logo]]"
+                             readonly="[[resource.page_logo]]"
+                             class="pointer file-text">
+                      <div class="button" ng-file-select
+                        ng-file-change="addfile($files, 'logo')">Browse</div>
+                  </div>
+            </div>
+            
+            <!--            <div class="form-group">
+                <label>Save template in resources?</label>
+                <input type="text" class="form-control" placeholder="">
+            </div>
+            -->
+            <div class="form-group">
+                <label>Show the map when printing?</label>
+                  <label class="select">
+                      <select class="input"
+                              ng-model="resource.display_map"
+                              ng-options="opt | trueFalseToYesNo for opt in tf"
+                              ng-init="resource.display_map = resource.display_map || true"
+                              required>
+                      </select> <i></i> </label>
+            </div>
+            <div class="form-group">
+                <label>Allow Sharing?</label>
+                <label class="select">
+                    <select class="input" name="user_type"
+                            ng-model="resource.privacy" required ng-init="resource.privacy = resource.privacy || 'private'">
+                            <option value="everyone"> Everyone </option>
+                            <option value="private"> Private </option>
+                    </select> <i></i> </label>
+            </div>
+            <div class="form-footer">
+                <a class="btn btn-lg btn-primary pull-right"
+                  ng-disabled="!resource.name" ng-click="save_resource(resource)">Save</a>
+            </div>
+        </div>
+    </div>
+</div>

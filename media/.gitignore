@@ -1,0 +1,5 @@
+i[^.]*
+location/
+location_type/
+user/
+data_import/

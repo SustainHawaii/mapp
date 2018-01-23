@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en-us" data-ng-app="HomePageApp">
+<base href="/">
+<head>
+    <meta charset="utf-8">
+    <title>Hawaii Food Systems</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Mobile Application settings: fix screen resolution -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- #CSS Links -->
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/smartadmin-production.min.css' %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/smartadmin-skins.min.css' %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/your_style1.css' %}">
+    <!-- #FAVICONS -->
+    <link rel="shortcut icon" href="{% static 'img/favicon/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/favicon/favicon.ico' %}" type="image/x-icon">
+    <!-- #GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700">
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    {% block extra_styles %} {% endblock extra_styles %}    
+</head>
+<body class="smart-style-1 sustainhawaii-admin sustainhawaii-frontend sustainhawaii-frontend-visualizations">
+{% block aside %}{% endblock aside %}
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+    {% include 'homepage/widgets/messages.html' %}
+    {% block main_panel %}{% endblock main_panel %}
+    {% include 'homepage/widgets/login_modal.html' %}
+    {% include 'homepage/widgets/register_modal.html' %}
+    {% include 'homepage/widgets/password_recovery.html' %}
+</div>
+<!-- END MAIN PANEL -->
+<!--================================================== -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBwULR3-ki_vvce7vDmu317UoVvbfYeM9M&sensor=false&libraries=geometry"></script>
+{% include "frontend-dependencies.html" %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        pageSetUp();
+        $('.login-switch').click(function () {
+            $('#modal-recover').modal('hide'),
+            $('#modal-signup').modal('hide'),
+            $('#modal-login').modal('show');
+        });
+        $('.register-switch').click(function () {
+            $('#modal-recover').modal('hide'),
+            $('#modal-login').modal('hide'),
+            $('#modal-signup').modal('show');
+        });
+        $('.recover-switch').click(function () {
+            $('#modal-login').modal('hide'),
+            $('#modal-signup').modal('hide'),
+            $('#modal-recover').modal('show');
+        });
+
+        var path = window.location.href.split("?next=/");
+        path[1] ? $('#modal-login').modal('show').end() : false;
+
+    });
+</script>
+{% block footer_scripts %}{% endblock footer_scripts %}
+</body>
+</html>

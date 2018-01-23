@@ -1,0 +1,252 @@
+{% extends 'profile/base.html' %}
+{% load staticfiles %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="profile" subsection="profile-myentities" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    Profile
+							<span>
+								My Entities
+							</span>
+                </h1>
+            </div>
+            <!-- end col -->
+            <!-- right side of the page with the sparkline graphs -->
+            <!-- col -->
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            </div>
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content">
+    {% for o in org %}
+    <div class="row entity-wrap">
+    <div class="entity-block">
+        <div class="col-sm-9 entity-block-content">
+            <h2>{{ o.name }}<span>// {{ o.location_count }} Locations</span></h2>
+            <p>{{ o.description }}</p>
+        </div>
+        <div class="col-sm-3 entity-block-buttons">
+            <a href class="btn btn-default btn-lg pull-right"><i class="fa fa-angle-down fa-lg"></i> </a>
+            <a data-toggle="modal" data-type="org" data-obj="{{ o.id }}"
+                href="#delete-single" class="btn btn-default btn-lg pull-right">Delete</a>
+            <a href="{% url 'org-update' o.id %}" class="btn btn-default btn-lg pull-right">Edit</a>
+        </div>
+    </div>
+    <div class="entity-locations content-block">
+        <header>
+            <h2>Locations</h2>
+        </header>
+        <!-- widget div-->
+        <div class="widget-content">
+            <!-- widget content -->
+            <div class="widget-body">
+                <table id="locations-table" class="table table-striped table-bordered table-hover" width="100%">
+                    <thead>
+                    <tr>
+                        <th data-hide="phone"></th>
+                        <th data-class="expand">Location Name</th>
+                        <th data-hide="phone,tablet">Location Type</th>
+                        <th data-hide="phone,tablet">Created</th>
+                        <th data-hide="phone">Last Updated</th>
+                        <th data-hide="phone">Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for l in o.location_set %}
+                    <tr>
+                        <td>
+                            <label class="checkbox">
+                                <input type="checkbox" name="checkbox" checked="">
+                                <i></i>
+                            </label>
+                        </td>
+                        <td><a href>{{ l.name }}</a></td>
+                        <td>{{ l.location_type.name }}</td>
+                        <td>{{ l.created }}</td>
+                        <td>{{ l.last_updated }}</td>
+                        <td><a href="{% url 'location-update' l.id %}">Edit</a> |
+                            <a data-toggle="modal" href="#delete-single" data-type="loc" data-obj="{{ l.id }}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- end widget content -->
+            <div class="widget-footer">
+                <a class="btn btn-lg btn-default pull-right" data-toggle="modal" href="#delete-group"> Delete
+                    Selected </a>
+            </div>
+        </div>
+        <!-- end widget -->
+    </div>
+    <!-- END CONTENT BLOCKS -->
+    </div>
+    <!-- END ENTITY WRAP -->
+    {% endfor %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="delete-single" tabindex="-1" role="dialog" aria-labelledby="delete-single-Label"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="delete-single-Label">Delete</h4>
+                </div>
+                <form class="smart-form">
+                    <div class="modal-body">
+                        <div class="row">
+                            <p>If you are sure you want to delete the field?, <strong>write DELETE</strong> on the field
+                                below and click Yes. </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="label">Confirm Delete</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="input">
+                                    <input type="text" id="confirm-delete" placeholder="Write DELETE here">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            No
+                        </button>
+                        <a id="aDelete">
+                            <button type="button" class="btn btn-default" id="confirm-btn">
+                                Yes
+                            </button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    </div>
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <!-- PAGE RELATED PLUGIN(S) -->
+    <script src="{% static 'js/plugin/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/plugin/datatables/dataTables.colVis.min.js' %}"></script>
+    <script src="{% static 'js/plugin/datatables/dataTables.tableTools.min.js' %}"></script>
+    <script src="{% static 'js/plugin/datatables/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugin/datatable-responsive/datatables.responsive.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /* DO NOT REMOVE : GLOBAL FUNCTIONS!
+             *
+             * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+             *
+             * // activate tooltips
+             * $("[rel=tooltip]").tooltip();
+             *
+             * // activate popovers
+             * $("[rel=popover]").popover();
+             *
+             * // activate popovers with hover states
+             * $("[rel=popover-hover]").popover({ trigger: "hover" });
+             *
+             * // activate inline charts
+             * runAllCharts();
+             *
+             * // setup widgets
+             * setup_widgets_desktop();
+             *
+             * // run form elements
+             * runAllForms();
+             *
+             ********************************
+             *
+             * pageSetUp() is needed whenever you load a page.
+             * It initializes and checks for all basic elements of the page
+             * and makes rendering easier.
+             *
+             */
+            pageSetUp();
+            /* // DOM Position key index //
+             l - Length changing (dropdown)
+             f - Filtering input (search)
+             t - The Table! (datatable)
+             i - Information (records)
+             p - Pagination (paging)
+             r - pRocessing
+             < and > - div elements
+             <"#id" and > - div with an id
+             <"class" and > - div with a class
+             <"#id.class" and > - div with an id and class
+             Also see: http://legacy.datatables.net/usage/features
+             */
+            var responsiveHelper_dt_basic = undefined;
+            var responsiveHelper_datatable_fixed_column = undefined;
+            var responsiveHelper_datatable_col_reorder = undefined;
+            var responsiveHelper_datatable_tabletools = undefined;
+            var breakpointDefinition = {
+                tablet: 1024,
+                phone: 480
+            };
+            $('#locations-table').dataTable({
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
+                        "t" +
+                        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_dt_basic) {
+                        responsiveHelper_dt_basic = new ResponsiveDatatablesHelper($('#locations-table'), breakpointDefinition);
+                    }
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_dt_basic.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_dt_basic.respond();
+                }
+            });
+            /* END BASIC */
+
+            $('#delete-single').on('show.bs.modal', function(e) {
+
+                //get data-id attribute of the clicked element
+                var type = $(e.relatedTarget).data('type');
+                var obj = $(e.relatedTarget).data('obj');
+
+                $('#confirm-btn').click(function () {
+                    var confirm = $('#confirm-delete').val();
+                    if (confirm == 'DELETE') {
+                        if (type == 'loc'){
+                            $(e.currentTarget).find('#aDelete').attr('href',
+                                '/maps-admin/locations-delete/' + obj + '?next=/maps-admin/profile-myentities');
+                        } else if (type == 'org') {
+                            $(e.currentTarget).find('#aDelete').attr('href',
+                                '/maps-admin/org-delete/' + obj + '?next=/maps-admin/profile-myentities');
+                        }
+                    }
+                });
+            });
+
+        })
+    </script>
+{% endblock page_rel_scripts %}

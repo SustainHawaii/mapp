@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load mapp_tags %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="resources" subsection="resources-settings" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+
+    <div ng-controller="ResourceSettingsController">
+        <div id="ribbon" ng-init="get('{{settings}}')">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                    <h1 class="page-title">
+                        <i class="fa fa-2x fa-fw fa-map-marker"></i>
+                        Resource Settings
+                        <span>
+                            Update Resource Settings
+                        </span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div  id="messages" class="alert alert-success ng-cloak" ng-show="messages" ng-bind="messages"></div>
+            <form class="smart-form big-form" name="resource_settings_form" id="resource_settings_form" novalidate data-role="form">
+                
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="label">Enable Visualizations:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap">
+                            <section>
+                                <label class="select">
+                                    <select class="input-lg"
+                                            ng-model="settings.enable_visualizations"
+                                            ng-options="opt | trueFalseToYesNo for opt in tf"
+                                            required>
+                                    </select> <i></i> </label>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="label">Enable Map Visualizations:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg"
+                                        ng-model="settings.enable_map_visualizations"
+                                        ng-options="opt | trueFalseToYesNo for opt in tf"
+                                        required>
+                                </select> <i></i> </label>
+                        </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="label">Enable Drawing Tools</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap">
+                            <section>
+                            <label class="select">
+                                <select class="input-lg"
+                                        ng-model="settings.enable_drawing_tools"
+                                        ng-options="opt | trueFalseToYesNo for opt in tf"
+                                        required>
+                                </select> <i></i> </label>
+                        </section>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="label">Enable DataTypes:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap">
+                            <section>
+                            <label class="select">
+                                <select class="input-lg"
+                                        ng-model="settings.enable_datatypes"
+                                        ng-options="opt | trueFalseToYesNo for opt in tf"
+                                        required>
+                                </select> <i></i> </label>
+                        </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="row section-divider">
+                    <div class="col-sm-3">
+                        <label class="label">Location Types</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <!-- starts input wrap -->
+
+                        <div class="inputWrap">
+                            <div class="row">
+                            
+                                <div class="col col-sm-6" ng-repeat="lt in location_types">
+                                    <label class="checkbox">
+                                        <input type="checkbox" checklist-value="lt.name" checklist-model="settings.enabled_location_types">
+                                        <i></i>
+                                        <span>[[lt.name | CapitalizeFilter:'first']]</span>
+                                    </label>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        
+                        <!-- ends input -->
+                    </div>
+                </div>
+                <div class="row section-divider">
+                    <div class="col-sm-3">
+                        <label class="label">Chart Types</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <!-- starts input wrap -->
+
+                        <div class="inputWrap">
+                            <div class="row" ng-init="chart_types={{chart_types}}">
+                                <div class="col col-sm-6" ng-repeat="ct in chart_types">
+                                    <label class="checkbox">
+                                        <input type="checkbox" checklist-value="ct"
+                                               checklist-model="settings.chart_types">
+                                        <i></i> [[ct | CapitalizeFilter:'first']]
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ends input -->
+                    </div>
+                </div>
+                <div class="row content-footer">
+                    <div class="col-sm-12">
+                        <button type="submit" ng-click="submit()" id="submit"
+                                class="btn btn-xl btn-primary pull-right" ng-disabled="submitting">
+                                Update Settings
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+
+    <script src="{% static 'js/angularjs/controllers/backend_resource_controller.js' %}"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            pageSetUp();
+            runAllForms();
+            //$('#summernote').summernote();
+            Dropzone.autoDiscover = false;
+            $("#mydropzone").dropzone({
+                //url: "/file/post",
+                addRemoveLinks: true,
+                maxFilesize: 0.5,
+                dictResponseError: 'Error uploading file!'
+            });
+            /* END BASIC */
+        });
+    </script>
+{% endblock page_rel_scripts %}

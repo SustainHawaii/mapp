@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load mapp_tags %}
+
+{% include 'widgets/mobile_nav.html' %}
+
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html'  with section='users' subsection='users-addusertype' %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    <i class="fa fa-2x fa-fw fa-user"></i>
+                    <!-- PAGE HEADER -->
+                    Users
+                    {% if not data.id %}
+                        <span>Add User Type</span>
+                    {% else %}
+                        <span>Update User Type</span>
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content" ng-controller="UserTypeFormController">
+        <input type="hidden" ng-init="loadData('{{ data.id }}')" />
+
+        <form class="smart-form big-form" name="user_type_form" novalidate data-role="form">
+            <!-- row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <label class="input">
+                            <input type="text" id="user-name" placeholder="Name of the User Type"
+                                   ng-model="userType.name" name="name"
+                                   required>
+                        </label>
+                        <div class="text-danger ng-cloak" ng-show="(user_type_form.$submitted || user_type_form.name.$dirty) && user_type_form.name.$error.required">* Required</div>
+                    </div>
+                    <!-- ends input -->
+
+                </div>
+            </div>
+            <!-- end row -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">Location Permissions</label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="row">
+                            <div class="col col-6" ng-repeat="(id, val) in permissions.locations">
+                                <label class="checkbox">
+                                    <input id='locations_permit[id]' type="checkbox" name="locations_permit"
+                                           ng-model="userType.permissions.locations[id]">
+                                    <i></i>
+                                    <span ng-bind="val"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Categories Permissions
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="row">
+                            <div class="col col-6" ng-repeat="(id, val) in permissions.categories">
+                                <label class="checkbox">
+                                    <input id='category_permit[id]' type="checkbox" name="category_permit"
+                                           ng-model="userType.permissions.category[id]">
+
+                                    <i></i>
+                                    <span ng-bind="val"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Users Permissions
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="row">
+                            <div class="col col-6" ng-repeat="(id, val) in permissions.users">
+                                <label class="checkbox">
+                                    <input id='users_permit[id]' type="checkbox" name="users_permit"
+                                           ng-model="userType.permissions.users[id]">
+                                    <i></i>
+                                    <span ng-bind="val"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Form Permissions
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                        <div class="row">
+                            <div class="col col-6" ng-repeat="(id, val) in permissions.forms">
+                                <label class="checkbox">
+                                    <input id='forms_permit[id]' type="checkbox" name="forms_permit"
+                                           ng-model="userType.permissions.forms[id]">
+                                    <i></i>
+                                    <span ng-bind="val"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Resource Permissions
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                      <div class="row">
+                            <div class="col col-6" ng-repeat="(id, val) in permissions.Resources">
+                                <label class="checkbox">
+                                    <input id='forms_permit[id]' type="checkbox" name="forms_permit"
+                                           ng-model="userType.permissions.resources[id]">
+                                    <i></i>
+                                    <span ng-bind="val"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->
+            <!-- row -->
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Settings Permissions
+                    </label>
+                </div>
+                <div class="col-sm-9">
+                    <!-- starts input wrap -->
+                    <div class="inputWrap">
+                      <div class="row">
+                            <div class="col col-6" ng-repeat="(id, val) in permissions.Settings">
+                                <label class="checkbox">
+                                    <input id='forms_permit[id]' type="checkbox" name="forms_permit"
+                                           ng-model="userType.permissions.settings[id]">
+                                    <i></i>
+                                    <span ng-bind="val"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ends input -->
+                </div>
+            </div>
+            <!-- ends row divider -->                        
+            <!-- row -->
+            <!--
+            <div class="row section-divider">
+                <div class="col-sm-3">
+                    <label class="label">
+                        Can Register?
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="allow_register"
+                                        ng-model="userType.allow_register"
+                                        ng-options="opt | trueFalseToYesNo for opt in canRegister"
+                                        required>
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="label">
+                        Needs Authorization?
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <div class="inputWrap">
+                        <section>
+                            <label class="select">
+                                <select class="input-lg" name="need_authorization"
+                                        ng-model="userType.need_authorization"
+                                        ng-options="opt | trueFalseToYesNo for opt in needAuthorization"
+                                        required>
+                                </select> <i></i> </label>
+                        </section>
+                    </div>
+                     
+                </div>
+            </div>
+            -->
+            <div id="custom-field-container">
+                <div sform-builder>
+                    <input type="hidden" ng-init="setSFormBuilderData('{{ data.custom_field_form.field_groups|jsonify|angular_escape_quotes }}')" />
+                    <div name="builderForm" sform-builder-form></div>
+                </div>
+            </div>
+            <div class="text-danger ng-cloak" style="font-size: 16px;" ng-show="user_type_form.$submitted && user_type_form.$invalid">Please review all required fields again.</div>
+            <div class="text-danger ng-cloak" style="font-size: 16px;" ng-bind="formErrorMessage"></div>
+            <div class="row content-footer">
+                {% if request.user|check_permission:'users,3' %}
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-xl btn-primary pull-right" ng-click="submit()" >
+                        {% if not data.id %}
+                            Add User Type
+                        {% else %}
+                            Update User Type
+                        {% endif %}
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+            <!-- end row -->
+        </form>
+    </div>
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+
+    <script src="{% static 'js/angularjs/controllers/usertype_controller.js' %}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            pageSetUp();
+            runAllForms();
+            $('#summernote').summernote();
+            /* END BASIC */
+        });
+    </script>
+{% endblock page_rel_scripts %}

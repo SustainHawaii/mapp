@@ -1,0 +1,117 @@
+<!-- Modal -->
+<div data-ng-controller="RegisterController"
+     class="modal fade" id="modal-signup" tabindex="-1"
+     role="dialog" aria-labelledby="modal-signupLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="modal-signupLabel">Sign up</h4>
+            </div>
+            <div collapse="isCollapsed" style="margin: 5px;">
+                <div class="well well-sm">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p style="text-align: center;"><strong>[[ success_message ]]</strong></p>
+                </div>
+            </div>
+            <form class="smart-form" name="reg_form" id="reg_form">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label">Full Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="input">
+                                <input maxlength="32" type="text" name="name" data-ng-model="reg.full_name" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label">Email</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="input">
+                                <input type="email" name="email" required data-ng-model="reg.email">
+                            </label>
+                             <div class="form-error" style="margin-top: 3px; border: 1px #ff6114 ridge; padding: 5px;" data-ng-show="reg_form.email.$error.email">
+                                This is not a valid email.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label">Password</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="input">
+                                <input type="password" name="password"
+                                       data-ng-model="reg.password" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label">Repeat Password</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="input">
+                                <input type="password" name="confirm_password"
+                                       data-ng-model="reg.confirm_password"
+                                       data-password-verify="reg.password" required>
+                            </label>
+
+                            <div class="form-error" style="margin-top: 3px; border: 1px #ff6114 ridge; padding: 5px;"
+                                 data-ng-show="reg_form.confirm_password.$error.passwordVerify">
+                                Password Do Not Match
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label">User Type</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="select">
+                                <select class="select2"
+                                        multiple
+                                        data-ng-model="reg.user_types"
+                                        data-ng-options="usrT.id as usrT.text for usrT in userTypes">
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label">Organization</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="select">
+                                <select data-ng-model="reg.organization"
+                                        data-ng-options="org.id as org.text for org in orgs">
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <ul class="login-extras pull-left">
+                        <li><a data-toggle="modal" href="#modal-recover" class="recover-switch">» Recover Password</a></li>
+                        <li><a data-toggle="modal" href="#modal-login" class="login-switch">» Login</a></li>
+                    </ul>
+                    <a href class="btn btn-primary"
+                       data-ng-disabled="reg_form.$invalid" data-ng-click="submit()" type="button">
+                        Sign Up
+                    </a>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

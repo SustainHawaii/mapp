@@ -1,0 +1,188 @@
+.error-msg {
+    color: red;
+}
+
+.data-table,
+.data-table th,
+.data-table tbody,
+.data-table tr,
+.data-table td {
+    border: 1px solid;
+    padding: 3px;
+    margin: 5px;
+    width: 100%;
+    heigth: auto;
+}
+
+.csv-table * {
+    margin: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+}
+
+.csv-table td {
+    width: 1% !important;
+}
+
+#csv-content {
+    overflow-x: scroll;
+}
+
+.search-basic .smart-form section {
+    margin-bottom: -10px;
+}
+
+.viz-basic {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    bottom: 0;
+    top: 80px;
+    left: 0;
+    width: 60%;
+    padding-top: 10px;
+}
+
+.viz-basic .select2-container {
+    margin-bottom: -10px;
+}
+
+.viz-map {
+    overflow: hidden;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 40%;
+    padding-top: 10px;
+}
+
+.viz-content {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.viz-footer {
+    position: absolute;
+    top: 800px;
+    bottom: 0;
+    width: 100%;
+}
+
+.viz-map .google_maps {
+    height: 600px;
+}
+
+.multiSelectWrap {
+    display: table;
+    width: 100%;
+}
+
+.multiSelectWrap .select2-container {
+    display: table;
+}
+
+#adv_search_row {
+    padding-right: 20px;
+}
+
+/* Google map styles for data viz */
+.angular-google-map-container { height: 500px; }
+.dataviz-map { height: 500px; }
+
+.avatar {
+    height: auto;
+    width: 100%;
+}
+
+#conversions {
+    list-style-type: none;
+}
+
+#conversion li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* highcharts specific */
+.highcharts-tooltip {
+  margin-left: 10px;
+}
+
+/* messages */
+.msg-alert {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 0px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.msg-alert,
+.msg-alert h4 {
+  color: #c09853;
+}
+.msg-alert h4 {
+  margin: 0;
+}
+.msg-alert a {
+    color: #c09853;
+    text-decoration: underline;
+}
+.msg-alert .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  line-height: 20px;
+}
+.msg-alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+.msg-alert-success h4 {
+  color: #468847;
+}
+.msg-alert-danger,
+.msg-alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+.msg-alert-error a {
+    color: #b94a48;
+    text-decoration: underline;
+}
+.msg-alert-danger h4,
+.msg-alert-error h4 {
+  color: #b94a48;
+}
+.msg-alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #3a87ad;
+}
+.msg-alert-info h4 {
+  color: #3a87ad;
+}
+.msg-alert-block {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.msg-alert-block > p,
+.msg-alert-block > ul {
+  margin-bottom: 0;
+}
+.msg-alert-block p + p {
+  margin-top: 5px;
+}
+
+/* password reset */
+.password-reset {
+    margin-top: 30px;
+}

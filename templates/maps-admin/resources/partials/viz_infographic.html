@@ -1,0 +1,53 @@
+      <div ng-switch on="currentviz.widgets[0].viz_type">
+        <!-- currentviz.widgets[0].viz_type == Chart -->
+        <div ng-switch-when="Chart" class="fe-small-infographic-chart">
+          <highchart ng-if="currentviz.widgets[0].raw_data" id="chart1"
+          config="currentviz.widgets[0].chart_options" ></highchart>
+        </div>
+        <!-- currentviz.widgets[0].viz_type == Table -->
+        <div ng-switch-when="table" class="fe-small-infographic-table">
+        <table st-table="currentviz.widgets[0].display_data" st-safe-src="currentviz.widgets[0].chart_data"
+          class="table table-striped" st-pipe="loadTableData">
+          <thead>
+            <tr ng-show="currentviz.widgets[0].config_fields.allow_search">
+              <th>
+                <input st-search placeholder="search table or click headers to sort..."
+                class="input-sm form-control" type="search"/>
+              </th>
+              <tr>
+                <th ng-repeat="col in currentviz.widgets[0].config_fields.table_columns"
+                  st-sort="'[[col.field.ds_fieldName]]'">
+                  <strong>[[col.title]]</strong>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="data_row in currentviz.widgets[0].display_data">
+                <td ng-repeat="row_col in currentviz.widgets[0].config_fields.table_columns">
+                [[ data_row[row_col.field.ds_fieldName] ]]</td>
+              </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td class="text-center" st-pagination="" st-items-by-page="10"
+              colspan="[[currentviz.widgets[0].config_fields.table_columns.length]]" ></td>
+            </tr>
+            </tfoot>
+        </table>
+      </div>
+          <!-- currentviz.widgets[0].viz_type == map -->
+          <div ng-switch-when="map" class="fe-small-infographic-table">
+            <h3 class="text-center">[[currentviz.widgets[0].title || "Visualization" ]]</h3>
+            <map ng-transclude class="dataviz-map"
+            center="currentviz.widgets[0].chart_options.map_center"
+            options="currentviz.widgets[0].chart_options.map_options"
+            refresh="currentviz.widgets[0].chart_options.refresh_map">
+            <div ng-repeat="layer in currentviz.widgets[0].chart_options.layers">
+              <geojson url="layer.url",
+                pointoptions="layer.options",
+                polygonoptions="layer.options",
+              events="layer.events"></geopoints>
+            </div>
+            </map>
+          </div> <!-- end mapp -->
+        </div>

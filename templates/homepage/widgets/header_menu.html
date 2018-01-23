@@ -1,0 +1,39 @@
+{% load staticfiles %}
+
+<div id="header" class="visible-lg">
+    <a href="http://maps.hawaiifoodsystem.com" class="logo pull-left"><img src="{% static 'img/HDOA.png' %}"></a>
+    <ul class="header-nav pull-right">
+        <li><a href="http://hawaiifoodsystem.com/">Home</a></li>
+        <li><a href="http://hawaiifoodsystem.com/about">About us</a></li>
+        <li {% ifequal section 'index' %} class="current" {% endifequal %} ><a href="/map">Geolocations</a></li>
+        <!--<li {% ifequal section 'members' %} class="current" {% endifequal %}><a href="/members">Members</a></li>-->
+        <!-- <li {% ifequal section 'visualizations' %} class="current" {% endifequal %}><a href="/visualizations">Visualizations</a></li>-->
+        <li>
+        <li {% ifequal section 'resources' %} class="current" {% endifequal %}><a href="/maps-admin/resources/fe_resources">Resources</a></li>
+        <li>
+            <div class="loginButtons gradient-green">
+                {% if user.is_authenticated %}
+                    <a href="/maps-admin/dashboard">Dashboard</a>
+                    or <a href="/logout">log out</a>
+                
+                {% else %}
+                    <a data-toggle="modal" href="/access">Login</a> or
+                    <a data-toggle="modal" href="/register">Sign up</a>
+               {% endif %}
+            </div>
+        </li>
+    </ul>
+    <div class="mobile-navigation">
+        <select class="form-control">
+            <option>Navigation</option>
+            <option>About</option>
+            <option>Geolocations</option>
+            <option>Members</option>
+           <!-- <option>Visualizations</option> -->
+        </select>
+        <div class="loginButtons gradient-green">
+            <a data-toggle="modal" href="#modal-login">Login</a> or
+            <a data-toggle="modal" href="#modal-signup">Sign up</a>
+        </div>
+    </div>
+</div>

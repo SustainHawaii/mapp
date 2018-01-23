@@ -1,0 +1,18 @@
+1. Tagging rows — for the time being this is a no-go, he asked if you could create a tutorial that shows basically splitting up the file using excel and then uploading the file one bit at a time and tagging each bit as it’s tagged now
+
+2/3. Beign able to select which unit you're using for each number/conversion, displaying such unit in the chart you're visualizing, and saving those units/conversions
+
+ok so I’ll put back in that normalization allowing you to change the name of the column
+so then the use can just change the name of the column to include the unit
+i.e. weight_kg or total feet or whatever
+
+4. storing the data type in the file upload — not necessary as it’s already displayed in dataviz anyways plus converted during the upload
+
+5. SToring images so they don’t have to be replaced on every update — aaron is working on this now
+
+6. drill down for pie graph — I will try and see if I can get it working today / tommorow, if not we will have to push it
+
+7. drag and drop seems to duplicate data
+
+8. add widgets, just add one at a time
+

@@ -1,0 +1,79 @@
+{% extends 'homepage/base.html' %}
+{% block aside %}
+    {% include 'homepage/widgets/aside.html' with section="about" %}
+{% endblock aside %}
+{% block main_panel %}
+    {% include 'homepage/widgets/header_menu.html' with section='about' %}
+    <!-- MAIN CONTENT -->
+    <div id="content" class="container">
+        <div class="row frontend-page">
+            <div class="col-sm-6">
+                <h1>About Us</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ultrices, nisl vitae suscipit
+                    laoreet, tellus mauris sodales sem, at hendrerit sapien massa non felis. Quisque auctor sapien sit amet
+                    tellus blandit, eu venenatis lectus tincidunt. Nulla scelerisque sed nibh at vehicula. Nulla dictum lectus a
+                    ligula commodo, vitae hendrerit metus rhoncus. Aliquam id sapien non metus hendrerit mollis. Donec
+                    pharetra nec turpis in mattis. Praesent aliquam elementum tempus. Vestibulum ante ipsum primis in
+                    faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                <p>Donec et arcu ornare, consectetur lectus et, scelerisque arcu. Aliquam erat volutpat. Nulla pulvinar
+                    magna turpis, ac feugiat lorem vehicula nec. Nullam dignissim, tortor a euismod viverra, ante leo
+                    sollicitudin tellus, a pulvinar velit dui non nisi. Nulla sagittis massa a nunc egestas rutrum.
+                    Proin
+                    dapibus pellentesque luctus.</p>
+            </div>
+            <div class="col-sm-6">
+                <h3>Contact us</h3>
+                <form class="smart-form big-form" method="post" action="">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <label class="input">
+                                    <input type="text" name="name" placeholder="Your Name">
+                                </label>
+                            </div>
+                            <!-- ends input -->
+                        </div>
+                        <div class="col-sm-12">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <label class="input">
+                                    <input type="email" name="email" placeholder="Email">
+                                </label>
+                            </div>
+                            <!-- ends input -->
+                        </div>
+                        <div class="col-sm-12">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <label class="input">
+                                    <input type="text" name="subject" placeholder="Subject">
+                                </label>
+                            </div>
+                            <!-- ends input -->
+                        </div>
+                        <div class="col-sm-12">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <label class="textarea">
+                                    <textarea rows="3" class="custom-scroll" name="body" placeholder="Your Message..."></textarea>
+                                </label>
+                            </div>
+                            <!-- ends input -->
+                        </div>
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-xl btn-primary pull-right">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% include 'homepage/widgets/login_modal.html' %}
+        {% include 'homepage/widgets/register_modal.html' %}
+    </div>
+    <!-- END MAIN CONTENT -->
+    {% include 'homepage/widgets/footer.html' %}
+{% endblock main_panel %}

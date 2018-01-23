@@ -1,0 +1,568 @@
+{% extends 'profile/base.html' %}
+{% load staticfiles %}
+{% load mapp_tags %}
+
+{% include 'widgets/mobile_nav.html' %}
+
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section='settings' subsection='settings-importsystem' %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    <i class="fa fa-2x fa-fw fa-pie-chart"></i>
+                    <!-- PAGE HEADER -->
+                    Data Import 
+                    <span>System Data</span>
+                </h1>
+            </div>
+            <!-- end col -->
+            <!-- right side of the page with the sparkline graphs -->
+            <!-- col -->
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            </div>
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content">
+        <ul id="myTab1" class="nav nav-tabs">
+            <li id="nav_tab1" {% if not step2 %}class="active"{% endif %}>
+                <a href="#s1" data-toggle="tab">1. Upload File</a>
+            </li>
+            <li id="nav_tab2" {% if step2 %}class="active"{% endif %}>
+                <a href="#s2" data-toggle="tab">2. Fields</a>
+            </li>
+        </ul>
+        <form class="smart-form big-form" action="" method="post" enctype="multipart/form-data">
+        <div id="myTabContent1" class="tab-content nopadding">
+            <div class="tab-pane fade {% if not step2 %}in active{% endif %}" id="s1">
+                <span class="row error-msg" id="error-msg">{% for i in errors.msg %}<li>{{ i }}</li>{% endfor %}</span>
+                {% csrf_token %}
+                    <!-- row -->
+                    <div class="row section-divider">
+                        <div class="col-sm-3">
+                            <label class="label">
+                                Name
+                            </label>
+                        </div>
+                        <div class="col-sm-9">
+                             <div class="inputWrap">
+                                <div class="input input-file">
+                                    <input type="text" value="{{ object.name }}" name="name" placeholder="Import Name">
+                                    <div class="error-msg">{% for i in errors.name %}<li>{{ i }}</li>{% endfor %}</div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="row section-divider">
+                        <div class="col-sm-3">
+                            <label class="label">
+                                Upload Type
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <section>
+                                    <label class="select">
+                                        <select class="input-lg" id="MySelect" name="upload_type" onselect="select(this);">
+                                            {% for k, v in options.upload_type.items|dictsort:'0' %}
+                                            <option value="{{ k }}" {% if object.upload_type == k %}selected{% endif %}>
+                                                {{ v }}
+                                            </option>
+                                            {% endfor %}
+                                        </select> <i></i>
+                                    </label>
+                                </section>
+                            </div>
+                            <!-- ends input -->
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="label">
+                                Upload Format
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <section>
+                                    <label class="select">
+                                        <select class="input-lg" name="upload_format">
+                                            {% for k, v in options.system_upload_format.items %}
+                                                <option value="{{ k }}" {% if object.upload_format == k %}selected{% endif %}>
+                                                    {{ v }}
+                                                </option>
+                                            {% endfor %}
+                                        </select> <i></i>
+                                    </label>
+                                </section>
+                            </div>
+                            <!-- ends input -->
+                        </div>
+                    </div>
+                    <!-- ends row divider -->
+
+                <!-- row -->
+                <div id="upload_file">
+                    <div class="row section-divider">
+                        <div class="col-sm-3">
+                            <label class="label">
+                                Upload File
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <div class="input input-file">
+                                    <input type="text" placeholder="Add File" readonly="Add File"
+                                           class="txt-file-import" id="file_name" value="{{ object.upload_file|split:'/'|last|default:'' }}">
+                                    <span class="button">
+                                        <input type="file" id="file" name="upload_file">
+                                        Browse
+                                    </span>
+                                    <div class="error-msg">{% for i in errors.upload_file_error %}<li>{{ i }}</li>{% endfor %}</div>
+                                </div>
+                            </div>
+                            <!-- ends input -->
+                        </div>
+                    </div>
+                    <!-- ends row divider -->
+                </div>
+
+                <!-- row -->
+                <div id="upload_url">
+                    <div class="row section-divider">
+                        <div class="col-sm-3">
+                            <label class="label">
+                                Upload URL
+                            </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <div class="input input-file">
+                                    <input type="text" placeholder="Enter URL" name="upload_url" value="{{ object.upload_url }}">
+                                    <div class="error-msg">{% for i in errors.upload_url %}<li>{{ i }}</li>{% endfor %}</div>
+                                </div>
+                            </div>
+                            <!-- ends input -->
+                        </div>
+                    </div>
+                    <div class="row section-divider">
+                        <div class="col-sm-3">
+                            <label class="label">
+                                Run Every
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <!-- starts input wrap -->
+                            <div class="inputWrap">
+                                <section>
+                                    <label class="select">
+                                        <select class="input-lg" name="upload_freq">
+                                            {% for k, v in options.upload_freq.items %}
+                                            <option value="{{ k }}" {% if object.upload_freq == k %}selected{% endif %}>
+                                                {{ v }}
+                                            </option>
+                                            {% endfor %}
+                                        </select> <i></i>
+                                    </label>
+                                </section>
+                            </div>
+                            <!-- ends input -->
+                        </div>
+                    <div class="col-sm-3">
+                        <label class="label">
+                            Duplicated Contents
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <!-- starts input wrap -->
+                        <div class="inputWrap">
+                            <section>
+                                <label class="select">
+                                    <select class="input-lg" name="duplicate_content">
+                                        {% for k, v in options.duplicate_content.items %}
+                                        <option value="{{ k }}" {% if object.duplicate_content == k %}selected{% endif %}>
+                                            {{ v }}
+                                        </option>
+                                        {% endfor %}
+                                    </select> <i></i>
+                                </label>
+                            </section>
+                        </div>
+                        <!-- ends input -->
+                    </div>
+                </div>
+                <!-- ends row divider -->
+              </div>
+                <!-- row -->
+                <div class="row section-divider">
+                    <div class="col-sm-3">
+                        <label class="label">
+                            Content Type
+                        </label>
+                    </div>
+                    <div class="col-sm-9">
+                        <!-- starts input wrap -->
+                        <div class="inputWrap">
+                            <section>
+                                <label class="select">
+                                    <select class="input-lg" name="content_type">
+                                        {% for k, v in options.content_type.items %}
+                                            <option value="{{ k }}" {% if object.content_type == k %}selected{% endif %}>
+                                                {{ v }}
+                                            </option>
+                                        {% endfor %}
+                                    </select> <i></i>
+                                </label>
+                            </section>
+                        </div>
+                        <!-- ends input -->
+                    </div>
+                </div>
+                <!--ends row-->
+                <div class="row section-divider">
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-xl btn-primary pull-right" onclick="step2();">
+                            Next Page
+                        </button>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <div class="tab-pane fade {% if step2 %}in active{% endif %}" id="s2">
+                <div class="error-msg">{% for i in errors.field_map %}<li>{{ i }}</li>{% endfor %}</div>
+                <!-- row -->
+                <div class="row section-divider">
+                    <div class="col-sm-6">
+                        <h2>Field from Source File</h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <h2>Field from Database</h2>
+                    </div>
+                </div>
+                <!-- ends row divider -->
+                <!-- row -->
+                <div id="fields">
+                </div>
+                <!-- ends row divider -->
+                <div class="row section-divider">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-xl btn-primary pull-right">
+                            Upload
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'settings/partials/modal-csv.html' %}
+        </form>
+    </div>
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <!-- PAGE RELATED PLUGIN(S)
+    <!-- Morris Chart Dependencies -->
+    <script src="{% static 'js/plugin/morris/raphael.min.js' %}"></script>
+    <script src="{% static 'js/plugin/morris/morris.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /* DO NOT REMOVE : GLOBAL FUNCTIONS!
+             *
+             * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+             *
+             * // activate tooltips
+             * $("[rel=tooltip]").tooltip();
+             *
+             * // activate popovers
+             * $("[rel=popover]").popover();
+             *
+             * // activate popovers with hover states
+             * $("[rel=popover-hover]").popover({ trigger: "hover" });
+             *
+             * // activate inline charts
+             * runAllCharts();
+             *
+             * // setup widgets
+             * setup_widgets_desktop();
+             *
+             * // run form elements
+             * runAllForms();
+             *
+             ********************************
+             *
+             * pageSetUp() is needed whenever you load a page.
+             * It initializes and checks for all basic elements of the page
+             * and makes rendering easier.
+             *
+             */
+            pageSetUp();
+            /* // DOM Position key index //
+             l - Length changing (dropdown)
+             f - Filtering input (search)
+             t - The Table! (datatable)
+             i - Information (records)
+             p - Pagination (paging)
+             r - pRocessing
+             < and > - div elements
+             <"#id" and > - div with an id
+             <"class" and > - div with a class
+             <"#id.class" and > - div with an id and class
+             Also see: http://legacy.datatables.net/usage/features
+             */
+            runAllForms();
+            /* end bar chart */
+            /* END BASIC */
+        })
+    </script>
+    <script src="{% static 'js/plugin/papa-parse/papaparse.min.js' %}"></script>
+   <script id="field_template" type="text/plain">
+       <div class="row section-divider">
+            <div class="col-sm-6">
+                <label class="label">:source_field</label>
+            </div>
+            <div class="col-sm-6">
+                <div class="inputWrap">
+                <section>
+                    <label class="select">
+                        <select class="input-lg" name=":name">
+                            <option value="">Select a field</option>
+                            :options
+                        </select><i></i>
+                    </label>
+                </section>
+                </div>
+            </div>
+       </div>
+   </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // redirect after system data import
+            var redirect = '{{ redirect }}';
+            if (redirect != '') {
+                window.location.replace(redirect);
+            }
+
+            // preview selected file
+            $('#file').change(function(e) {
+                var file = e.target.files[0];
+                var fname = file.name.split('\\').pop();
+                $('#file_name').val(fname);
+
+                if (fname.split('.').pop() == 'csv') {
+                    //We are just assuming first line is title
+                    //so no need to preview
+                    //preview_csv(file);
+                }
+            });
+
+            // changing upload type
+            function change_fields() {
+                var value = $('#MySelect').val();
+                if (value == 0) {
+                    $('#upload_file').show();
+                    $('#upload_file select, #upload_file input').attr('disabled', false);
+                    $('#upload_url').hide();
+                    $('#upload_url select, #upload_url input').attr('disabled', true);
+                }
+                else if (value == 1) {
+                    $('#upload_file').hide();
+                    $('#upload_file select, #upload_file input').attr('disabled', true);
+                    $('#upload_url').show();
+                    $('#upload_url select, #upload_url input').attr('disabled', false);
+                }
+            }
+            $("#MySelect").change(function () {
+                change_fields();
+            });
+            change_fields();
+        });
+    </script>
+    <script>
+        function preview_csv(file) {
+            Papa.parse(file, {
+                header: false,
+                dynamicTyping: true,
+                complete: function(results) {
+                    var out = '<table class="csv-table">';
+
+                    out += '<tr><td></td>';
+                    for (k in results.data[0]) {
+                        out += '<td>' + eval(parseInt(k) +1) + '</td>';
+                    }
+                    out += '</tr>';
+
+                        for (i in results.data.slice(0, 13)) {
+                            out += '<tr><td>' + eval(parseInt(i) + 1) + '</td>';
+                            for (j in results.data[i]) {
+                                out += '<td>' + results.data[i][j] + '</td>';
+                            }
+                            out += '</tr>';
+                        }
+                    out += '</table>';
+                    $('#csv-content').html(out);
+                    $('#modal-csv').modal('show');
+                }
+            });
+        }
+        function step2() {
+            var upload_type = $('#MySelect').val();
+            console.log('upload_type = ' + upload_type);
+
+            if (upload_type == '0') {
+                var file = $('#file')[0].files[0];
+                if (typeof(file) != 'undefined') {
+                    var fname = file.name.split('\\').pop();
+                    if (fname.split('.').pop() == 'csv') {
+                        parse_csv_fields(file);
+                    }
+                    if (fname.split('.').pop() == 'geojson') {
+                        open_json_upload(file, geojson=true);
+                    } else {
+                        open_json_upload(file);
+                    }
+                } else {
+                    display_errors('Please upload a valid csv file.');
+                }
+            } else if (upload_type == '1') {
+                if ($('[name="upload_url"]').val()=='') {
+                    display_errors('Please input a valid url returning json data.');
+                } else {
+                    parse_json_fields();
+                }
+            }
+        }
+        function display_errors(err_msg) {
+            $('#error-msg').html('').html('<li>' + err_msg + '</li>');
+            $('#error-msg').focus;
+        }
+        function get_db_fields() {
+            $('#fields').html('');
+            var db_fields = '';
+            $.ajax ({
+                type: 'get',
+                url: '/api/v1/dataimport/get-fields?model=' + $('[name="content_type"]').val(),
+                success: function(results) {
+                    for (i in results['fields']) {
+                        f = results['fields'][i];
+                        db_fields += '<option value="' + f + '">' + f + '</option>';
+                    }
+                },
+                async: false
+            });
+            return db_fields;
+        }
+
+     function open_json_upload(file, geojson){
+         if(geojson == undefined){
+             geojson = false;
+         }
+         if(file){
+             var fr = new FileReader();
+             fr.readAsText(file);
+             fr.onload = function(e) {
+                 console.log("Processing JSON upload", file);
+                 var j = JSON.parse(e.target.result);
+                 var j_mapped;
+                 try{
+                     if (geojson){
+                         console.log("Capturing geojson to prevent over flattening");
+                         j_mapped = intercept_geojson(j);
+                         console.log("Geojson flattened, coordinates preserved in array");
+                         console.log(j);
+                     }else{
+                         j_mapped = j.map(flatten);
+                     }
+                 }catch(e){
+                     console.log("Uploaded JSON is incorrectly formatted", e);
+                     console.log("Searching for first array in object");
+                     for(arry in j){
+                         try{
+                             j_mapped = j[arry].map(flatten);
+                             break
+                         }catch(e){
+                             console.log("Not an array, continue");
+                         }
+                     }
+                 }
+                 parse_json_upload(j_mapped);
+             };
+         }
+     }
+
+     function intercept_geojson(file){
+         console.log("GeoJson intercepted, extracting coordinates");
+         console.log(file);
+         $('[name="content_type"]').val("0"); //enforce location uploads only
+         return [file.features[0].properties]
+     }
+
+     function parse_json_upload(j){
+         db_fields = get_db_fields();         
+         console.log("file opened and flattened", j);
+         for (k in j[0]) {
+             var tmp = $('#field_template').text();
+             tmp = tmp.replace(/:source_field/g, k);
+             tmp = tmp.replace(/:name/g, k);
+             tmp = tmp.replace(/:options/g, db_fields);
+             $('#fields').append(tmp);
+
+         }
+         $('#nav_tab2 a').click();
+     }
+     
+     function parse_json_fields() {
+         db_fields = get_db_fields();
+         console.log('Got fields, now retrieving JSON')
+             $.ajax ({
+                 type: 'get',
+                 url: $('[name="upload_url"]').val(),
+                 success: function(data) {
+                     console.log('ajax successful, JSON obtained from ' + $('[name="upload_url"]').val())
+                         console.log(data);
+                     console.log('Now parsing the first index in array to build field template')
+                         for (k in data[0]) {
+                             var tmp = $('#field_template').text();
+                             tmp = tmp.replace(/:source_field/g, k);
+                             tmp = tmp.replace(/:name/g, k);
+                             tmp = tmp.replace(/:options/g, db_fields);
+                             $('#fields').append(tmp);
+
+                         }
+                 }
+             });
+         $('#nav_tab2 a').click();
+     }
+
+     function parse_csv_fields(file) {
+         db_fields = get_db_fields();
+         Papa.parse(file, {
+             header: false,
+             dynamicTyping: true,
+             complete: function(results) {
+                 var row = results.data[0];
+                 for (k in row) {
+                     var tmp = $('#field_template').text();
+                     tmp = tmp.replace(/:source_field/g, row[k]);
+                     tmp = tmp.replace(/:name/g, row[k]);
+                     tmp = tmp.replace(/:options/g, db_fields);
+                     $('#fields').append(tmp);
+                 }
+             }
+         });
+         $('#nav_tab2 a').click();
+     }
+    </script>
+{% endblock page_rel_scripts %}
+
+

@@ -1,0 +1,173 @@
+{% extends 'homepage/base-visualizations.html' %}
+{% load staticfiles %}
+{% block aside %}
+    {% include 'homepage/widgets/aside.html' with section="visuliazations" %}
+{% endblock aside %}
+{% block main_panel %}
+    {% include 'homepage/widgets/header_menu.html' with section='visualizations' %}
+    <!-- MAIN CONTENT -->
+    <!--<div id="content" class="container viz-content">-->
+        <div class="col-md-8 viz-basic">
+
+            <form id="search-form" class="smart-form big-form" method="get" action="" data-api-url="">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-sm-7">
+                        <!-- starts input wrap -->
+                        <div id="search_div" class="inputWrap headerWrap">
+                            <label class="input">
+                                <i id="submit-icon" class="icon-append fa fa-search"></i>
+                                <input placeholder="Input your search..." type="text" id="q">
+                            </label>
+                        </div>
+                        <!-- ends input -->
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-1">
+                        <!-- starts input wrap -->
+                        <div class="inputWrap">
+                            <a href="#adv_search_row" id="adv_search" class="btn btn-default btn-lg btn-block"
+                               data-toggle="collapse">Advanced Search</a>
+                        </div>
+                        <!-- ends input -->
+                    </div>
+                </div>
+                <!-- end row -->
+                <div class="row collapse" id="adv_search_row">
+                    <div class="col-sm-4">
+                        <div class="inputWrap multiSelectWrap">
+                            <section>
+                            <label class="select">
+                                <select multiple class="input-lg select2" id="location_type" data-placeholder="Select Location Type">
+                                    {% for loc in loc_types %}
+                                        <option value="{{ loc.id }}" label="{{ loc.name }}">{{ loc.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <!--<i></i>-->
+                            </labeL>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap multiSelectWrap">
+                            <section><label class="select">
+                                <select multiple class="input-lg select2" id="category" data-placeholder="Select Categories">
+                                    {% for cat in categories %}
+                                        <option value="{{ cat.id }}" label="{{ cat.name }}">~~{{ cat.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <!--<i></i>-->
+                            </labeL>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="inputWrap multiSelectWrap">
+                            <section><label class="select">
+                                <select multiple class="input-lg select2" id="tags" data-placeholder="Select Tags">
+                                    {% for tag in tags %}
+                                        <option value="{{ tag.name }}" label="{{ tag.name }}">{{ tag.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <!--<i></i>-->
+                            </labeL>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="inputWrap multiSelectWrap">
+                            <section><label class="select">
+                                <select multiple class="input-lg select2" id="viz" data-placeholder="Select Visualization">
+                                    {% for v in viz %}
+                                        <option value="{{ v.id }}" label="{{ v.group_name }}">{{ v.group_name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <!--<i></i>-->
+                            </labeL>
+                            </section>
+                        </div>
+                    </div>
+                </div>                  
+                <!-- end row -->
+            </form>
+            <!--<h4 id="record_count"></h4>-->
+            <div id="tab-search-directory">
+                <div class="directory-block-container"></div>
+                <div class="text-center">
+                    <a id="load-more-button" class="btn btn-primary btn-xl" style="display: none;">Load More</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 hidden-sm viz-map">
+            <div class="tab-pane active" id="tab-search-map">
+                <div class="row" style="margin: 0;">
+                    <div class="col-sm-12" style="padding: 0;">
+                        <div class="inputWrap">
+                            <div id="map_canvas" class="google_maps"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--</div>-->
+    <!-- END MAIN CONTENT -->
+    <!--<div class="viz-footer">{% include 'homepage/widgets/footer.html' %}</div>-->
+{% endblock main_panel %}
+{% block footer_scripts %}
+    <script src="{% static 'js/libs/d3.min.js' %}"></script>
+    <script src="{% static 'js/angularjs/angular.min.js' %}"></script>
+    <script src="{% static 'js/angularjs/directives/nv.d3.js' %}"></script>
+    <script src="{% static 'js/angularjs/directives/angular-nvd3.js' %}"></script>
+    <script src="{% static 'js/angularjs/angular-route.min.js' %}"></script>
+    <script src="{% static 'js/angularjs/angular-sanitize.min.js' %}"></script>
+    <script src="{% static 'js/angularjs/controllers/dataviz_controller.js' %}"></script>
+    <script src="{% static 'js/angularjs/directives/angular-select.min.js' %}"></script>
+
+    <!-- Google Map API library -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBwULR3-ki_vvce7vDmu317UoVvbfYeM9M&sensor=false&libraries=geometry"></script>
+
+    <script type="text/javascript" src="{% static 'js/viz.js' %}"></script>
+
+    <!-- info window template -->
+    <script id="tmpl-infowindow" type="text/template">
+        <div id="info-map">
+            <div style="display: inline-block; width: 86px; verticle-align: top; float: left;">
+                <img src="%img_src%" class="thumbnail" style="width: 80%; verticle-align: top;"/>
+            </div>
+            <div style="display:inline-block; width:200px; float:left;">
+                <h4><a href="/members-location/%item_id%/">%item_name%</a></h4>
+
+                <div>%formatted_address%</div>
+                <br/>
+
+                <div><b>%desc%</b></div>
+            </div>
+        </div>
+    </script>
+    <script id="tmpl-directory-block" type="text/template">
+        <div class="directory-block"
+             style="padding: 20px 20px; margin-left: 0; margin-right: 0; width: 100%; min-height: 204px;">
+            <div class="col-sm-4" style="padding: 0 13px;">
+                <div class="google_map_container" style="height: 160px;"></div>
+            </div>
+            <div class="col-sm-8" style="padding: 0 13px;">
+                <h3><a href="/members-location/%item_id%/">%item_name%</a></h3>
+
+                <div class="directory-address">
+                    <i class="fa fa-2x fa-fw fa-map-marker"></i>
+                    <span>%formatted_address%</span>
+                </div>
+                <div class="directory-tags">
+                    <i class="fa fa-2x fa-fw fa-tag"></i>
+                </div>
+                <p>%desc%</p>
+            </div>
+        </div>
+    </script>
+    <!--<script src="{% static 'js/angularjs/angular.min.js' %}"></script>-->
+    <script src="{% static 'js/angularjs/controllers/homepage_controller.js' %}"></script>
+{% endblock footer_scripts %}

@@ -1,0 +1,3689 @@
+/*
+ * It is advised not to edit the smartadmin_production.css
+ * as this will override any changes you make in the 
+ * later versions of this theme. 
+ * 
+ * We advise that you use use this CSS to override 
+ * SmartAdmin styles. 
+ * 
+ * Rename the stylesheet to whatever your liking so it will stay
+ * unique to you with each update of SmartAdmin.
+ */
+
+/*
+ * INDEX
+ * 
+ * - HTML
+ * - BODY
+ * - CUSTOM STYLES
+ */
+
+
+/* Html */
+
+html,
+body {
+    background: #EAEAEA;
+}
+
+/* Titles */
+
+h2 {
+    font-weight: 700;
+    font-size: 26px;
+}
+
+h2 span {
+    float: right;
+    display: inline-block;
+    color: #999;
+    font-weight: 300;
+}
+
+.smart-style-1 .page-footer, 
+.smart-style-1 .superbox-show, 
+.smart-style-1 aside {
+    background: #152D06;
+}
+
+/* Sidebar */
+
+.sustainhawaii-admin #left-panel {
+    padding-top: 0px;
+    width: 280px;
+    height: 750px;
+    overflow: auto;
+}
+.sustainhawaii-admin #left-panel #header {
+    background: #244D0B;
+    height: 80px;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15) inset, 0px -1px 0px rgba(250, 250, 250, 0.15) inset;
+    display: block;
+    clear: both;
+}
+
+
+.sustainhawaii-admin #left-panel #header #logo-group {
+    background: none !important;
+    width: 280px;
+}
+
+
+.sustainhawaii-admin #left-panel #header #logo-group > span#logo {
+    height: auto;
+    font-size: 36px;
+    color: #FFF;
+    margin-top: 10px;
+}
+
+.sustainhawaii-admin #left-panel #header #logo-group > span,
+.sustainhawaii-admin #left-panel #header #logo-group > a {
+    color: #FFF;
+    margin: 25px 10px 0px 0px;
+    font-size: 15px;
+}
+
+.sustainhawaii-admin #left-panel #header #logo-group > span:hover,
+.sustainhawaii-admin #left-panel #header #logo-group > a:hover {
+    color: #FFF;
+    cursor: pointer;
+}
+
+.sustainhawaii-admin #left-panel #header #logo-group > span.minifyMenu::active {
+    background: none;
+}
+
+.sustainhawaii-admin #left-panel img.online {
+    width: 35px;
+    border-radius: 0px;
+    border: 2px solid #525459;
+    border-left-color: rgba(250,250,250,0.3);
+    border-left-color: #525459 !important;
+}
+
+.sustainhawaii-admin #left-panel #logo img {
+    width: auto;
+    max-width: 178px;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li {
+    display: block;
+    clear: both;
+}
+
+.sustainhawaii-admin #left-panel nav ul li.active > a:before { 
+    top: 16px;
+}
+
+.sustainhawaii-admin #left-panel nav ul li a {
+    color: rgba(250,250,250,0.75);
+    font-size: 18px;
+}
+
+.sustainhawaii-admin #left-panel nav ul li a .badge {
+    margin-left: 5px;
+    background: #85B200;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li > a > i.fa-fw {
+    width: 30px;
+    font-size: 30px;
+    vertical-align: -15%;
+}
+
+.sustainhawaii-admin#left-panel nav ul b .fa-plus-square-o:before {
+    font-size: 20px;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li > a b.collapse-sign {
+    font-size: 20px;
+}
+
+
+.sustainhawaii-admin #left-panel nav > ul > li.open {
+    background:#244D0B;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li.active,
+.sustainhawaii-admin #left-panel nav > ul > li.open.active {
+    background: #EAEAEA;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15) inset, 0px -1px 0px rgba(250, 250, 250, 0.15) inset;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li.active > ul > li.active a {
+    background: #244D0B;
+    color: #FFFFFF !important;
+}
+
+
+
+.sustainhawaii-admin #left-panel nav > ul > li.open ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li.open ul li a {
+    background: #112505;
+    box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25) inset, 0px 1px 0px rgba(250, 250, 250, 0.05) inset;
+    padding: 6px 10px 10px 20px !important;
+    color: rgba(250,250,250,0.80);
+    text-shadow: none;
+    font-size: 15px;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li.open ul li a:hover {
+    background: #666666 !important;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li.open ul li a:before {
+    content: "»";
+    font-size: 20px;
+    margin-right: 10px;
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li.open ul li.active a {
+    font-weight: 900;
+    color: #FFF;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li.open ul li.active a:before {
+    position: inherit;
+    right: auto;
+    top: auto;
+    width: auto;
+    height: auto;
+}
+
+.sustainhawaii-admin #left-panel nav > ul > li.open ul li.active a:hover {
+    background-color: #666;
+}
+
+
+/* Nav Minified */
+
+.sustainhawaii-admin.minified #left-panel,
+.sustainhawaii-admin.minified #left-panel #header #logo-group {
+    width: 60px;
+}
+
+.minified nav > ul > li > a > .menu-item-parent {
+    left: 60px;
+    width: 188px;
+    height: 40px;
+    background-color: #0085B2;
+    color: #FFF;
+    box-shadow: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    padding-left: 12px;    
+}
+
+.minified nav > ul > li > ul {
+    display: none !important;
+    position: absolute;
+    left: 60px;
+    width: 200px;
+    z-index: 5;
+    border: none;
+    min-height: auto !important;
+    height: auto;
+    box-shadow: none;
+    background: #135771;
+    margin-top: -17px;
+    padding: 0px;
+}
+
+.minified nav > ul > li > ul li a {
+    font-size: 14px !important;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15) inset, 0px -1px 0px rgba(250, 250, 250, 0.15) inset;
+}
+
+/* Contents */
+
+.sustainhawaii-admin #main {
+    margin-left: 280px;
+    padding: 0px 0px 52px;
+    min-height: 500px;
+}
+
+.sustainhawaii-admin.sustainhawaii-frontend #content {
+    padding: 30px;
+    background-image: none;
+}
+
+.sustainhawaii-admin.sustainhawaii-frontend.sustainhawaii-frontend-visualizations #content {
+    padding: 0px;
+}
+
+.sustainhawaii-admin.sustainhawaii-frontend.sustainhawaii-frontend-visualizations .modal-content #content {
+    margin: 0px;
+}
+
+.sustainhawaii-admin #content
+
+
+.sustainhawaii-admin #ribbon {
+    min-height: 80px;
+    border-bottom: 3px solid rgba(0,0,0,0.3);
+    background: #FFF;
+    padding: 15px 30px;
+}
+
+.sustainhawaii-admin #ribbon .page-title {
+    color: #244D0B;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 5px 0px;
+}
+
+.sustainhawaii-admin #ribbon .page-title i {
+    font-size: 40px;
+    width: 40px;
+    font-weight: 400;
+}
+
+.sustainhawaii-admin #ribbon .page-title span {
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 0px;
+    background: url('../img/title-separator.png') no-repeat left center;
+    padding-left: 35px;
+    margin-left: 15px;
+    vertical-align: 2px;
+}
+
+.sustainhawaii-admin #ribbon .btn {
+    margin-left: 5px;
+}
+
+/* Contents Minified */
+
+.sustainhawaii-admin.minified #main {
+    margin-left: 60px;
+}
+
+.sustainhawaii-admin.minified  #left-panel #header {
+    height: 130px;
+}
+
+.sustainhawaii-admin.minified #left-panel #header #logo-group > span#logo {
+    font-weight: 900;
+    font-size: 11px;
+    margin-left: 5px;
+}
+
+.sustainhawaii-admin.minified.minified #left-panel #header #logo-group > span, 
+.sustainhawaii-admin.minified #left-panel #header #logo-group > a {
+    margin: 10px 18px 0px 0px;
+}
+
+/* Widgets */
+
+.sustainhawaii-admin .widget-toolbar,
+.sustainhawaii-admin .jarviswidget-fullscreen-btn {
+    display: none;
+}
+
+.sustainhawaii-admin .jarviswidget header,
+.sustainhawaii-admin .jarviswidget div.widget-content {
+    background: #FFF;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);    
+}
+
+.sustainhawaii-admin .jarviswidget > header {
+    border: none;
+    height: auto;
+    overflow: hidden;
+    border-bottom: 3px solid rgba(0,0,0,0.1);
+}
+
+.sustainhawaii-admin .jarviswidget > header span {
+    font-size: 36px;
+    color: #DDD;
+    margin: 0px 5px 0px 10px;
+    padding: 7px 0px;
+}
+
+.sustainhawaii-admin .jarviswidget > header h2 {
+    font-size: 20px;
+    color: #666666;
+    font-weight: 900;
+    padding: 6px 0px;
+}
+
+.sustainhawaii-admin .jarviswidget-ctrls .button-icon {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1) inset;
+    background: rgba(0,0,0,0.15);
+    border-radius: 3px;
+    color: #FFF;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 2px;
+    height: 26px;
+    min-width: 26px;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.sustainhawaii-admin.smart-style-1 #ribbon {
+    background: #FFF;
+    padding: 15px;
+}
+
+.sustainhawaii-admin #content {
+    padding: 30px;
+}
+
+#footer img {
+    margin-top: 15px;
+}
+
+.sustainhawaii-admin .jarviswidget-ctrls {
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffffff 0%, #DDD 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#DDD)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#DDD 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#DDD 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#DDD 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffffff 0%,#DDD 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#DDD',GradientType=0 ); /* IE6-9 */
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 10px 10px 8px;
+}
+
+.sustainhawaii-admin .jarviswidget > div.widget-footer {
+    display: block;
+    clear: both;
+    background: none;
+    border: 0px;
+    background: #EAEAEA !important;
+    padding: 0; 
+    margin: 20px 0px;
+}
+
+.sustainhawaii-admin.sustainhawaii-frontend-visualizations .jarviswidget > header h2 {
+    font-size: 15px;
+}
+
+/* Buttons */
+
+.sustainhawaii-admin .btn-primary,
+.sustainhawaii-admin .btn {
+    background: #2db200;
+    box-shadow: 1px 1px 0px rgba(0,0,0,0.75), 1px 1px 0px rgba(250,250,250,0.3) inset;
+    color: #FFF;
+    border-color: #1D3E09;
+    font-weight: 700;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);    
+}
+
+
+
+
+.sustainhawaii-admin .btn.btn-default {
+    background: rgba(82,84,89,0.2);
+    border-radius: 10px;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    font-weight: 400;
+    text-shadow: 1px 1px 0 rgba(250,250,250,0.75);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.1) inset;
+}
+
+.sustainhawaii-admin .btn.btn-xl {
+    font-size: 26px;
+    color: #FFF;
+    font-weight: 700;
+    padding: 15px 25px
+}
+
+.sustainhawaii-admin .DTTT.btn-group { 
+    margin: 0px;
+    box-shadow: none;
+}
+
+.sustainhawaii-admin .DTTT .btn.btn-default {
+    font-size: 12px;
+    line-height: 1.5em;
+    background: rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.15) inset;
+}
+
+
+.btn-sm {
+    padding: 6px 10px 8px;
+    font-weight: 700;
+    color: #333;
+    font-size: 13px;
+}
+
+/* Tables */
+
+.sustainhawaii-admin .no-padding .dataTables_wrapper table, 
+.sustainhawaii-admin .no-padding > table {
+    margin: 0px;
+}
+
+.sustainhawaii-admin .dt-toolbar,
+.jarviswidget > div {
+    background: #FFF;
+    border: none;
+}
+
+.table-bordered, .table-bordered > tbody > tr > td, 
+.table-bordered > tbody > tr > th, 
+.table-bordered > tfoot > tr > td, 
+.table-bordered > tfoot > tr > th, 
+.table-bordered > thead > tr > td, 
+.table-bordered > thead > tr > th {
+    border: none;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, 
+.table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #FFF;
+}
+
+.table-striped > tbody > tr.even > td {
+    background-color: #F4F4F4;
+}
+
+.table > tbody > tr > td, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > td, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > thead > tr > th {
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+div.DTTT .btn {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05) inset, 0px 1px 0px rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px;
+    text-shadow: 1px 1px 0px rgba(250, 250, 250, 0.75);
+    text-transform: 1px 1px 0 rgba(0,0,0,0.2);
+}
+
+div.dataTables_info {
+    padding-top: 9px;
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
+    color: #969696;
+}
+
+/* UI Elements - Modal */
+.modal-content {
+    border-radius: 0;
+    border: 10px solid rgba(0,0,0,0.5);
+    box-shadow: none;
+}
+
+.modal-dialog {
+    margin: 77px auto 0px;
+}
+
+.modal-header {
+    border-bottom: 3px solid #EBEBEB;
+    padding: 15px;
+}
+
+.modal-header .close {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1) inset;
+    background: rgba(0,0,0,0.15);
+    border-radius: 3px;
+    color: #FFF;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 5px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 32px;
+    opacity: 1;
+    margin-top: 1px;
+}
+
+.modal-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: #999;
+}
+
+.modal .smart-form .row {
+    margin: 0 15px;
+    padding: 15px 0px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.modal .smart-form .row .row {
+    padding: 0px;
+    margin: 0px -15px;
+    border: none;   
+}
+
+
+.modal .smart-form .row label.label {
+    color: #999;
+    font-size: 15px;
+    margin-top: 4px;
+    padding-top: 0px;
+
+}
+
+.modal .smart-form .row label.select select,
+.modal .smart-form .row label.checkbox,
+.modal .smart-form .row label.input,
+.modal .smart-form .row label.radio,
+.smart-form .textarea textarea {
+    color: #999;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.modal .smart-form .input input,
+.modal .smart-form .textarea textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 32px !important;
+    padding: 8px 10px !important;
+    outline: 0px none;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0px;
+    background: none repeat scroll 0% 0% #FFF !important;
+    font: 13px/16px "Open Sans",Helvetica,Arial,sans-serif !important;
+    color: #404040 !important;
+    border: 1px solid #BDBDBD !important;
+    transition: border-color 0.3s ease 0s;
+    box-shadow: none !important;
+}
+
+.modal .smart-form .textarea textarea {
+    height: auto !important;
+}
+
+.modal-footer { 
+    padding: 15px;
+}
+
+.modal-footer .btn { 
+    padding: 10px 15px;
+}
+
+/* Forms - Big Forms */
+
+.big-form .inputWrap,
+.inputWrap { 
+    background: #FFF;
+    padding: 10px;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);    
+    margin-bottom: 20px;
+}
+
+.inputWrap .row {
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.05);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1) inset;
+    margin: 0px;
+    padding: 20px 5px;  
+}
+
+.smart-form.big-form .row > div {
+    padding: 0px 15px;
+    box-sizing: border-box;
+}
+
+.smart-form.big-form .input input,
+.smart-form .textarea textarea,
+.smart-form select.input-lg {
+    background: rgba(0,0,0,0.05);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.10) inset; 
+    border: none;
+    font-size: 26px;
+    font-weight: 300;
+    color: #555;
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 10px;
+}
+
+.smart-form .inputWrap section {
+    margin-bottom: 0px;
+}
+
+.smart-form .inputWrap select.input-lg + i {
+    height: 33px;
+    top: 8px;
+}
+.smart-form .inputWrap .select i {
+    position: absolute;
+    right: 9px;
+    width: 8px;
+    background: none repeat scroll 0% 0% #FFF;
+    box-shadow: 0px 0px 0px 9px #FFF;
+}
+
+.smart-form label.label {
+    font-size: 26px;
+    font-weight: 300;
+    padding-top: 25px;
+    white-space: inherit;
+    line-height: 1em;   
+}
+
+.smart-form .textarea textarea {
+    height: auto;
+}
+
+.smart-form.big-form .input input:focus {
+    background: rgba(0,0,0,0.075);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.10) inset; 
+} 
+
+.smart-form.big-form .photoWrap {
+    background: #FFF;
+    text-align: center;
+    max-height: 280px;
+    border: 10px solid #FFF;
+    border-bottom: 0px;
+}
+
+.smart-form.big-form .input-file.avatar .button {
+    font-size: 16px;
+    line-height: 48px;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    text-align: center;
+    font-weight: 900;
+}
+
+
+.smart-form.big-form .input.input-file input {
+    font-size: 14px;
+}
+
+.smart-form .icon-append, .smart-form .icon-prepend {
+    position: absolute;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    line-height: 38px;
+    text-align: center;
+}
+
+.smart-form.big-form .btn-block {
+    min-height: 50px;
+    padding: 14px 10px;
+    font-weight: 700;
+}
+
+.row-Title {
+    margin: 20px 15px;
+    font-size: 26px;
+    font-weight: 300;
+    border-bottom: 3px solid rgba(0,0,0,0.1);
+}
+
+.row-Title.noborder {
+    border: none;
+}
+
+
+/* Entity Blocks */
+
+.entity-block {
+    margin: 0 15px;
+    padding: 20px;
+    overflow: hidden;
+
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffffff 0%, #eaeaea 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eaeaea)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffffff 0%,#eaeaea 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 ); /* IE6-9 */
+
+}
+
+.entity-block > div {
+    padding: 0px;
+}
+
+.entity-block > div img {
+    margin-right: 20px;
+}
+
+.entity-block > div h2 {
+    font-size: 26px;
+    color: #999;
+    font-weight: 400;
+    margin: 0px;
+    line-height: 1em;
+}
+
+.entity-block > div h2 span {
+    content: #BFBFBF;
+    font-weight: 300;
+}
+
+.entity-block > div .btn {
+    margin: 10px 10px 0px 0px;
+}
+
+.entity-block > div p {
+    font-size: 14px;
+    color: #666;
+}
+
+.content-block { 
+    display: block;
+    clear: both;
+    margin: 0 15px;
+}
+
+/* Content Blocks (modded widgets) */
+
+.content-block header {
+    background: #FFF;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    height: 50px;
+    padding: 0 15px;
+    margin-bottom: 2px;
+}
+
+.content-block header h2 {
+    line-height: 50px;
+    font-weight: 700;
+    margin: 0px;
+}
+
+.content-block .widget-footer { 
+    margin: 20px 0px;
+    padding: 0px;
+    background: none;
+    border: none;
+    overflow: hidden;
+}
+
+.content-block .widget-body {
+    background: #FFF;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.row.content-footer {
+    margin-top: 20px;
+}
+
+/* Data Viz and Forms */
+
+.smart-form .row.section-new {
+    border-top: 3px solid rgba(0,0,0,0.1);
+    border-bottom: 3px solid rgba(0,0,0,0.1);
+    margin: 50px 0px 0px;
+    padding: 15px 0px;
+}
+
+.smart-form .row.section-new.nomargin {
+    margin: 0px;
+}
+
+.smart-form .row.section-new h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.section-divider { 
+    border-top: 2px solid rgba(0,0,0,0.1);
+    margin: 0px !important;
+    padding: 15px 0px;
+}
+
+.tab-pane .section-divider:first-child {
+    border: none;
+}
+
+.section-divider > div {
+    padding: 0px !important;
+}
+
+.smart-form .section-divider label.label {
+    margin-left: 15px;
+}
+
+.smart-form .section-divider .inputWrap {
+    margin-bottom: 0px;
+}
+
+.smart-form .input-file .button {
+    background: none;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.smart-form .input-file .button {
+    top: 13px;
+    right: 0px; 
+}
+
+.textarea-controls {
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.note-editor {
+    background: none;
+    border: none;
+}
+
+.note-editor .note-codable{
+    display: none;
+}
+
+.note-editor .note-toolbar {
+    padding-bottom: 10px;
+    padding-left: 0px;
+    margin: 0px;
+    background-color: transparent;
+    border-bottom: none;
+}
+
+.note-editor .note-editable {
+    background: rgba(0,0,0,0.05);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.10) inset; 
+    border: none;
+    font-size: 16px;
+    font-weight: 300;
+    color: #555;
+    min-height: 250px;
+    padding: 20px;
+}
+
+.sustainhawaii-admin .note-toolbar .btn.btn-default {
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.05);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.10) inset; 
+    line-height: 1.5em;
+    font-size: 14px;    
+}
+
+.note-editor .note-toolbar > .btn-group {
+    margin: 0px 5px 0px 0px;
+}
+
+/* Data Wraps */ 
+.smart-form .row.data-wrap {
+    margin: 0px;
+    overflow: hidden;
+
+}
+
+.smart-form.big-form .row.data-wrap > div.data-header {
+    padding: 15px;
+    overflow: hidden;
+    box-shadow: 0px -1px 0px rgba(0,0,0,0.1) inset;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffffff 0%, #eaeaea 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eaeaea)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffffff 0%,#eaeaea 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 ); /* IE6-9 */
+}
+
+.smart-form.big-form .row.data-wrap > div {
+    padding: 0px;
+}
+
+.smart-form.big-form .row.data-wrap > div.content-block {
+    margin: 0px;
+}
+
+.smart-form.big-form .row.data-wrap > div.content-block table {
+    box-shadow: 0px -1px 0px rgba(0,0,0,0.1) inset;
+}
+
+.smart-form.big-form .row.data-wrap > div.content-block table thead {
+    background: #D2D2D2;
+}
+
+
+.smart-form.big-form .row.data-wrap > div.content-block table thead th {
+    font-weight: 700;
+    font-size: 16px;
+    background: #D2D2D2;
+    content: #555;
+    border-bottom: none;
+}
+
+.smart-form.big-form .row.data-wrap > div.content-block .btn-order {
+    font-weight: 700;
+    color: #333;
+    background: rgba(0,0,0,0.1);
+    border-radius: 50%;
+    height: 26px;
+    width: 26px;
+    text-align: center;
+    display: inline-block;
+    line-height: 26px;
+    margin-right: 5px;
+    float: left;
+}
+
+.smart-form.big-form .row.data-wrap > div.content-block .btn-instructions {
+    font-size: 12px;
+    width: 80px;
+    display: inline-block;
+    line-height: 1em;
+    float: left;
+}
+
+.smart-form.big-form .row.data-wrap > div.content-block table tbody td {
+    background: transparent;
+    content: #555;
+    font-size: 15px;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.data-header-content {
+    font-size: 26px;
+    margin-top: 1px;
+}
+
+.data-header-content .fa {
+    margin-top: 5px;
+}
+
+.data-header-content h2 {
+    font-size: 20px;
+}
+
+.data-header-buttons .btn {
+    margin-left: 5px;
+}
+
+.sustainhawaii-admin .data-header-buttons .btn.btn-default {
+    line-height: 1em;
+}
+
+
+/* Tabs */
+
+.alert {
+    border-radius: 15px;
+    background: #FFF;
+    text-align: center;
+    font-size: 16px;
+    border: none;
+}
+
+.nav-tabs {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #FFF;
+    box-shadow: 0 0 1px rgba(0,0,0.1) inset;
+}
+
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857;
+    padding: 20px 30px;
+    font-size: 26px;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.3);
+    border: medium none;
+}
+
+.nav-tabs > li.active > a {
+    font-weight: 400;
+    color: #333;
+    box-shadow: 0px -2px 0px #57889C, 0px -1px 0px rgba(0,0,0,0.2) inset;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffffff 0%, #eaeaea 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eaeaea)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#eaeaea 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffffff 0%,#eaeaea 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 ); /* IE6-9 */
+
+}
+
+.tab-content {
+    padding: 20px 0px;
+}
+
+.tab-content.nopadding {
+    padding: 0px;
+}
+
+.tab-content h2 {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.tab-content .select2-container .select2-choice {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    border: medium none;
+    white-space: nowrap;
+    line-height: 32px;
+    color: #444;
+    text-decoration: none;
+    background-clip: padding-box;
+    -moz-user-select: none;
+    height: 50px;
+    padding: 7px 15px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    font-weight: 300;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2) inset;
+}
+
+.tab-content .select2-container .select2-choice .select2-arrow {
+    display: inline-block;
+    width: 34px;
+    height: 100%;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    background: none repeat scroll 0% 0% transparent;
+    border-left: medium none;
+}
+
+.tab-content .select2-container .select2-choice .select2-arrow b {
+    font-size: 26px;
+}
+
+.tab-content .row > div {
+    padding: 30px;
+}
+
+.tab-content .row > div .row {
+    margin: 0px -5px;
+}
+
+.tab-content .row > div .row > div {
+    padding: 0px 5px;
+}
+
+.tab-content h3 {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.tab-content h4 {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+.sustainhawaii-admin .tab-content .btn.btn-block {
+    height: 50px;
+}
+
+
+.tab-content p {
+    font-size: 16px;
+    font-weight: 300;
+    color:#666;
+}
+
+.select2-drop {
+    margin-top: -1px;
+    width: 100%;
+    position: absolute;
+    z-index: 9999;
+    top: 100%;
+    background: #FFF;
+    color: #000;
+    border: none;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    padding-top: 5px;
+    border-radius: 10px;
+}
+
+.select2-hidden-accessible { 
+    display:  none; 
+}
+
+.dataset-block {
+    padding: 10px 0px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.dataset-block p {
+    font-size: 13px;
+    margin: 0px;
+}
+
+.tab-content .row > div.data-locations.content-block  {
+    background: #E6E6E6;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.1) inset;
+}
+
+.tab-content .row > div.data-locations.content-block .row {
+    padding: 20px 20px 0px;
+    border-bottom: 1px solid rgba(250,250,250,0.75);
+    box-shadow: 0px 1px 0px rgba(0,0,0,0.1);
+}
+
+.tab-content .smart-form label.label {
+    font-size: 20px;
+    color: #888;
+}
+
+.btn-group {
+    /*Causing summernote buttons to look crappy*/
+    /*margin-bottom: 20px;*/
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.btn-group .btn.btn-default {
+    font-size: 20px;
+    background: none;
+    box-shadow: none;
+    background: #FFF;
+    line-height: 70px;
+}
+
+.btn-group .btn.btn-default.active {
+    background: #339DC1;
+    color: #FFF;
+    text-shadow:1px 1px 0 rgba(0,0,0,0.2);
+}
+
+.smart-form fieldset { 
+    background: none;
+    padding: 0px;
+    margin: 0 0 20px;
+}
+
+
+.smart-form fieldset .inputWrap, fieldset .inputWrap {
+    padding: 5px;
+    margin: 0px;
+}
+
+.smart-form fieldset section {
+    padding: 10px 0px;
+    margin: 0px;
+}
+
+.tab-content .smart-form fieldset label.label { 
+    font-size: 14px;
+    margin: 0px 0px 10px 0px;
+    padding: 0px;
+}
+
+.smart-form.big-form fieldset .input input, 
+.smart-form fieldset .textarea textarea, 
+.smart-form fieldset select.input-lg {
+    height: 40px;
+    font-size: 14px;
+}
+
+.smart-form fieldset .inputWrap select.input-lg + i {
+    height: 23px;
+    top: 8px;
+}
+
+
+.input.styled-input {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.input.styled-input input {
+    width: 100%;
+    height: 50px;
+    padding: 7px 15px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    font-weight: 300;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2) inset;
+    border: none;
+}
+
+.input.styled-input.white {
+    margin: 0px;
+}
+
+.input.styled-input.white input {
+    width: 100%;
+    height: 40px;
+    padding: 7px 15px;
+    font-size: 20px;
+    background-color: #FFF;
+    border-radius: 15px;
+    font-weight: 300;
+    box-shadow: none;
+    border: none;
+    margin: 0px 0px 10px;
+    font-size: 15px;
+}
+
+/* Inside content tabs */ 
+
+.nav-tabs.tab-frontend,
+.nav-tabs.tab-share { 
+    box-shadow: none;
+    border: none;
+}
+
+.nav-tabs.tab-share { 
+    background: rgba(0,0,0,0.2);    
+}
+
+.nav-tabs.tab-frontend > li > a {
+    font-size: 16px;
+    font-weight: 300;
+    color: #999;
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1) inset;  
+    margin: 0px 2px 0px 0px !important;
+    border: none !important;
+}
+
+
+.nav-tabs.nav-tabs.tab-share > li > a {
+    margin-right: 2px;
+    line-height: 1.42857;
+    padding: 5px 25px;
+    font-size: 35px;
+    border: none;
+    box-shadow: none;
+ }
+
+.nav-tabs.tab-frontend > li.active > a {
+    font-weight: 700;
+    color: #333;
+    background: #FFF;
+    box-shadow: none;
+}
+
+.nav-tabs.nav-tabs.tab-share > li.active > a {
+    background: #FFF;
+    border: none;
+    color: #333;
+    margin: 0px !important;
+}
+
+.tab-content h1 {
+    font-weight: 700;
+    color: #333;
+    font-size: 36px;
+}
+
+
+.tab-content.tab-frontend {
+    background: #FFF;
+    padding: 20px;
+    margin-top: 1px;
+}
+
+.tab-content.tab-share {
+    background: #FFF;
+    padding: 10px;
+    margin-top: 1px;
+    margin-bottom: 10px;
+}
+
+.tab-content.tab-share .textarea {
+    width: 100%;
+    height: 120px;
+    margin: 0px;
+}
+
+.tab-content.tab-share textarea {
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.05);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1) inset;
+    width: 100%;
+    height: 120px;    
+    border: none;
+}
+
+/* Plugins */
+
+.plugins {
+    margin:20px 0px;
+}
+
+.plugin-divider {
+    margin: 0px;
+    background: rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.plugin-divider.active {
+    background: #FFF;
+}
+
+.plugin-divider.active p {
+    color: #999;
+}
+
+.plugin-divider > div {
+    padding: 20px;
+}
+
+.plugin-divider > div h3 {
+    margin: 0px 0px 5px;
+    font-weight: 700;
+}
+
+.plugin-divider > div h3 span {
+    font-weight: 300;
+}
+
+.plugin-divider > div p {
+    font-size: 16px;
+    color: #666;
+    font-weight: 300;
+    margin: 0px;
+}
+
+/* Settings Menu */
+
+.menu-wrapper {
+    margin: 0px;
+}
+
+.menu-wrapper .menu-select,
+.menu-wrapper .menu-items {
+    padding: 0px;
+}
+
+.menu-wrapper .menu-select {
+    background: rgba(250,250,250,0.9);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1); 
+}
+
+.menu-select h3 {
+    padding: 15px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.menu-select .pagelist {
+    max-height: 200px;
+    overflow: auto;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.smart-form .menu-select fieldset {
+    margin: 0px;
+}
+
+.menu-select-buttons {
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1); 
+    overflow: hidden;
+}
+
+.smart-form .menu-select fieldset section {
+    margin: 0 15px;
+    display: block;
+}
+
+.menu-select .pagelist label.checkbox {
+    padding: 5px 15px 7px 45px;
+    margin: 0px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.smart-form .menu-select .pagelist .checkbox i, 
+.smart-form .menu-select .pagelist .radio i {
+    top: 8px;
+    left: 15px;
+}
+
+.menu-wrapper .menu-items .row {
+    margin: 0px 0px 10px 15px;
+}
+
+.menu-items-title {
+    background: rgba(0,0,0,0.1);
+    padding: 15px 0px;
+    margin-bottom: 10px;
+}
+
+.menu-items-title span {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.menu-items-drag {
+    background: #FFF;
+    padding: 10px 0px;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    cursor: move;
+}
+
+.menu-items-drag .fa.pull-left {
+    font-size: 26px;
+    line-height: 1.2em;
+    margin: 0px 10px 0px 0px;
+}
+
+.menu-items-drag h2 {
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.sustainhawaii-admin .btn.btn-default.btn-sm {
+    font-size: 13px;
+    color: #333;
+    font-weight: 300;
+} 
+
+.menu-items-drag .btn.btn-default.btn-sm {
+    margin-left: 5px;
+}
+
+
+.sustainhawaii-admin #left-panel nav > ul > li.open>a {
+    color: #FFF !important;
+}
+
+
+.sustainhawaii-admin #left-panel nav > ul > li.active>a , 
+.sustainhawaii-admin #left-panel nav > ul > li.open.active>a , 
+.sustainhawaii-admin nav ul li.active>a b {
+    color: #333 !important;
+}
+
+/* Front End Styling */
+
+.sustainhawaii-frontend {
+    
+}
+
+
+
+.sustainhawaii-frontend .gradient-green {
+    background: #2db200; /* Old browsers */
+    background: -moz-linear-gradient(top,  #2db200 0%, #1a6600 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2db200), color-stop(100%,#1a6600)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #2db200 0%,#1a6600 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #2db200 0%,#1a6600 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #2db200 0%,#1a6600 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #2db200 0%,#1a6600 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2db200', endColorstr='#1a6600',GradientType=0 ); /* IE6-9 */
+}
+
+.sustainhawaii-frontend.smart-style-1 #header {
+    background-image: none;
+    background-color: #244D0B;
+}
+
+.sustainhawaii-frontend #main { 
+    margin: 0px;
+    padding: 0px;
+}
+
+.sustainhawaii-frontend #header {
+    height: auto;
+    overflow: hidden;
+}
+
+.sustainhawaii-frontend #header .logo {
+    font-size: 36px;
+    font-weight: 900;
+    margin: 0px;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend #header .logo:hover {
+    text-decoration: none;
+}
+
+.sustainhawaii-frontend #header > div {
+    height: auto;
+
+}
+
+.sustainhawaii-frontend #header > ul.header-nav {
+    list-style: none;
+    padding: 0px;
+    margin: 0px 20px 0px 0px;
+}
+
+.sustainhawaii-frontend #header > ul.header-nav li {
+    float: left;
+}
+
+.sustainhawaii-frontend #header > ul.header-nav li a { 
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 80px;
+    padding: 0px 20px;
+    color: rgba(250,250,250,0.6);
+}
+
+.sustainhawaii-frontend #header > ul.header-nav li.current a {
+    background: rgba(250,250,250,0.15); 
+    display: block;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend #header > ul.header-nav li .loginButtons {
+    height: 40px;
+    margin: 20px 0px 20px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFF;
+    padding: 0 20px;
+}
+
+.sustainhawaii-frontend #header > ul.header-nav li .loginButtons a {
+    display: inline-block;
+    line-height: 40px;
+    font-weight: 900;
+    padding: 0px;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend #header > div.mobile-navigation  {
+    display: none;
+}
+
+.sustainhawaii-frontend #footer {
+    background: #D8D8D9;
+    padding: 30px 0px;
+}
+
+.sustainhawaii-frontend #footer .logo {
+    font-size: 36px;
+    font-weight: 900;
+    margin: 0px;
+    color: #666;    
+}
+
+.sustainhawaii-frontend #footer h5 { 
+    font-weight: 900;
+    margin: 20px 0px 0px;
+    color: #666;
+    font-size: 16px;
+}
+
+.sustainhawaii-frontend #footer p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #666;
+}
+
+.sustainhawaii-frontend #footer .connect-Links {
+    list-style: none;
+    margin: 0px;
+    display: inline-block;
+    float: right;
+}
+
+.sustainhawaii-frontend #footer .connect-Links li {
+    float: left;
+    margin-left: 5px;
+}
+
+.sustainhawaii-frontend #footer .connect-Links li a {
+    line-height: 36px;
+    width: 36px;
+    display: inline-block;
+    font-size: 22px;
+    color: #FFF;
+    background: #666;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.sustainhawaii-frontend #content {
+    padding: 60px 15px;
+} 
+
+.sustainhawaii-frontend .container .google_maps {
+    height: 600px;
+}
+
+.sustainhawaii-frontend .smart-form.big-form .input input {
+    font-size: 20px;
+}
+
+.sustainhawaii-frontend .search-basic .btn.btn-default {
+    border-radius: 0px;
+}
+
+.sustainhawaii-frontend .search-basic .btn-group {
+    border-radius: 0px;
+    box-shadow: none;
+    margin: 0px;
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.05);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1) inset;
+}
+
+.sustainhawaii-frontend .search-basic .btn-group .btn.btn-default {
+    line-height: 50px;
+    font-size: 18px;
+    background: transparent;
+}
+
+.sustainhawaii-frontend .search-basic .btn-group .btn.btn-default.active {
+    background: #2db200; /* Old browsers */
+    background: -moz-linear-gradient(top,  #2db200 0%, #1a6600 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2db200), color-stop(100%,#1a6600)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #2db200 0%,#1a6600 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #2db200 0%,#1a6600 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #2db200 0%,#1a6600 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #2db200 0%,#1a6600 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2db200', endColorstr='#1a6600',GradientType=0 ); /* IE6-9 */
+}
+
+.sustainhawaii-frontend .directory-block {
+    background: #FFF;
+    display: table;
+    padding: 20px 5px;
+    margin: 0px 0px 20px;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    width: 100%;   
+}
+
+.sustainhawaii-frontend .members-row .directory-block {
+    margin: 0px 0px 20px;
+}
+
+.sustainhawaii-frontend .directory-block h3 {
+    font-weight: 700;
+    color: #0085B2;
+    margin: 0px;
+    font-size: 26px;
+    line-height: 1em;
+}
+
+.sustainhawaii-frontend .members-row .directory-block h3 { 
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.sustainhawaii-frontend .members-row .directory-block p {
+    font-size: 15px;
+}
+
+.sustainhawaii-frontend .directory-block div > i.fa {
+    font-size: 20px;
+    color: #DDD;
+}
+
+.sustainhawaii-frontend .directory-block div > span,
+.sustainhawaii-frontend .directory-block div.directory-tags > a {
+    font-size: 14px;
+    font-weight: 300;
+    color: #999;
+    line-height: 22px;
+}
+
+.sustainhawaii-frontend .members-row .directory-block div > i.fa {
+    font-size: 32px;
+    color: #DDD;
+    width: 26px;
+    float: left;
+    text-align: left;   
+}
+
+.sustainhawaii-frontend .members-row .directory-block div > span {
+    line-height: 1em;
+}
+
+.sustainhawaii-frontend .directory-block div.directory-tags > a {
+    display: inline-block;
+    background: #DDD;
+    color: #666;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 0px 0px 5px;
+}
+
+.sustainhawaii-frontend .directory-block div > p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0px;
+}
+
+.sustainhawaii-frontend h2 {
+    font-size: 46px;
+    font-weight: 300;
+    color: #999;
+    border-bottom: 3px solid rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.sustainhawaii-frontend #content-header .google_maps {
+    height: 440px;
+}
+
+.member-header h1 {
+    font-size: 46px;
+    font-weight: 700;
+    color: #0085B2;
+    margin: 40px 0px 0px;
+}
+
+.member-header .member-info {
+    line-height: 24px;
+    font-size: 17px;
+    font-weight: 300;
+    padding: 5px 0px;
+}
+
+.member-header .member-info span {
+    font-weight: 700;
+    display: inline-block;
+    min-width: 130px;
+}
+
+.member-header .member-info > div {
+    display: inline-block;
+}
+
+.member-header .img-circle {
+    border:10px solid #FFF;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.member-header .member-info .directory-tags > a {
+    display: inline-block;
+    background: #DDD;
+    color: #666;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 0px 0px 5px;
+}
+
+.member-description p {
+    font-size: 26px;
+    font-weight: 300;
+}
+
+.member-description p:first-child {
+    margin-top: 50px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    padding-top: 30px;
+}
+
+
+.sustainhawaii-frontend .member-visualizations {
+    padding: 40px 15px 0px;
+}
+
+.sustainhawaii-frontend .frontend-page h1 {
+    font-size: 46px;
+    font-weight: 700;
+    color: #0085B2;
+    margin: 20px 0px 20px;
+}
+
+.sustainhawaii-frontend .frontend-page p {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.7em;
+    margin-bottom: 1.7em;
+}
+
+.sustainhawaii-frontend .smart-form .textarea textarea {
+    font-size: 20px;
+}
+
+.login-extras {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    text-align: left;
+}
+
+/* Responsive Styling - Front End */
+
+.mobile-view-activated.sustainhawaii-frontend #header > ul.header-nav {
+    display: none;
+}
+
+
+.mobile-view-activated.sustainhawaii-frontend .container .google_maps {
+    height: 360px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend #header > div.mobile-navigation {
+    display: block;
+    clear: both;
+    padding: 0px 20px 20px;
+    width: 100%;
+    box-sizing: padding-box;
+}
+
+.mobile-view-activated.sustainhawaii-frontend #header > div.mobile-navigation .loginButtons {
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFF;
+    margin-top: 10px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend #header > div.mobile-navigation .loginButtons a {
+    display: inline-block;
+    line-height: 40px;
+    font-weight: 900;
+    padding: 0px;
+    color: #FFF;
+}
+
+
+.mobile-view-activated.sustainhawaii-frontend #footer .text-right {
+    text-align: left !important;
+}
+
+.mobile-view-activated.sustainhawaii-frontend #footer .connect-Links {
+    float: left;
+    margin: 0px;
+    padding: 0px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend #footer .connect-Links li {
+    margin:0px 5px 0px 0px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend #content {
+    padding: 30px 15px !important;
+}
+
+.mobile-view-activated.sustainhawaii-frontend .container .smart-form.big-form .row {
+    margin: 0 -15px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend .container  .btn-group .btn.btn-default {
+    font-size: 16px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend .container .smart-form.big-form .input input, 
+.mobile-view-activated.sustainhawaii-frontend .container .smart-form .textarea textarea, 
+.mobile-view-activated.sustainhawaii-frontend .container .smart-form select.input-lg {
+    font-size: 16px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend .smart-form .icon-append, 
+.mobile-view-activated.sustainhawaii-frontend .smart-form .icon-prepend {
+    position: absolute;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.mobile-view-activated.sustainhawaii-frontend .directory-block {
+    padding: 15px 0px;
+}
+
+
+.mobile-view-activated.sustainhawaii-frontend .directory-block p {
+    font-size: 15px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend .member-header h1 {
+    font-size: 32px;
+    margin: 10px 0px 0px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend .member-header .member-info span { 
+    display: block;
+    clear: both;
+}
+
+.mobile-view-activated.sustainhawaii-frontend .member-description p {
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 30px;
+}
+
+.mobile-view-activated.sustainhawaii-frontend h2 {
+    font-size: 32px;
+}
+
+/* Responsive Styling - Back End */
+
+
+.mobile-view-activated.sustainhawaii-admin .smart-form .icon-append, 
+.mobile-view-activated.sustainhawaii-admin .smart-form .icon-prepend {
+    position: absolute;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.mobile-view-activated.sustainhawaii-admin.hidden-menu #left-panel {
+    left: 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin #left-panel {
+    left: -360px;
+}
+
+
+.mobile-view-activated.sustainhawaii-admin #ribbon {
+    padding: 15px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.mobile-view-activated.sustainhawaii-admin #ribbon .btn {
+    margin-left: 5px;
+    width: 100%;
+    margin: 10px 0px 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin #ribbon .page-title {
+    display: block;
+    font-size: 18px;
+}
+
+.mobile-view-activated.sustainhawaii-admin #ribbon .page-title i {
+    display: none;
+}
+
+.mobile-view-activated.sustainhawaii-admin #content {
+    padding: 0px;
+}
+
+
+
+.mobile-view-activated.sustainhawaii-admin #main { 
+    margin: 0px;
+    padding: 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin table.has-columns-hidden > tbody > tr.row-detail > td > ul {
+    padding-left: 30px;
+
+}
+
+.mobile-view-activated.sustainhawaii-admin table.has-columns-hidden > tbody > tr.row-detail > td > ul li:first-child {
+    display: none;
+}
+
+.mobile-view-activated.sustainhawaii-admin #ribbon .page-title span {
+    font-size: 18px;
+    padding-left: 25px;
+    margin-left: 5px;
+    vertical-align: 0px;
+}
+
+#mobile-navigation {
+    display: none;
+}
+
+
+.mobile-view-activated #left-panel {
+    margin-top: 80px;
+}
+
+.mobile-view-activated #left-panel #header {
+    display: none;
+}
+
+.mobile-view-activated.sustainhawaii-admin #mobile-navigation {
+    display: block;
+}
+
+.mobile-view-activated.sustainhawaii-admin #mobile-navigation #header,
+.mobile-view-activated.sustainhawaii-admin #mobile-navigation #header > :first-child {
+    height: 80px;
+    display: block;
+    width: 100% !important;
+    clear: both;
+}
+
+
+.mobile-view-activated.sustainhawaii-admin.smart-style-1 #logo-group {
+    background: #244D0B !important;
+}
+
+.mobile-view-activated.sustainhawaii-admin #mobile-navigation #logo-group > span#logo-mobile {
+    font-size: 26px;
+    font-weight: 700;
+    color: #FFF;
+    margin: 0px;
+}
+
+.header-buttons {
+    margin: 22px 15px 0px 0px;
+}
+
+#mobile-navigation .header-buttons a {
+    margin-left: 8px;
+    color: rgba(250,250,250,0.70);
+}
+
+#mobile-navigation .header-buttons a:hover {
+    color: rgba(250,250,250,1);
+}
+
+#mobile-navigation .header-buttons a i {
+    font-size: 36px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .data-header-buttons {
+    display: block;
+    clear: both;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 40px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .data-header-buttons .btn.btn-default {
+    float: left !important;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .big-form .inputWrap, 
+.mobile-view-activated.sustainhawaii-admin .inputWrap {
+    padding: 5px;
+    margin: 0px 0px 10px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .smart-form label.label {
+    /*margin-left: 0px;*/
+}
+
+.mobile-view-activated.sustainhawaii-admin .section-new .btn {
+    width: 100%;
+    margin: 10px 0px 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .note-editor .note-toolbar > .btn-group {
+    margin: 0px 5px 5px 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .note-toolbar .btn.btn-default {
+    font-size: 12px;
+}
+
+.mobile-view-activated .textarea-top a.btn.btn-default { 
+    display: block;
+    clear: both;
+    width: 100%;
+    margin: 0px 0px 5px;
+}
+
+.mobile-view-activated .smart-form.big-form .row.data-wrap > div.content-block table tbody td {
+    font-size: 12px;
+}
+
+.mobile-view-activated .table > thead > tr > th,
+.mobile-view-activated .table > tbody > tr > td { 
+    padding: 10px 5px;
+}
+
+.mobile-view-activated .data-locations .table > thead > tr > th:first-child,
+.mobile-view-activated .data-locations .table > tbody > tr > td:first-child,
+.mobile-view-activated .data-locations .table > thead > tr > th:nth-child(4n),
+.mobile-view-activated .data-locations .table > tbody > tr > td:nth-child(4n) {
+    display: none;
+}
+
+.mobile-view-activated .smart-form.big-form .row.data-wrap > div.content-block .btn-instructions {
+    display: none;
+}
+
+.mobile-view-activated .smart-form.big-form .row.data-wrap > div.content-block table thead th {
+    font-size: 10px;
+}
+
+.mobile-view-activated .modal-title {
+    font-size: 18px;
+}
+
+.mobile-view-activated .modal .smart-form .row {
+    margin: 0px;
+    padding: 5px 0px 9px;
+}
+
+.mobile-view-activated .modal .smart-form label.label { 
+    margin-left: 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .modal .btn.btn-default {
+    font-size: 14px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .modal-header .close {
+    height: 26px;
+    min-width: 26px;
+    font-size: 26px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .smart-form.big-form .row > div.col-md-4 {
+    margin: 5px 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .row.content-footer {
+    margin: 15px 0px 0px !important;
+}
+
+.mobile-view-activated.sustainhawaii-admin .row .row-Title {
+    margin: 15px 30px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .smart-form.big-form .row {
+    margin: 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .smart-form .inputWrap select.input-lg + i {
+    height: 23px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .smart-form.big-form .input input, 
+.mobile-view-activated.sustainhawaii-admin .smart-form .textarea textarea, 
+.mobile-view-activated.sustainhawaii-admin .smart-form select.input-lg  {
+    font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.mobile-view-activated.sustainhawaii-admin #ribbon {
+    min-height: 60px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .section-divider > div { 
+    padding: 0 15px !important;
+}
+
+.mobile-view-activated.sustainhawaii-admin .smart-form label.label { 
+    padding: 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .smart-form .section-divider label.label {
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .entity-block > div h2 {
+    font-size: 20px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .entity-block > div h2 span {
+    float: none;
+    margin-bottom: 5px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .entity-block > div p {
+    margin: 0px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .entity-block > div a.pull-right {
+    float: none !important;
+}
+
+.mobile-view-activated.sustainhawaii-admin .nav-tabs > li {
+    display: block;
+    clear: both;
+    width: 100%;
+}
+
+.mobile-view-activated.sustainhawaii-admin .nav-tabs.tab-share > li {
+    width: auto;
+    display: inline-block;
+    clear: none;
+}
+
+.mobile-view-activated.sustainhawaii-admin .nav-tabs > li > a {
+    width: 100%;
+    margin-right: 0px;
+    padding: 10px 15px;
+    font-size: 18px;
+}
+
+.mobile-view-activated.sustainhawaii-admin .btn-group .btn.btn-default {
+    font-size: 12px;
+    box-shadow: none;
+    line-height: 50px;
+}
+
+
+.mobile-view-activated.sustainhawaii-admin .tab-content.tab-frontend {
+    background: none repeat scroll 0% 0% #FFF;
+    padding: 5px;
+    margin-top: 1px;
+}
+
+.mobile-view-activated .login-mobile-buttons {
+    padding-top: 25px;
+    border-top: 1px solid rgba(250,250,250,0.05);
+    box-shadow: 0px 2px 0px rgba(0,0,0,0.05) inset;
+    margin: 0px;
+}
+
+.mobile-view-activated .login-mobile-buttons a.btn {
+    width: 100%;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+/* Responsive screen size based rules */
+
+@media only screen and (min-width:747px) and (max-width:1044px) {
+/* Ipad and Small Res Computers */
+
+    .sustainhawaii-admin #ribbon .page-title,
+    .mobile-view-activated.sustainhawaii-admin #ribbon .page-title {
+        display: block;
+        font-size: 28px;
+    }
+
+    .sustainhawaii-admin #ribbon .page-title {
+        margin-top: 7px;
+    }
+
+    .mobile-view-activated.sustainhawaii-admin #ribbon .page-title {
+        margin-top: 10px;
+    }
+
+    .sustainhawaii-admin #ribbon .page-title i {
+        font-size: 30px;
+        width: 30px;
+    }
+
+    .sustainhawaii-admin #ribbon .page-title span {
+        font-size: 26px;
+        vertical-align: 0px;
+    }
+    
+    .mobile-view-activated.sustainhawaii-admin #ribbon .page-title span {
+        font-size: 26px;
+    }
+
+}
+
+@media only screen and (min-width:747px) and (max-width:1000px) {
+
+    .sustainhawaii-admin.sustainhawaii-frontend .smart-form.big-form .btn-block {
+        min-height: 40px;
+        padding: 0 10px;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 40px;
+    }
+
+    .sustainhawaii-admin.sustainhawaii-frontend .btn-group .btn.btn-default {
+        font-size: 13px !important;
+        box-shadow: none;
+        line-height: 40px;
+        font-weight: 700 !important;
+    }   
+
+}
+
+@media only screen and (min-width:979px) and (max-width:1200px) {
+/* Ipad and Small Res Computers */
+
+    .sustainhawaii-admin.sustainhawaii-frontend #left-panel {
+        display: none;
+    }
+
+    .sustainhawaii-admin #main {
+        margin-left: 0px;
+        padding: 0px 0px 52px;
+        min-height: 500px;
+    }
+
+    .sustainhawaii-frontend #content {
+    margin-left: 0px !important;
+    padding: 0px;
+    background: #FFF;
+    }
+    .sustainhawaii-frontend #header {
+        display: block !important;
+    }
+
+    .sustainhawaii-frontend #footer .connect-Links li a {
+        line-height: 30px;
+        width: 30px;
+        display: inline-block;
+        font-size: 16px;
+    }   
+}
+
+@media only screen and (min-width:320px) and (max-width:480px) {
+
+    .sustainhawaii-admin.sustainhawaii-frontend .smart-form.big-form .btn-block {
+        min-height: 40px;
+        padding: 0 10px;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 40px;
+    }
+
+    .sustainhawaii-admin.sustainhawaii-frontend .btn-group .btn.btn-default {
+        font-size: 13px !important;
+        box-shadow: none;
+        line-height: 40px;
+        font-weight: 700 !important;
+    }   
+
+    .sustainhawaii-admin.sustainhawaii-frontend .smart-form.big-form .btn-block {
+        min-height: 40px;
+        padding: 0 10px;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 40px;
+    }
+
+    .sustainhawaii-admin.sustainhawaii-frontend .btn-group .btn.btn-default {
+        font-size: 13px !important;
+        box-shadow: none;
+        line-height: 40px;
+        font-weight: 700 !important;
+    }       
+
+    .big-form .inputWrap, .inputWrap {
+        background: none repeat scroll 0% 0% #FFF;
+        padding: 5px;
+        box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2px !important;
+        box-sizing: border-box;
+    }   
+
+    #adv_search_row {
+        padding-right: 0px;
+    }
+
+    .mobile-view-activated.sustainhawaii-frontend #content {
+        padding: 15px !important;
+    }
+
+    .mobile-view-activated.sustainhawaii-frontend .container .google_maps {
+        height: 200px;
+    }
+
+    .sustainhawaii-frontend .member-header .img-circle {
+        border-radius: 0;
+        max-height: 60px;
+        float: right;   
+        border-width: 5px;
+    }
+
+    .sustainhawaii-frontend #content-header .google_maps {
+        height: 260px;
+    }
+
+    .mobile-view-activated.sustainhawaii-frontend .directory-block p {
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    .directory-block iframe {
+        height: 120px !important;
+    }
+
+    .sustainhawaii-frontend .directory-block h3 {
+        font-size: 20px;
+        margin: 5px 0px;
+    }
+
+    .sustainhawaii-frontend .directory-block div.directory-tags > a {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .modal-body {
+        position: relative;
+        padding: 20px !important;
+    }
+
+}
+
+
+
+/***************************************************/
+/************ FRONT-END VISUALIZATIONS *************/
+/***************************************************/
+
+.sustainhawaii-frontend-visualizations .login-mobile-buttons,
+.sustainhawaii-frontend-visualizations .mobile-navigation {
+    display: none;
+}
+
+.sustainhawaii-frontend-visualizations #header {
+    height: auto;
+    overflow: hidden;
+}
+
+.sustainhawaii-frontend-visualizations #header .logo {
+    font-size: 36px;
+    font-weight: 900;
+    margin: 0px;
+    color: #FFF;
+    float: left;
+}
+
+.sustainhawaii-frontend-visualizations #header .logo:hover {
+    text-decoration: none;
+}
+
+
+.sustainhawaii-frontend-visualizations .header-container {
+    float: none !important;
+}
+
+.sustainhawaii-frontend-visualizations #header > div {
+    height: auto;
+
+}
+
+.sustainhawaii-frontend-visualizations #header ul.header-nav {
+    list-style: none;
+    padding: 0px;
+    margin: 0px 20px 0px 0px;
+}
+
+.sustainhawaii-frontend-visualizations #header ul.header-nav li {
+    float: left;
+}
+
+.sustainhawaii-frontend-visualizations #header ul.header-nav li a { 
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 80px;
+    padding: 0px 20px;
+    color: rgba(250,250,250,0.6);
+}
+
+.sustainhawaii-frontend-visualizations #header ul.header-nav li.current a {
+    background: rgba(250,250,250,0.15); 
+    display: block;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend-visualizations #header ul.header-nav li .loginButtons {
+    height: 40px;
+    margin: 20px 0px 20px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFF;
+    padding: 0 20px;
+}
+
+.sustainhawaii-frontend-visualizations #header ul.header-nav li .loginButtons a {
+    display: inline-block;
+    line-height: 40px;
+    font-weight: 900;
+    padding: 0px;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend-visualizations #header .loginButtons {
+    line-height: 40px;
+}
+
+.sustainhawaii-frontend-visualizations.sustainhawaii-admin #left-panel {
+    padding-top: 120px;
+}
+
+.sustainhawaii-frontend-visualizations #subheader {
+    position: relative;
+    z-index: 1000;
+    height: 40px;
+    background: #377711;
+}
+
+.sustainhawaii-frontend-visualizations #content {
+    margin-left: 280px;
+    padding: 0px;
+    background: #FFF;
+}
+
+.sustainhawaii-frontend-visualizations.open #content {
+    margin-left: 500px;
+}
+
+
+.sustainhawaii-frontend-visualizations #content .mCSB_inside > .mCSB_container {
+    margin-right: 14px;
+}
+
+.sustainhawaii-frontend-visualizations.minified #content {
+    margin-left: 280px;
+    padding: 0px;
+}
+
+
+.sustainhawaii-frontend-visualizations #subheader ul.header-nav {
+    margin: 0px;
+    padding: 0px;
+}
+
+.sustainhawaii-frontend-visualizations #subheader ul.header-nav li {
+    font-size: 14px;
+    box-shadow: 1px 0px 0px rgba(0,0,0,0.1);
+    float: left;
+    list-style: none;
+}
+
+.sustainhawaii-frontend-visualizations #subheader ul.header-nav li#header-nav-toggle a {
+    padding: 7px 19px 6px;
+    background: rgba(0,0,0,0.5);
+
+}
+
+.sustainhawaii-frontend-visualizations #subheader ul.header-nav li#header-nav-toggle a i {
+    font-size: 26px;
+}
+
+.sustainhawaii-frontend-visualizations #subheader ul.header-nav li a {
+    display: block;
+    padding: 10px 15px;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend-visualizations #subheader ul.header-nav li.active a {
+    color: #333;
+    background: #EAEAEA;
+}
+
+.sustainhawaii-frontend-visualizations #subheader ul.header-nav li a:hover {
+    text-decoration: none;
+    background: rgba(0,0,0,0.1);
+}
+
+.sustainhawaii-frontend-visualizations #subheader ul.header-nav .header-nav-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFF;
+    padding: 7px 15px 8px;
+    display: inline-block;
+}
+
+.sustainhawaii-frontend-visualizations .menu-locations {
+    padding: 5px 15px;
+    box-shadow: 0px 1px 0px rgba(250,250,250,0.025), 0px -1px 0px rgba(0,0,0,0.1) inset;
+    font-size: 16px;
+    font-weight: 300;
+    color: #999;
+}
+
+.sustainhawaii-frontend-visualizations.smart-style-1 nav ul ul {
+    background: rgba(0,0,0,0.5);
+    padding: 0px;
+}
+
+.sustainhawaii-frontend-visualizations .menu-locations label input[type=checkbox].checkbox:checked+span {
+    font-weight: 700;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend-visualizations .menu-locations img {
+    margin-top: 5px;
+}
+
+.sustainhawaii-frontend-visualizations .open > ul {
+    display: block;
+    background: #181B1F;
+}
+
+.sustainhawaii-frontend-visualizations #left-panel nav > ul > li {
+    box-shadow: 0px 1px 0px rgba(250,250,250,0.05), 0px -1px 0px rgba(0,0,0,0.1) inset;
+}
+
+.sustainhawaii-frontend-visualizations .second-level {
+    width: 220px;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+    position: absolute;
+    display: none;
+    min-height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    padding-top: 120px;
+    background: #152D06 url('../img/shadow-left.png') repeat-y top left;
+}
+
+
+
+.sustainhawaii-frontend-visualizations .second-level .mCSB_inside > .mCSB_container {
+    margin-right: 0px;
+}
+
+.sustainhawaii-frontend-visualizations .second-level.open {
+    left: 280px;
+    display: block;
+}
+
+.sustainhawaii-frontend-visualizations.minified .second-level.open {
+    left: 60px;
+    display: block;
+}
+
+.sustainhawaii-frontend-visualizations .third-level {
+    width: 430px;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+    position: absolute;
+    display: none;
+    min-height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    padding-top: 120px;
+    background: #EAEAEA url('../img/shadow-right.png') repeat-y top right;
+}
+
+.sustainhawaii-frontend-visualizations .third-level.open {
+    left: 280px;
+    display: block; 
+}
+
+.sustainhawaii-frontend-visualizations .directory-Edit-Header {
+    padding: 20px;
+}
+
+.sustainhawaii-frontend-visualizations .directory-Edit-Header h2 {
+    color: #0085B2;
+    font-weight: 700;
+    font-size: 30px;
+    margin: 0px;
+    border: none;
+    padding: 0px;
+}
+
+.sustainhawaii-frontend-visualizations .directory-Edit-Header p {
+    font-size: 20px;
+}
+
+.sustainhawaii-frontend-visualizations .directory-Edit-Data {
+    padding: 10px 20px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.sustainhawaii-frontend-visualizations .directory-Edit-Data a {
+    display: inline-block;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.sustainhawaii-frontend-visualizations .directory-Edit-Data .row > div.data-icon {
+    padding-right: 0px;
+    width: 15%;
+}
+
+.sustainhawaii-frontend-visualizations .directory-Edit-Data .row > div.data-contents {
+    padding-left: 0px;
+    width: 85%;
+}
+
+.sustainhawaii-frontend-visualizations .directory-Edit-Data .directory-Edit-Data-Add {
+    margin: 0px;
+    background: #0085B2;
+    border-radius: 10px;
+    color: #FFF;
+    font-size: 17px;
+    overflow: hidden;
+    padding: 0px 0px 0px 35px;
+}
+
+
+.sustainhawaii-frontend-visualizations #directory-Listings ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.sustainhawaii-frontend-visualizations .scroll-content {
+    overflow: hidden;
+
+}
+
+.sustainhawaii-frontend-visualizations .contnet-scroll-container {
+    overflow: hidden;
+
+}
+
+.sustainhawaii-frontend-visualizations .visualizations-container {
+    padding: 30px;
+}
+
+.directory-Edit-Data {
+    padding: 
+}
+
+.sustainhawaii-frontend-visualizations input[type=checkbox].checkbox+span:before, 
+.sustainhawaii-frontend-visualizations label input[type=radio].radiobox+span:before {
+    font-family: FontAwesome;
+    font-size: 12px;
+    border-radius: 0;
+    content: "\a0";
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1px;
+    height: 12px;
+    line-height: 12px;
+    min-width: 12px;
+    margin-right: 5px;
+    border: 2px solid #FFF;
+    background: #FFF;
+    font-weight: 400;
+    margin-top: -1px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2) inset;
+    color: #333;
+}
+
+.sustainhawaii-frontend-visualizations #map_canvas {
+    min-height: 760px;
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-search {
+    background: rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3) inset, 0px 1px 0px rgba(250,250,250,0.05), 0px -1px 0px rgba(0,0,0,0.1) inset;
+    overflow: hidden;
+
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-search .btn {
+    margin: 7px 0px 0px;
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-search input.form-control {
+    width: 85%;
+    float: left;
+    border: 0px;
+    background: transparent;
+    height: 48px;
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-search .input-group-btn,
+.sustainhawaii-frontend-visualizations .menu-directory-search .btn {
+    width: 15%;
+    float: left;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0px;
+    margin-top: 6px;
+    color: #FFF;
+    text-shadow: none;
+}
+
+.sustainhawaii-frontend-visualizations .second-level.open ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.sustainhawaii-frontend-visualizations .second-level.open ul li a {
+    padding: 10px 15px;
+    display: block;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3) inset, 0px 1px 0px rgba(250,250,250,0.05), 0px -1px 0px rgba(0,0,0,0.1) inset;
+}
+
+.sustainhawaii-frontend-visualizations .second-level.open ul li a:hover {
+    background: rgba(0,0,0,0.1);
+    text-decoration: none;
+}
+
+.menu-directory-Sort .row > div {
+    padding-right: 0px;
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-Header {
+    overflow: hidden;
+    padding: 15px 25px 15px 15px;
+    box-shadow: 0px 1px 0px rgba(250,250,250,0.05), 0px -1px 0px rgba(0,0,0,0.1) inset;
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-Header p {
+    margin: 0px;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-Header h3 {
+    font-weight: 700;
+    font-size: 16px;
+    color: #FFF;
+    margin: 0px 0px 5px 0px;
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-Sort {
+    box-shadow: 0px 1px 0px rgba(250,250,250,0.05), 0px -1px 0px rgba(0,0,0,0.1) inset;
+    padding: 15px 12px 15px 2px;
+    overflow: hidden;   
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-Sort .row {
+    margin: 0px;
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory-Sort .control-label {
+    padding-right: 0px;
+    color: #939498;
+    margin-top: 5px;
+}
+
+.sustainhawaii-frontend-visualizations .menu-directory h3 {
+    font-weight: 700;
+    font-size: 14px;
+    color: #FFF;
+    margin: 0px;
+}
+
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory {
+    list-style: none;
+    box-shadow: 0px 1px 0px rgba(250,250,250,0.05), 0px -1px 0px rgba(0,0,0,0.1) inset;
+    padding: 0px;
+}
+
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory a {
+    padding: 10px 25px 10px 15px;
+    display: block;
+}
+
+
+
+
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory a:hover,
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory a:active {
+    text-decoration: none;
+    background: rgba(0,0,0,0.1);
+}
+
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory a p {
+    font-size: 13px;
+    color: rgba(250,250,250,0.5);
+    margin: 0px;
+}
+
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory a span {
+    display: inline-block;
+    font-size: 10px;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory a span.directory-class { 
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #666;
+    padding: 0px 5px;
+    border-radius: 2px;
+}
+
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory.active {
+    background: #EAEAEA;
+}
+
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory.active a {
+    color:none !important;
+    text-decoration: none !important;
+}
+
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory.active a h3,
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory.active a p,
+.sustainhawaii-frontend-visualizations #directory-Listings li.menu-directory.active a span.directory-size {
+    color: #333;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel {
+    width: 800px;
+    right: 0px;
+    top: 0px;
+    z-index: 100;
+    position: absolute;
+    min-height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    padding-top: 120px;
+    background: #EAEAEA url('../img/shadow-left-light.png') repeat-y top left;  
+    padding-left: 15px;
+    padding-right: 15px;
+    display: none;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel.open {
+    display: block;
+}
+
+.sustainhawaii-frontend-visualizations .optionsHeader {
+    padding-top: 15px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel h2 {
+    font-size: 30px;
+    padding: 0px 0px 10px;
+    margin: 0px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .form-group {
+    padding: 10px 0px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 0px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .form-footer {
+    padding: 10px 0px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-content,
+.sustainhawaii-frontend-visualizations #options-panel .options-row {
+    padding: 0px 5px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-content > div {
+    height: 100px;
+    position: relative;
+    background: rgba(0,0,0,0.25);
+    margin-top: 10px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-demo {
+    margin: 0px -5px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-content-inside .options-demo-order {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: 800;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-content-inside .options-demo-details {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-content-inside .options-demo-details span {
+    display: inline-block;
+    clear: both;
+    background: #666;
+    color: #FFF;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10px;
+    padding: 1px 5px 2px;
+    border-radius: 5px;
+}
+
+
+.sustainhawaii-frontend-visualizations #options-panel .options-content-inside .options-demo-details h5 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #FFF;
+    text-transform: uppercase;
+    margin: 0px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-row > div {
+    height: 30px;
+    position: relative;
+    background: rgba(0,0,0,0.5);
+    margin-top: 10px;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-row .options-content-inside .options-demo-order {
+    position: absolute;
+    top: -2px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: 800;
+    color: #FFF;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-row .options-content-inside .options-demo-details {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    left: auto;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-row .options-content-inside .options-demo-details h5 {
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.sustainhawaii-frontend-visualizations .location-block img {
+    border-radius: 30px;
+    border:10px solid #FFF;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.25);
+}
+
+.ng-isolate-scope {
+    
+}
+
+#actual-viz ul.list-inline {
+    margin: 30px 15px;
+}
+
+#actual-viz ul.list-inline>li {
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+
+.sustainhawaii-frontend-visualizations #content {
+    background: transparent;
+}
+
+.sustainhawaii-frontend-visualizations.sustainhawaii-admin .jarviswidget > header h2 {
+    border-bottom: 0px;
+}
+
+/* Phone Queries */
+
+@media only screen and (min-width:320px) and (max-width:480px) {
+
+}
+
+/* Tablet Queries */
+
+@media only screen and (min-width:320px) and (max-width:480px) {
+
+}
+
+//drag and drop stuff
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+ul[dnd-list],
+ul[dnd-list] > li {
+	position: relative;
+}
+
+.dnddrop li {
+  display: block;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+ul[dnd-list].dnddrop {
+    min-height: 42px;
+}
+
+
+.dnddrop .dndDragging {
+  opacity: 0.7;
+}
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.dnddrop .dndDraggingSource {
+  display:none;
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.dnddrop .dndPlaceholder {
+    background-color: #ddd !important;
+    min-height: 1px;
+    float:left;
+    position: relative;
+    width: 33.333333%;
+}
+
+
+/**
+ * Show selected elements in green
+ */
+.dnddrop .selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.sustainhawaii-admin .modal-content #content {
+    padding: 0px;
+    border: 0px;
+}
+
+.sustainhawaii-admin .pagination li {
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+}
+
+.sustainhawaii-admin .options-demo.row {
+    margin: 0px 0px 30px;
+}
+
+.sustainhawaii-admin .options-demo.row li {
+    padding: 0px 15px;
+}
+
+.sustainhawaii-admin .jarviswidget-ctrls .button-icon.active {
+    background-color: green;
+}
+
+.sustainhawaii-admin .jarviswidget .infographic-location-selected {
+
+}
+
+ .jarviswidget .infographic-location h2 {
+    margin: 0px 0px 0px;
+}
+
+.jarviswidget .infographic-location.member-header .img-circle {
+    border-radius: 0px;
+    border: none !important;
+}
+
+.sustainhawaii-admin .jarviswidget header, 
+.sustainhawaii-admin .jarviswidget div.widget-content {
+    box-sizing: border-box;
+}
+
+/*style for third tab dataviz view in frontend resources */
+.fe-small-infographic-table
+{
+  height: 400px;
+  width: 100%;
+  overflow: auto;
+  margin-left: 0px;
+}
+.fe-small-infographic-chart
+{
+  height: 300px;
+  width: 430px;
+  overflow: auto;
+  margin-left: 15px;
+}
+
+.listbox {
+    margin: 0px;
+    padding: 0px;
+}
+
+.modal-content .ui-select-focusser.ui-select-offscreen {
+    width: 100%;
+    margin-top: 10px;
+    height: 30px; 
+}
+ 
+.modal-content .jarviswidget {
+    margin-bottom: 0px;
+    padding-bottom: 30px;
+    border-bottom: 0px;
+}
+
+.resources-backend {
+    margin: 0px -30px;
+}
+
+.resources-backend .infographic-header {
+    margin: 50px 30px 0px;
+}
+
+.sustainhawaii-admin .resources-backend .jarviswidget > header {
+    margin: 0px;
+    padding: 0px;
+}
+
+.sustainhawaii-admin .resources-backend .jarviswidget > header h2 {
+    height: auto;
+}
+
+.registration-form .input,
+.registration-form .select {
+    border: 10px solid #FFF;
+}
+
+.registration-form .input input,
+.registration-form .select .select2-container,
+.smart-form .select select {
+    background: rgba(0,0,0,0.05);
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.10) inset;
+    border: none;
+    font-size: 26px;
+    font-weight: 300;
+    color: #555;
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 10px;
+    box-sizing: border-box;    
+}
+
+.registration-form .select .select2-container-multi .select2-choices {
+    height: auto!important;
+    height: 1%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    border: none;
+    cursor: text;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.registration-form .smart-form .row {
+    padding: 15px 0px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+
+}
+
+.registration-form .form-footer {
+    margin: 15px -15px 50px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.registration-form .login-extras {
+    font-size: 17px; 
+}
+
+.registration-form .form-header {
+    margin: 0px -15px;
+}
+
+.sustainhawaii-frontend .registration-form .form-header h2 {
+    margin: 0px;
+}
+
+.registration-form .smart-form .row .select2-container-multi .select2-choices .select2-search-choice {
+    padding: 1px 28px 1px 8px;
+    margin: 11px 0 3px 3px;
+    position: relative;
+    line-height: 24px;
+    color: #fff;
+    cursor: default;
+    border: 1px solid #2a6395;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #3276b1;
+    font-size: 16px;
+}
+
+#adv_search_row .select2-container-multi .select2-choices .select2-search-choice {
+    padding: 1px 28px 1px 8px;
+    margin: 11px 0 3px 3px;
+    position: relative;
+    line-height: 24px;
+    color: #fff;
+    cursor: default;
+    border: 1px solid #2a6395;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #3276b1;
+    font-size: 16px;
+}
+
+
+#adv_search_row .big-form .inputWrap {
+    background: none repeat scroll 0% 0% #FFF;
+    padding: 5px;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2px !important;
+    box-sizing: border-box;
+}   
+
+.sustainhawaii-frontend .search-basic #adv_search_row .btn.btn-default {
+    min-height: 30px;
+    padding: 5px 0px 6px;
+    font-size: 12px;
+    line-height: 21px;
+    text-transform: uppercase;
+}
+
+#adv_search_row {
+    padding-right: 0px !important;
+}
+
+/* Map Styles file */
+.error-msg {
+    color: red;
+}
+
+.data-table,
+.data-table th,
+.data-table tbody,
+.data-table tr,
+.data-table td {
+    border: 1px solid;
+    padding: 3px;
+    margin: 5px;
+    width: 100%;
+    heigth: auto;
+}
+
+.csv-table * {
+    margin: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px solid;
+}
+
+.csv-table td {
+    width: 1% !important;
+}
+
+#csv-content {
+    overflow-x: scroll;
+}
+
+.search-basic .smart-form section {
+    margin-bottom: -10px;
+}
+
+.viz-basic {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    bottom: 0;
+    top: 80px;
+    left: 0;
+    width: 60%;
+    padding-top: 10px;
+}
+
+.viz-basic .select2-container {
+    margin-bottom: -10px;
+}
+
+.viz-map {
+    overflow: hidden;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 40%;
+    padding-top: 10px;
+}
+
+.viz-content {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.viz-footer {
+    position: absolute;
+    top: 800px;
+    bottom: 0;
+    width: 100%;
+}
+
+.viz-map .google_maps {
+    height: 600px;
+}
+
+.multiSelectWrap {
+    display: table;
+    width: 100%;
+}
+
+.multiSelectWrap .select2-container {
+    display: table;
+}
+
+#adv_search_row {
+    padding-right: 20px;
+}
+
+/* Google map styles for data viz */
+.angular-google-map-container { height: 500px; }
+.dataviz-map { height: 500px; }
+
+.avatar {
+    height: auto;
+    width: 100%;
+}
+
+#conversions {
+    list-style-type: none;
+}
+
+#conversion li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* highcharts specific */
+.highcharts-tooltip {
+  margin-left: 10px;
+}
+
+/* messages */
+.msg-alert {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 0px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.msg-alert,
+.msg-alert h4 {
+  color: #c09853;
+}
+.msg-alert h4 {
+  margin: 0;
+}
+.msg-alert a {
+    color: #c09853;
+    text-decoration: underline;
+}
+.msg-alert .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  line-height: 20px;
+}
+.msg-alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+.msg-alert-success h4 {
+  color: #468847;
+}
+.msg-alert-danger,
+.msg-alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+.msg-alert-error a {
+    color: #b94a48;
+    text-decoration: underline;
+}
+.msg-alert-danger h4,
+.msg-alert-error h4 {
+  color: #b94a48;
+}
+.msg-alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #3a87ad;
+}
+.msg-alert-info h4 {
+  color: #3a87ad;
+}
+.msg-alert-block {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.msg-alert-block > p,
+.msg-alert-block > ul {
+  margin-bottom: 0;
+}
+.msg-alert-block p + p {
+  margin-top: 5px;
+}
+
+/* password reset */
+.password-reset {
+    margin-top: 30px;
+}
+
+/* Loading Effect */
+
+/* .pace.pace-active { */
+/*     display: block; */
+/*     height: 100%; */
+/*     position: absolute; */
+/*     background: rgba(0,0,0,0.5); */
+/*     width: 100%; */
+/*     float: left; */
+/*     z-index: 2000; */
+/* } */
+
+/* .pace .pace-progress { */
+/*     top: 50%; */
+/*     height: 20px; */
+/*     background-color: #008000; */
+/* } */
+
+/* .pace .pace-activity { */
+/*     display: block; */
+/*     position: fixed; */
+/*     z-index: 2000; */
+/*     top: 46%; */
+/*     right: 50%; */
+/*     width: 100px; */
+/*     height: 100px; */
+/*     border: solid 4px transparent; */
+/*     border-top-color: #FFF; */
+/*     border-left-color: #008000; */
+/*     border-radius: 50px; */
+/*     -webkit-animation: pace-spinner 400ms linear infinite; */
+/*     -moz-animation: pace-spinner 400ms linear infinite; */
+/*     -ms-animation: pace-spinner 400ms linear infinite; */
+/*     -o-animation: pace-spinner 400ms linear infinite; */
+/*     animation: pace-spinner 400ms linear infinite; */
+/* } */
+
+.infographic-location > .col-sm-9 {
+    padding-left: 0px;
+}
+
+.sustainhawaii-frontend-visualizations .infographic-location .directory-Edit-Header {
+    padding: 0px;
+}
+
+.sustainhawaii-frontend-visualizations .infographic-location .directory-Edit-Header p {
+    font-size: 15px;
+}
+
+.highcharts-container,
+.fe-small-infographic-chart {
+    width: 100% !important;
+    height: 500px !important;
+}
+
+.sustainhawaii-admin #options-panel .jarviswidget-ctrls {
+    border-left: none;
+    padding: 5px;
+    background: transparent !important;
+    float: left;
+    margin-left: 3px;
+}
+
+
+.sustainhawaii-admin #options-panel .jarviswidget-ctrls {
+    border-left: none;
+    padding: 5px;
+    background: transparent !important;
+}
+
+.sustainhawaii-admin #options-panel .jarviswidget-ctrls .button-icon {
+    color: #999;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel h2 {
+    font-size: 30px;
+    padding: 10px;
+    margin: 0px;
+    font-size: 12px;
+    line-height: 12px;
+    display: block;
+    clear: both;
+}
+
+.sustainhawaii-admin #options-panel .jarviswidget {
+    
+}
+
+.sustainhawaii-admin #options-panel .jarviswidget > header span {
+    font-size: 10px;
+    color: #666;
+    margin: 5px 0px;
+    padding: 0px;
+    float: left;
+    text-transform: uppercase;
+    text-shadow: none !important;
+}
+
+.sustainhawaii-frontend-visualizations #options-panel .options-content > div {
+    min-height: 60px;
+    height: auto;
+}

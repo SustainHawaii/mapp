@@ -1,0 +1,72 @@
+<div class="optionsHeader" ng-if="!vm.noheader && vm.preview">
+    <a href ng-click="vm.add_row()" class="btn btn-default pull-right">Add Row</a>
+    <h2>Layout</h2>
+</div>
+<ul class="list-inline options-demo row dnddrop" dnd-list="vm.get_layout()"
+  dnd-horizontal-list="true" inline>
+    <li ng-repeat="item in vm.get_layout()" ng-class="vm.get_size_class(item)" class="options-content" 
+    dnd-selected="vm.set_active_cell($index)" dnd-draggable="item"
+    dnd-dragstart="vm.set_active_cell($index)"
+    dnd-moved="vm.remove_after_drag($index)" dnd-effect-allowed="move"
+    dnd-selected="vm.set_active_cell($index)"
+    >
+
+    <!-- dnd-moved="vm.layout.splice($index,1)" dnd-effect-allowed="move"-->
+      <!-- Starts -->
+
+        <div class="jarviswidget options-content-inside" ng-if="vm.preview">
+         
+          <header role="heading" ng-if="item.name" class="layout-item-controls">
+            <div class="jarviswidget-ctrls" role="menu">
+              <a href="javascript:void(0);" class="button-icon" data-placement="bottom" data-original-title="Make Smaller" ng-click="vm.shrink(item)"><i class="fa fa-minus-circle"></i></a> 
+              <a href="javascript:void(0);" class="button-icon" data-placement="bottom" data-original-title="Make Bigger"  ng-click="vm.expand(item)"><i class="fa fa-plus-circle "></i></a>  
+              <a href="javascript:void(0);" class="button-icon" data-placement="bottom" data-original-title="Remove Visualization" ng-click="vm.remove(item,$index)" id="remove-item"><i class="fa fa-times"></i></a>
+            </div>
+            <h2>[[item.name || 'Add Visualization']] <span>[[item.type || 'None']]</span></h2>
+          </header><!-- widget div-->
+
+        </div><!-- end widget -->     
+
+        <!-- ENDS -->
+
+        <!-- live view --> 
+
+        <div class="jarviswidget options-content-inside" ng-if="!vm.preview">
+         
+          <header role="heading">
+            <div class="layout-item-controls">
+              <div class="jarviswidget-ctrls" role="menu" ng-if="item.name">
+                <a href="javascript:void(0);" class="button-icon" data-placement="bottom" data-original-title="Make Smaller" ng-click="vm.shrink(item)"><i class="fa fa-minus-circle"></i></a> 
+                <a href="javascript:void(0);" class="button-icon" data-placement="bottom" data-original-title="Make Bigger"  ng-click="vm.expand(item)"><i class="fa fa-plus-circle "></i></a>  
+                <a href="javascript:void(0);" class="button-icon" data-placement="bottom" data-original-title="Remove Visualization" ng-click="vm.remove(item,$index)" id="remove-item"><i class="fa fa-times"></i></a>
+                <a href="javascript:void(0);" class="button-icon active" data-placement="bottom" data-original-title="Edit Visualization" ng-click="vm.open_modal($index)"><i class="fa fa-cog"></i></a>
+              </div>
+              <div class="jarviswidget-ctrls" role="menu" ng-if="!item.name">
+                <a href="javascript:void(0);" class="button-icon active" data-placement="bottom" data-original-title="Edit Visualization" ng-click="vm.open_modal($index)"><i class="fa fa-cog"></i></a>
+              </div>              
+            </div>
+            <h2>[[item.name || 'Add Visualization']]</h2>
+          </header><!-- widget div-->
+                        
+          <div class="widget-content">
+             
+            <!-- widget content -->
+            <div class="widget-body">
+
+              <div id="infographic-location-selected" ng-if="item.type==='location'">                
+                <preview-location locid=[[item.id]]></preview-location>
+              </div>
+              
+              <preview-viz vizid="[[item.id]]" cache="false" widgetnum="0" showtabs="false" preview="true" ng-if="item.type==='dataviz'"></preview-viz>             
+
+
+            </div><!-- end widget content -->
+
+          </div><!-- end widget div -->
+
+        </div><!-- end widget -->  
+
+        <!-- ENDS -->
+
+    </li>
+</ul>

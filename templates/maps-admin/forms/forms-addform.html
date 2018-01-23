@@ -1,0 +1,466 @@
+{% extends 'forms/base.html' %}
+{% load staticfiles %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section="forms" subsection="forms-addform" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    <i class="fa fa-2x fa-fw fa-file-text-o"></i>
+                    <!-- PAGE HEADER -->
+                    Forms
+                    <span>Add Form</span>
+                </h1>
+            </div>
+            <!-- end col -->
+            <!-- right side of the page with the sparkline graphs -->
+            <!-- col -->
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            </div>
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content">
+    <form class="smart-form big-form">
+        <!-- row -->
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" placeholder="Form Name">
+                    </label>
+                </div>
+                <!-- ends input -->
+            </div>
+            <div class="col-sm-3">
+                <label class="label">
+                    View Privacy:
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg">
+                                <option value="0">Everyone</option>
+                                <option value="1">Logged in</option>
+                                <option value="2">User Type</option>
+                                <option value="3">User Type</option>
+                                <option value="4">User Type</option>
+                            </select> <i></i> </label>
+                    </section>
+                </div>
+                <!-- ends input -->
+            </div>
+        </div>
+        <!-- end row -->
+        <!-- row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- starts input wrap -->
+                <div class="inputWrap">
+                    <div class="textarea-top">
+                        <a data-toggle="modal" href="#entity-editmodal" class="btn btn-default btn-sm pull-right">Add
+                            Form</a>
+                    </div>
+                    <div id="summernote"></div>
+                    <small> NOTE: If you are copy and pasting content from another website/source, please use the "Remove Font Style" button before submitting </small>
+                </div>
+                <!-- ends input -->
+            </div>
+        </div>
+        <!-- end row -->
+        <!-- row -->
+        <div class="row section-new">
+            <div class="col-sm-6">
+                <h2>Advanced Custom Fields</h2>
+            </div>
+            <div class="col-sm-6">
+                <a href="#fieldGroup" data-toggle="modal" class="btn btn-lg pull-right">Add Fields Group</a>
+            </div>
+        </div>
+        <div class="row data-wrap">
+            <div class="data-header">
+                <div class="col-sm-9 data-header-content">
+                    <i class="fa fa-arrows fa-lg pull-left"></i>
+
+                    <h2>Name of the Group</h2>
+                </div>
+                <div class="col-sm-3 data-header-buttons">
+                    <a href class="btn btn-default btn-lg pull-right"><i class="fa fa-angle-down fa-lg"></i> </a>
+                    <a href class="btn btn-default btn-lg pull-right"><i class="fa fa-close fa-lg"></i> </a>
+                    <a href class="btn btn-default btn-lg pull-right"><i class="fa fa-wrench fa-lg"></i> </a>
+                    <a data-toggle="modal" href="#addCustomField" class="btn btn-default btn-lg pull-right">Add Custom
+                        Field</a>
+                </div>
+            </div>
+            <div class="data-locations content-block">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Field Order</th>
+                        <th>Field Name</th>
+                        <th>Field Type</th>
+                        <th>Required</th>
+                        <th>Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <span class="btn-order">1</span>
+                            <span class="btn-instructions">Drag & Drop to reorder</span>
+                        </td>
+                        <td>Lorem ipsum dolor sit amet, consectetur</td>
+                        <td>Text Field</td>
+                        <td>Yes</td>
+                        <td><a href>Edit</a> | <a data-toggle="modal" href="#delete-single">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="btn-order">2</span>
+                            <span class="btn-instructions">Drag & Drop to reorder</span>
+                        </td>
+                        <td>Lorem ipsum dolor sit amet, consectetur</td>
+                        <td>Text Field</td>
+                        <td>Yes</td>
+                        <td><a href>Edit</a> | <a data-toggle="modal" href="#delete-single">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="btn-order">3</span>
+                            <span class="btn-instructions">Drag & Drop to reorder</span>
+                        </td>
+                        <td>Lorem ipsum dolor sit amet, consectetur</td>
+                        <td>Text Field</td>
+                        <td>Yes</td>
+                        <td><a href>Edit</a> | <a data-toggle="modal" href="#delete-single">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="btn-order">4</span>
+                            <span class="btn-instructions">Drag & Drop to reorder</span>
+                        </td>
+                        <td>Lorem ipsum dolor sit amet, consectetur</td>
+                        <td>Text Field</td>
+                        <td>Yes</td>
+                        <td><a href>Edit</a> | <a data-toggle="modal" href="#delete-single">Delete</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- end data wrap -->
+        <div class="row data-wrap">
+            <div class="data-header">
+                <div class="col-sm-9 data-header-content">
+                    <i class="fa fa-arrows fa-lg pull-left"></i>
+
+                    <h2>Name of the Group</h2>
+                </div>
+                <div class="col-sm-3 data-header-buttons">
+                    <a href class="btn btn-default btn-lg pull-right"><i class="fa fa-angle-down fa-lg"></i> </a>
+                    <a href class="btn btn-default btn-lg pull-right"><i class="fa fa-close fa-lg"></i> </a>
+                    <a href class="btn btn-default btn-lg pull-right"><i class="fa fa-wrench fa-lg"></i> </a>
+                    <a data-toggle="modal" href="#addCustomField" class="btn btn-default btn-lg pull-right">Add Custom
+                        Field</a>
+                </div>
+            </div>
+            <div class="data-locations content-block">
+            </div>
+        </div>
+        <!-- end data wrap -->
+        <!-- end row -->
+        <div class="row content-footer">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-xl btn-primary pull-right">
+                    Add Form
+                </button>
+            </div>
+        </div>
+        <!-- end row -->
+    </form>
+    <!-- Modal -->
+    <div class="modal fade" id="fieldGroup" tabindex="-1" role="dialog" aria-labelledby="fieldGroupLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="fieldGroupLabel">Add Field Group</h4>
+                </div>
+                <form class="smart-form">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="label">Name of the Group</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="input">
+                                    <input type="text" placeholder="">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Conditional Logic</h3>
+                                <label class="label">Show this group of fields if:</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="select">
+                                    <select>
+                                        <option value="0">Location Type</option>
+                                        <option value="1">User Type</option>
+                                        <option value="2">Page</option>
+                                        <option value="3">Tag</option>
+                                        <option value="4">Category</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="select">
+                                    <select>
+                                        <option value="0">Is equal to</option>
+                                        <option value="1">Is not equal to</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="select">
+                                    <select>
+                                        <option value="0">Name of the location</option>
+                                        <option value="1">Name of the location</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="label">Or</label>
+                                <a href class="btn btn-default btn-sm">Add Rule Group</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            Add Field Group
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="addCustomField" tabindex="-1" role="dialog" aria-labelledby="addCustomFieldLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="addCustomField">Add Custom Field</h4>
+                </div>
+                <form class="smart-form">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="label">Field Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="input">
+                                    <input type="text" placeholder="">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="label">Field Type</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="select">
+                                    <select>
+                                        <option value="0">Text</option>
+                                        <option value="1">Text Area</option>
+                                        <option value="2">Number</option>
+                                        <option value="3">Password</option>
+                                        <option value="4">Date</option>
+                                        <option value="4">Select</option>
+                                        <option value="4">Checkbox</option>
+                                        <option value="4">Radio</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="label">Required?</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="select">
+                                    <select>
+                                        <option value="0">Yes</option>
+                                        <option value="1">No</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="label">Description</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="textarea">
+                                    <textarea rows="3"></textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            Add Custom Field
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="addVisualization" tabindex="-1" role="dialog" aria-labelledby="addVisualizationLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="addVisualizationLabel">Add Data Visualization</h4>
+                </div>
+                <form class="smart-form">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="label">Data Visualization</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="select">
+                                    <select>
+                                        <option value="0">Name of the Visualization</option>
+                                        <option value="1">Name of the Visualization</option>
+                                        <option value="2">Name of the Visualization</option>
+                                        <option value="3">Name of the Visualization</option>
+                                        <option value="4">Name of the Visualization</option>
+                                        <option value="4">Name of the Visualization</option>
+                                        <option value="4">Name of the Visualization</option>
+                                        <option value="4">Name of the Visualization</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            Add Data Visualization
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    </div>
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <!-- JQUERY SUMMERNOTE -->
+    <script src="{% static 'js/plugin/summernote/summernote.min.js' %}"></script>
+    <!--[if IE 8]>
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+		<![endif]-->
+    <!-- MAIN APP JS FILE -->
+    <!-- PAGE RELATED PLUGIN(S)
+    <script src="..."></script>-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /* DO NOT REMOVE : GLOBAL FUNCTIONS!
+             *
+             * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+             *
+             * // activate tooltips
+             * $("[rel=tooltip]").tooltip();
+             *
+             * // activate popovers
+             * $("[rel=popover]").popover();
+             *
+             * // activate popovers with hover states
+             * $("[rel=popover-hover]").popover({ trigger: "hover" });
+             *
+             * // activate inline charts
+             * runAllCharts();
+             *
+             * // setup widgets
+             * setup_widgets_desktop();
+             *
+             * // run form elements
+             * runAllForms();
+             *
+             ********************************
+             *
+             * pageSetUp() is needed whenever you load a page.
+             * It initializes and checks for all basic elements of the page
+             * and makes rendering easier.
+             *
+             */
+            pageSetUp();
+            /* // DOM Position key index //
+             l - Length changing (dropdown)
+             f - Filtering input (search)
+             t - The Table! (datatable)
+             i - Information (records)
+             p - Pagination (paging)
+             r - pRocessing
+             < and > - div elements
+             <"#id" and > - div with an id
+             <"class" and > - div with a class
+             <"#id.class" and > - div with an id and class
+             Also see: http://legacy.datatables.net/usage/features
+             */
+            runAllForms();
+            $('#summernote').summernote();
+            /* END BASIC */
+        })
+    </script>
+{% endblock page_rel_scripts %}

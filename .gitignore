@@ -1,0 +1,17 @@
+.project
+\#*
+.idea/
+__pycache__/*
+*.py[cod]
+gunicorn_logs/
+*.db
+.DS_Store
+.coverage
+static_collected/
+ckanext_sustainhawaii.egg-info/
+db.sqlite3
+node_modules
+bower_components
+/maps/data_import/.#admin_view.py
+/media/resources
+local_settings

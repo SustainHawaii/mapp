@@ -1,0 +1,89 @@
+<div class="tab-pane fade {% if step = 'normalize' %}in active{% endif %}" id="normalize">
+{% if object.id %}
+    <span class="row error-msg">{% for i in errors.msg %}<li>{{ i }}</li>{% endfor %}</span>
+    <form class="smart-form big-form" id="normalform" method="post" action="{% url 'normalize-data' object.id %}">
+    {% csrf_token %}
+    <!-- row -->
+    <div class="row section-divider">
+        <div class="col-sm-4">
+            <h2>Field from Imported Data</h2>
+        </div>
+				{% if object.upload_format in filetypes_can_modify %}
+        <div class="col-sm-4">
+					<h2>Convert Column Name {{ object.upload_format }}</h2>
+        </div>
+				{% endif %}
+        <div class="col-sm-4">
+            <h2>Data Type</h2>
+        </div>
+    </div>
+    {% for field in fields %}
+   <div class="row section-divider">
+        <div class="col-sm-4">
+            <label class="label">{{ field }}</label>
+        </div>
+				{% if object.upload_format in filetypes_can_modify %}
+					<div class="col-sm-4">
+							<div class="inputWrap">
+								<div class="input">
+								<input type="text" name="{{field}}" placeholder="New column Name"/>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+        <div class="col-sm-4">
+            <div class="inputWrap">
+            <section>
+                <label class="select">
+                    <select class="input-lg" name="{{field}}_datatype">
+                        <option value="text">Text</option>
+                        <option value="number">Number</option>
+                        <option value="decimal">Decimal</option>
+                        <option value="date">Date</option>
+                        <option value="boolean">Boolean</option>
+                    </select><i></i>
+                </label>
+            </section>
+            </div>
+        </div>
+   </div>
+    <!-- ends row divider -->
+    {% endfor %}
+
+        <div class="row section-divider">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-xl btn-primary pull-right">
+                    Normalize
+                </button>
+            </div>
+        </div>
+    </form>
+{% else %}
+    No data imported.
+{% endif %}
+</div>
+<script type="text/javascript">
+  function setdatatype(sel) {
+    console.log(sel.value);
+    console.log(sel.name);
+    var selected = sel.value;
+    var dd = "select[name='"+sel.name+"_datatype']";
+    if (!sel.value) {
+      $(dd).prop("disabled", false);
+    }else {
+      var dtval = "text";
+      //switch (selected) {
+      //  case "
+      // right now all system fields are text
+      dd = "select[name='"+sel.name+"_datatype']";
+      $(dd).val("text")
+      $(dd).prop("disabled", true);
+    }
+    //make sure we have a submit handler to reset
+    //these dropdowns to enabled
+    $("#normalform").submit(function( event ) {
+      $("select").prop("disabled", false);
+      });
+    
+  }
+</script>

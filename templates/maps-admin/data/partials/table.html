@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-sm-3">
+    <label class="label">
+      Allow Search? 
+    </label>
+  </div>
+  <div class="col-sm-9">
+    <!-- starts input wrap -->
+    <div class="inputWrap">
+      <section>
+        <label class="select">
+          <select id="allow-search" class="input-lg"
+            ng-model="widget.config_fields.allow_search"
+            ng-options="val for val in yn">
+          </select> <i></i>
+        </label>
+      </section>
+    </div>
+  </div> <!-- column -->                       
+</div> <!-- row -->
+<div class="row">
+  <h3>Table Columns</h3>
+</div>
+<div class="row" ng-repeat="col in widget.config_fields.table_columns">
+  <div class="col-sm-1">
+    <label class="label">
+      Title 
+    </label>
+  </div>
+  <div class="col-sm-5">
+    <!-- starts input wrap -->
+    <div class="inputWrap">
+      <label class="input">
+        <input type="text"
+        ng-model="col.title">
+      </label>
+    </div>
+  </div> <!-- column -->  
+  <div class="col-sm-1">
+    <label class="label">
+      Data 
+    </label>
+  </div>
+  <div class="col-sm-5">
+    <!-- starts input wrap -->
+    <div class="inputWrap">
+      <section>
+        <label class="select">
+          <select class="input-lg"
+            ng-model="col.field"
+            ng-options="f as f.name for f in widget.data_fields">
+          </select> <i></i>
+        </label>
+      </section>
+    </div>
+  </div> <!-- column -->  
+</div> <!-- row  / ng-repeat-->
+<div class="row add-data">
+  <a ng-click="addTableColumnRow(widget)" class='btn btn-default btn-sm'>Add Column</a>
+  <a ng-click="removeTableColumnRow(widget)" class='btn btn-default btn-sm pull-right'>Remove Column</a>
+</div>
+<div class="row">
+</div>
+
+
+

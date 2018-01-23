@@ -1,0 +1,64 @@
+
+<div id="source-error" class="alert alert-info fade in" ng-hide="hide_error">
+        <p>Please select the source of the data that you want to use for your visualization</p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Existing Data Sets</h3>
+
+            <p>Use the search to find existing data sets in the database to use on your data
+                visualization. These sources can be used for dynamic
+                visualizations. </p>
+            <ui-select multiple id="internal-data-source" style="width:100%"
+            theme="select2" ng-model="$parent.currentviz.selected_internal_ds" >
+              <ui-select-match placeholder="Select internal data sources...">[[$item.name]]</ui-select-match>
+              <ui-select-choices group-by="'group'" 
+               repeat="ds in internal_ds | filter: {name: $select.search,}"
+               refresh="search_datasets($select.search)">
+                <div ng-bind-html="ds.name | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+              <div id="include1">
+               <div ng-repeat="ds in currentviz.selected_internal_ds" ds-source="currentviz.selected_internal_ds" ds-info="ds">
+               </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h3>External Data Source</h3>
+
+            <p>Please select the source of the data that you want to use for
+            your static visualization.  This should be data previously upload
+            through data import.</p>
+
+            <div class="row">
+            <ui-select multiple id="external-data-source" style="width:100%"
+            theme="select2" ng-model="$parent.currentviz.selected_external_ds"> 
+              <ui-select-match placeholder="Select external data sources...">[[$item.name]]</ui-select-match>
+              <ui-select-choices group-by="'group'" 
+              repeat="ds in external_ds | filter: {name: $select.search,}">
+                <div ng-bind-html="ds.name | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+              <div id="include2">
+               <div ng-repeat="ds in currentviz.selected_external_ds track by $index"
+                    ds-source="currentviz.selected_external_ds" ds-index="$index" ds-info="ds">        
+               </div>
+            </div>
+            <div class="row add-data">
+                <a href='/maps-admin/settings-importfile' class='btn btn-default btn-sm
+                  pull-right'>Add External Data Source</a>
+            </div>
+        </div>
+    </div>
+  </div>
+    <div class="row content-footer">
+        <div class="col-sm-12">
+                {% csrf_token %}
+                <input id="selected-sources" name="selected-sources" hidden>
+                <button ng-click="submit()" id="source_next_btn" class="btn btn-xl btn-primary pull-right">
+                    Next Page
+                </button>
+        </div>
+    </div>
+    <!-- end row -->

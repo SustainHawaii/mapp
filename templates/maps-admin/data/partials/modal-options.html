@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <button type="button" ng-click="vm.close()" class="close" data-dismiss="modal" aria-hidden="true">
+        &times;
+    </button>
+    <h4 class="modal-title" id="modal-signupLabel">Configure Widget</h4>
+  </div>
+  <div class="smart-form">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="label">Row Limit</label>
+            </div>
+            <div class="col-md-6">
+              <label class="input">
+                <input id="datalimit" type="text" placeholder="Max number of
+                rows to include" ng-model="vm.widget.config_fields.datalimit" >
+              </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button ng-click="vm.ok()" class="btn btn-xl btn-primary pull-right">
+        Save Settings
+      </button>
+    </div>
+  </div> 

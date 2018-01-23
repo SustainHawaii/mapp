@@ -1,0 +1,63 @@
+<div id="left-menu" click-outside="hide_this()"
+  outside-if-not="left-panel,directory-Edit" class="scroll-content">
+    <div class="menu-directory-search">
+        <input class="form-control col-sm-10" type="text"
+        placeholder="Search..." ng-model="search">
+        <div class="input-group-btn col-sm-2">
+            <button class="btn btn-default btn-primary" type="button">
+            <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <div class="menu-directory-Sort">
+        <div class="row">
+            <label class="control-label col-md-4">Sort by: </label>
+            <div class="col-sm-8">
+              <select class="form-control" ng-model="sortBy" 
+                ng-options="o.sort as o.name for o in sort_options">
+                      </select>
+                </select>
+            </div>
+        </div>
+    </div>
+    <ul ng-if="first_level.active=='location'">
+        <li class="menu-directory" 
+        ng-repeat="active in widget.raw_data.features | filterByPropertiesName:search | orderBy:sortBy ">
+            
+            <a href ng-if="active.properties.formatted_address"
+              ng-click="activate_third_level(active, active.properties.id)">
+              <h3>[[active.properties.name | CapitalizeFilter:'first']]</h3>
+                <span
+                  class="label gradient-green">[[active.properties.loc_type | CapitalizeFilter:'first']]
+                </span><br/>
+                <span
+                  class="directory-class">[[active.properties.formatted_address]]
+                </span>
+            </a>
+        </li>
+    </ul>
+    <ul ng-if="first_level.active=='dataviz'">
+        <li class="menu-directory" 
+        ng-repeat="viz in filtered_viz| filterByAttr:'group_name':search | orderBy:sortBy ">
+            
+            <a href ng-click="activate_third_level(viz, viz.id)">
+              <h3>[[viz.group_name | CapitalizeFilter:'first']]</h3>
+                <span
+                  class="label gradient-green">[[viz.widgets[0].viz_type | CapitalizeFilter:'first']]
+                </span>
+            </a>
+        </li>
+    </ul>
+    <ul ng-if="first_level.active=='resources'">
+        <li class="menu-directory" 
+        ng-repeat="r in allResources | filterByAttr:'name':search | orderBy:sortBy ">
+            
+            <a href ng-click="load_resource(r.id)">
+              <h3>[[r.name | CapitalizeFilter:'first']]</h3>
+                <span
+                  class="directory-class">[[r.description]]
+                </span>
+            </a>
+        </li>
+    </ul>
+</div>

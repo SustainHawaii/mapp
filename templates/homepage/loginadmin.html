@@ -1,0 +1,129 @@
+{% extends 'homepage/base.html' %}
+{% load staticfiles %}
+
+{% block aside %}
+    {% include 'homepage/widgets/aside.html' with section="index" %}
+{% endblock aside %}
+{% block main_panel %}
+    {% include 'homepage/widgets/header_menu.html' with section='index' %}
+    <!-- MAIN CONTENT -->
+    <div id="content" class="container" ng-controller="IndexController">
+
+        <div class="row">
+
+            <div class="col-sm-offset-2 col-sm-8">
+
+
+
+
+                <div data-ng-controller="LoginController" class="registration-form">
+
+                    <div class="form-header">
+
+                        <div collapse="isCollapsed" style="margin: 5px;">
+                            <div class="well well-sm">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <p style="text-align: center;"><strong>[[ success_message ]]</strong></p>
+                            </div>
+                        </div>
+
+                        <h2>Login</h2>
+
+                    </div>
+
+
+                    <form class="smart-form" name="login_form">
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="label">Email</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="input">
+                                        <input data-ng-model="log.email" name="email" type="email" required>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="label">Password</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="input">
+                                        <input data-ng-model="log.password" name="password" type="password" required>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                        <ul class="login-extras pull-left">
+                            <li><a href="/lostpassword">» Recover Password</a></li>
+                            <li><a href="/register">» Register</a></li>
+                        </ul>
+                        <button type="submit" class="btn btn-xl btn-primary pull-right" data-ng-disabled="login_form.$invalid" data-ng-click="submit()">Login</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- END MAIN CONTENT -->
+    {% include 'homepage/widgets/footer.html' %}
+{% endblock main_panel %}
+{% block footer_scripts %}
+    <script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>      
+    <!-- info window template -->
+    <script id="tmpl-infowindow" type="text/template">
+        <div id="info-map">
+            <div style="display: inline-block; width: 86px; verticle-align: top; float: left;">
+                <img src="%img_src%" class="thumbnail" style="width: 80%; verticle-align: top;"/>
+            </div>
+            <div style="display:inline-block; width:200px; float:left;">
+                <h4><a href="/members-location/%item_id%/">%item_name%</a></h4>
+
+                <div>%formatted_address%</div>
+                <br/>
+
+                <!--<div><b>%desc%</b></div>-->
+            </div>
+        </div>
+    </script>
+    <script id="tmpl-directory-block" type="text/template">
+        <div class="directory-block" >
+            <div class="col-sm-4" style="padding: 0 13px;">
+                <div class="google_map_container" style="height: 160px;"></div>
+            </div>
+            <div class="col-sm-8" style="padding: 0 13px;">
+                <h3><a href="/members-location/%item_id%/">%item_name%</a></h3>
+
+                <div class="directory-address">
+                    <i class="fa fa-2x fa-fw fa-map-marker"></i>
+                    <span>%formatted_address%</span>
+                </div>
+                <div class="directory-tags">
+                    <i class="fa fa-2x fa-fw fa-tag"></i>
+                </div>
+                <p>%desc%</p>
+            </div>
+        </div>
+    </script>
+    <script id="tmpl-reg-success" type="text/template">
+        <div class="alert alert-success  fade in">
+            <a class="close" data-dismiss="alert" href>×</a>
+                    <i class="fa fa-check-circle"></i>
+                Registration successful! Please check your email to confirm.
+        </div>
+    </script>
+    <script id="tmpl-rec-success" type="text/template">
+        <div class="alert alert-success  fade in">
+            <a class="close" data-dismiss="alert" href>×</a>
+                    <i class="fa fa-check-circle"></i>
+                Password recovery email sent. Please check your mailbox.
+        </div>
+    </script>
+{% endblock footer_scripts %}

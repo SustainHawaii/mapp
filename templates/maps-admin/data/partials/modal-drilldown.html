@@ -1,0 +1,30 @@
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="vm.close()" data-dismiss="modal" aria-hidden="true">
+        &times;
+    </button>
+    <h4 class="modal-title" id="modal-signupLabel">Add Drilldown to graph element</h4>
+  </div>
+  <div class="smart-form">
+    <div class="modal-body">
+        <div class="row" ng-repeat="row in vm.xaxis() track by $index">
+            <div class="col-md-6">
+                <label class="label">[[row]]</label>
+            </div>
+            <div class="col-md-6">
+              <label class="select">
+                      <label class="select">
+                          <select class="input-lg" name="claim_field"
+                                  data-ng-model="vm.selectedDrillDown[ [[row]] ]"
+                                  data-ng-options="viz.id as viz.group_name for viz in vm.allDataViz">
+                          </select> <i></i>
+                      </label>
+              </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+       <button ng-click="vm.save()" class="btn btn-xl btn-primary pull-right">
+           Save
+       </button>
+    </div>
+  </div>  

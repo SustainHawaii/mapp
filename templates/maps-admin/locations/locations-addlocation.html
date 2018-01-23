@@ -1,0 +1,368 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load mapp_tags %}
+
+{% include 'widgets/mobile_nav.html' %}
+
+{% block left_panel %}
+{% include 'maps-admin/widgets/left_panel.html' with section="locations" subsection="locations-addlocation" %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+
+<div id="ribbon">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+            <h1 class="page-title">
+                <i class="fa fa-2x fa-fw fa-map-marker"></i>
+                Location
+                <span>
+                    {% if object %}
+                    Update Location
+                    {% else %}
+                    Add Location
+                    {% endif %}
+                </span>
+            </h1>
+        </div>
+        <div ng-if="loc.also_editable_by" class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            <a class="btn btn-lg pull-right" data-toggle="modal" href="#claim-single">Claim Location</a>
+        </div>        
+    </div>
+</div>
+
+<div id="content" data-ng-controller="LocationController">
+    
+    <div id="messages" class="alert alert-success data-ng-cloak" data-ng-show="messages" data-ng-bind="messages"></div>
+    
+    <form class="smart-form big-form" name="location_form" id="location_form" novalidate data-role="form">
+        <div class="row">
+            <input type="hidden" data-ng-model="loc.id" name="id">
+            <input type="hidden" data-ng-model="loc.created_by" name="created_by"
+                   data-ng-init="loc.created_by ='{% if object %}{{ object.created_by }}{% else %}{{ request.user.id }}{% endif %}'">
+
+            <div class="col-sm-6">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" id="name" placeholder="Name of the Location" name="name"
+                               data-ng-model="loc.name"
+                               required >
+                    </label>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.$submitted && location_form.name.$error.required">
+                        Location Name required
+                    </div>
+                    <div class="form-error data-ng-cloak" data-ng-show="duplicate_name_error">
+                        Location Name Taken
+                    </div>                    
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label class="label">Type:
+                </label>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg" name="location_type"
+                                    data-ng-model="loc.location_type" required
+                                    data-ng-options="opt.value as opt.name for opt in ltypes"
+                                    data-ng-change="update_locationtype_form()">
+                            </select> <i></i>
+                        </label>
+                    </section>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.$submitted && location_form.location_type.$error.required">
+                        location type required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="inputWrap data-ng-cloak">
+                    <div class="textarea-top"></div>
+                    <div summernote data-ng-model="loc.description" data-ng-init="loc.description='{{ object.description }}'">
+                        Enter Description of Location
+                    </div>
+                    <small> NOTE: If you are copy and pasting content from another website/source, please use the "Remove Font Style" button before submitting </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" placeholder="Address"
+                               name="address1" required
+                               data-ng-model="loc.address1">
+                    </label>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.$submitted && location_form.address1.$error.required">Address is Required</div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" placeholder="ZIP" name="zip"
+                               data-ng-model="loc.zip"
+                               data-ng-maxlength="5"
+                               required>
+                    </label>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.$submitted && location_form.zip.$error.required">Zip is Required</div>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.zip.$error.number">Zip can only be numbers</div>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.zip.$error.maxlength">Maximum 5 digits allowed</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" placeholder="City" name="city"
+                               data-ng-model="loc.city"
+                               required>
+                    </label>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.$submitted && location_form.city.$error.required">City is Required</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" data-ng-model="loc.state" placeholder="State" name="state"
+                               data-ng-init="loc.state='{{ object.state }}'" required>
+                    </label>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.$submitted && location_form.state.$error.required">
+                        State is Required
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" data-ng-model="loc.phone" placeholder="Phone" name="phone">
+                    </label>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.$submitted && location_form.phone.$error.required">
+                        Phone Number is Required
+                    </div>
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.phone.$error.number">
+                        Phone can only be numbers
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row section-divider">
+            <div class="col-sm-3">
+                <label style="margin-left: 0px;" class="label">Claimed By</label>
+            </div>
+            <div class="col-sm-9">
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg" name="claim_field"
+                                    data-ng-model="loc.also_editable_by">
+                                <option value="[[current_user]]"> You </option>                                
+                                <option value="[[loc.created_by]]"> Owner </option>
+                            </select> <i></i>
+                        </label>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="row section-divider">
+            <div class="col-sm-3">
+                <label style="margin-left: 0px;" class="label">Location Image</label>
+            </div>
+            <div class="col-sm-9">
+                <div class="inputWrap">
+                    <div class="input input-file">
+                        <input type="text" placeholder="[[ filePlaceholder ]]"
+                               readonly="[[filePlaceholder]]"
+                               class="pointer file-text">
+                        <div class="button" data-ng-file-select data-ng-file-change="addfile($files)">Browse</div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div class="row section-divider">
+            <div class="col-sm-3">
+                <label style="margin-left: 0px;" class="label">Location Categories</label>
+            </div>
+            <div class="col-sm-9">
+                <div class="inputWrap">
+                    <div class="row">
+                        <!--<div class="col col-6" ng-repeat="tag in tags">
+                            <label class="checkbox">
+                                <input type="checkbox"
+                                       checklist-value="tag.id"
+                                       checklist-model="loc.tags"
+                                       ng-change="tag_changed(tag, checked)"
+                                       name="tags">
+                                <i></i>[[ tag.name ]]
+                            </label>
+                        </div>
+                        -->
+                        <ui-select multiple id="tag_select" style="width:100%"
+                        theme="select2" ng-model="loc.tags"
+                        on-remove="tag_changed($model)"
+                        on-select="tag_changed($model, true)"
+                        >
+                          <ui-select-match placeholder="Select tags for location">[[$item.name]]</ui-select-match>
+                          <ui-select-choices repeat="tag in tags | filter: {name: $select.search,}"
+                          refresh="refresh_tags($select.search)"
+                          refresh-delay="0">
+                            <div ng-bind-html="tag.name | highlight: $slect.search"></div>
+                          </ui-select-choices>
+                        </ui-select>
+                    </div>                
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h2 class="row-Title">Project Organization</h2>
+
+            <div class="col-sm-12">
+                <div class="inputWrap">
+                    <input type="hidden" ui-select2="orgOptions" data-ng-model="loc.org" name="org"
+                    style="width: 100%">
+                    <div class="form-error data-ng-cloak" data-ng-show="location_form.$submitted && location_form.org.$error.required">Organization is Required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" data-ng-model="loc.org_address" name="org_address"
+                        placeholder="Address" readonly>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" data-ng-model="loc.org_phone" placeholder="Phone"
+                        name="org_phone" readonly >
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" data-ng-model="loc.org_zip" placeholder="ZIP"
+                        name="org_zip" readonly>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" data-ng-model="loc.org_city" placeholder="City"
+                        name="org_city" readonly>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" data-ng-model="loc.org_state" placeholder="State"
+                        name="org_state" readonly>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" data-ng-model="loc.org_website" placeholder="Website"
+                        readonly>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-horizontal">
+                    <div sform-renderer>
+                        <div name="rendererForm" sform-renderer-form></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row content-footer">
+            {% if request.user|check_permission:'locations,1' or request.user|check_permission:'locations,4' %}
+            <div class="col-sm-12">
+                <button type="submit" data-ng-click="submit()" id="submit"
+                        class="btn btn-xl btn-primary pull-right" data-ng-disabled="submitting">
+                    {% if object %}
+                    Update Location
+                    {% else %}
+                    Add Location
+                    {% endif %}
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </form>
+    
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="claim-single" tabindex="-1" role="dialog" aria-labelledby="delete-single-Label"
+             aria-hidden="true" ng-init="current_user='{{request.user.id}}'">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="delete-single-Label">Claim</h4>
+                    </div>
+                    <form class="smart-form">
+                        <div class="modal-body">
+                            <div class="row">
+                                <p>If you can prove ownership of this location, click "Yes".</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button ng-click="claim_location()" type="button" class="btn btn-default">
+                                    Yes
+                                </button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+</div>
+{% endblock main_panel %}
+
+
+{% block page_rel_scripts %}
+<script src="{% static 'js/angularjs/controllers/location_controller.js' %}"></script>
+<script type="text/javascript">
+ $(document).ready(function () {
+     pageSetUp();
+     runAllForms();
+     //$('#summernote').summernote();
+     Dropzone.autoDiscover = false;
+     $("#mydropzone").dropzone({
+         //url: "/file/post",
+         addRemoveLinks: true,
+         maxFilesize: 0.5,
+         dictResponseError: 'Error uploading file!'
+         
+     });
+     /* END BASIC */
+     
+ });
+</script>
+{% endblock page_rel_scripts %}

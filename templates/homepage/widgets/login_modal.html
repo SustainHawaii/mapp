@@ -1,0 +1,58 @@
+<!-- Modal -->
+<div data-ng-controller="LoginController"
+     class="modal fade" id="modal-login" tabindex="-1" role="dialog"
+     aria-labelledby="modal-loginLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="modal-loginLabel">Login</h4>
+            </div>
+            <div collapse="isCollapsed" style="margin: 5px;">
+                <div class="well well-sm">
+                    <button type="button" class="close" ng-click="isCollapsed=true">&times;</button>
+                    <p style="text-align: center;">
+                        <strong>[[ success_message ]]</strong>
+                    </p>
+                </div>
+            </div>
+            <form class="smart-form" name="login_form">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label">Email</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="input">
+                                <input data-ng-model="log.email" name="email" type="email" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="label">Password</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="input">
+                                <input data-ng-model="log.password" name="password" type="password" required>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <ul class="login-extras pull-left">
+                        <li><a data-toggle="modal" href="#modal-recover" class="recover-switch">» Recover Password</a></li>
+                        <li><a data-toggle="modal" href="#modal-signup" class="register-switch">» Register</a></li>
+                    </ul>
+                    <button type="submit" class="btn btn-primary" data-ng-disabled="login_form.$invalid" data-ng-click="submit()">Login</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

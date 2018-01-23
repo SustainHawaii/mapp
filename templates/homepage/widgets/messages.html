@@ -1,0 +1,36 @@
+{% load mapp_tags %}
+
+<div id="messages">
+{% if messages %}
+    {% for message in messages %}
+
+    <div class="msg-alert {% for tag in message.tags|split:',' %}msg-alert-{{ tag }} {% endfor %} fade in">
+            <a class="close" data-dismiss="alert" href>&times;</a>
+            {% if 'noicon' not in message.tags %}
+                {# Include an icon by default #}
+                {% if 'success' in message.tags %}
+                    <i class="fa fa-check-circle"></i>
+                {% endif %}
+                {% if 'info' in message.tags %}
+                    <i class="fa fa-info-circle"></i>
+                {% endif %}
+                {% if 'warning' in message.tags %}
+                    <i class="fa fa-warning"></i>
+                {% endif %}
+                {% if 'error' in message.tags %}
+                    <i class="fa fa-exclamation-circle"></i>
+                {% endif %}
+            {% endif %}
+
+            {# Allow HTML to be embedded in messages #}
+            {% if 'safe' in message.tags %}
+                {{ message|safe }}
+            {% elif 'error' in message.tags %}
+                {{ message|safe }}
+            {% else %}
+                {{ message|safe }}
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endif %}
+</div>

@@ -1,0 +1,85 @@
+<!-- row -->
+<div class="row">
+  <div class="col-sm-3">
+    <label class="label">
+      Chart Type
+    </label>
+  </div>
+  <div class="col-sm-9">
+    <!-- starts input wrap -->
+    <div class="inputWrap">
+      <section>
+        <label class="select">
+          <select id="chart-type" class="input-lg"
+            ng-model="widget.chart_type"
+            ng-options="chart.key as chart.value for chart in chart_types"
+            ng-change="updateChartType(widget)">
+          </select> <i></i>
+        </label>
+      </section>
+    </div>
+  </div>
+  <!-- row -->
+</div>
+
+<div class="row">
+  <div id="sub-main-container">
+    <div id="bar-chart">
+      <div class="col-sm-3">
+        <fieldset>
+          <section>
+            <!-- starts input wrap -->
+            <label class="label">Label (X-Axis)</label>
+
+            <div class="inputWrap">
+              <label class="select">
+                <select class="input-lg" 
+                  ng-model = "widget.config_fields.x_axis"
+                  ng-change="updateBarChartXAxis(widget)"
+                  ng-options = "field as field.name for field in widget.data_fields">
+                </select> <i></i>
+              </label>
+            </div>
+            <!-- ends input wrap -->
+          </section>
+          <section>
+            <!-- starts input wrap -->
+            <label class="label">Data (Y-Axis)</label>
+
+            <div class="inputWrap">
+              <ui-select multiple id="bar-y" style="width:100%"
+              theme="select2"
+              ng-model="$parent.widget.config_fields.y_axis"
+              on-select="updateBarChartFields($item, widget)"
+              on-remove="updateBarChartFields($item, widget)">
+              <ui-select-match placeholder="multiple fields cause stacked bar">
+              [[$item.name]]</ui-select-match>
+              <ui-select-choices repeat="field in widget.data_fields">
+              <div ng-bind-html="field.name | highlight: $select.search"></div>
+              </ui-select-choices>
+              </ui-select>
+            </div>
+            <!-- ends input wrap -->
+          </section>
+          <section ng-if="can_drilldown_chart(widget.chart_type)">
+              <div>
+                  <label class="label">Drilldown</label>
+                  <div class="inputWrap">
+                      <label class="select">
+                          <button id="drilldown_btn" ng-click="open_drilldown_modal()" class="btn btn-lg">
+                              Select Drilldown
+                          </button>                  
+                      </label>
+                  </div>
+              </div>
+          </section>
+        </fieldset>
+      </div>
+      <div class="col-sm-9">
+        <highchart  id="chart1"
+        config="widget.chart_options" style="margin: 0 auto"></highchart>
+      </div>
+    </div>
+    <!-- end new chart view -->
+  </div>
+</div>

@@ -1,0 +1,227 @@
+<div ng-include src="modalContent"></div>
+
+<script type="text/ng-template" id="/modal-field.html">
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">&times;</button>
+    <h4 class="modal-title" ng-show="data.isNew">Add Field</h4>
+    <h4 class="modal-title" ng-show="!data.isNew">Update Field</h4>
+</div>
+<form name="formModalField" class="form-horizontal">
+    <div class="modal-body">
+        <div class="form-group" ng-class="{'has-error': formModalField.fieldName.$error.required}" style="margin-top: 5px;">
+            <label class="col-sm-2 control-label">Field Name *</label>
+            <div class="col-sm-10">
+                <input type="text" name="fieldName" class="form-control" ng-model="data.name" required>
+                <span class="text-danger" ng-show="formModalField.fieldName.$error.required">Required!</span>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 5px;">
+            <label class="col-sm-2 control-label">Field Type</label>
+            <div class="col-sm-10">
+                <select class="form-control" ng-options="item | toFieldTypeString for item in FieldTypes" ng-model="data.type">
+                    <option ng-if="false"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 5px;">
+            <label class="col-sm-2 control-label">Required?</label>
+            <div class="col-sm-10">
+                <select class="form-control" ng-model="data.required" ng-options="trueFalse | TrueFalsetoYesNo for trueFalse in TrueFalseOptions">
+                    <option ng-if="false"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 5px;">
+            <label class="col-sm-2 control-label">Field Instructions</label>
+            <div class="col-sm-10">
+                <input type="text" name="fieldInstructions" class="form-control" ng-model="data.instructions">
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 5px;">
+            <label class="col-sm-2 control-label">Placeholder</label>
+            <div class="col-sm-10">
+                <input type="text" name="fieldPlaceHolder" class="form-control" ng-model="data.placeholder">
+            </div>
+        </div>
+        <div ng-include ng-if="data.type == 'text'" src="'/partial-field-text.html'"></div>
+        <div ng-include ng-if="data.type == 'textarea'" src="'/partial-field-textarea.html'"></div>
+        <div ng-include ng-if="data.type == 'number'" src="'/partial-field-number.html'"></div>
+        <div ng-include ng-if="data.type == 'date'" src="'/partial-field-date.html'"></div>
+        <div ng-include ng-if="data.type == 'select'" src="'/partial-field-select.html'"></div>
+        <div class="form-group" style="margin-top: 5px;">
+            <label class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <textarea rows="3" class="form-control" ng-model="data.description"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="ok()" ng-show="data.isNew" data-ng-disabled="formModalField.$invalid">Add Field</button>
+        <button type="button" class="btn btn-primary" ng-click="ok()" ng-show="!data.isNew" data-ng-disabled="formModalField.$invalid">Update Field</button>
+    </div>
+</form>
+</script>
+
+<script type="text/ng-template" id="/partial-field-default-value.html">
+<div class="form-group" style="margin-top: 5px;">
+    <label class="col-sm-2 control-label">Default Value</label>
+    <div class="col-sm-10">
+        <input type="text" name="fieldDefaultValue" class="form-control" ng-model="data.default_value">
+    </div>
+</div>
+</script>
+
+<script type="text/ng-template" id="/partial-field-text.html">
+<div ng-include src="'/partial-field-default-value.html'"></div>
+</script>
+
+<script type="text/ng-template" id="/partial-field-textarea.html">
+<div ng-include src="'/partial-field-default-value.html'"></div>
+<div class="form-group" style="margin-top: 5px;">
+    <label class="col-sm-2 control-label">Character Limit</label>
+    <div class="col-sm-10">
+        <input type="number" name="fieldCharacterLimit" class="form-control" ng-model="data.character_limit" min="1" max="9999">
+    </div>
+</div>
+</script>
+
+<script type="text/ng-template" id="/partial-field-number.html">
+<div ng-include src="'/partial-field-default-value.html'"></div>
+<div class="form-group" style="margin-top: 5px;">
+    <label class="col-sm-2 control-label">Minimum Value</label>
+    <div class="col-sm-10">
+        <input type="number" name="fieldMinValue" class="form-control" ng-model="data.min_value">
+    </div>
+</div>
+<div class="form-group" style="margin-top: 5px;">
+    <label class="col-sm-2 control-label">Maximum Value</label>
+    <div class="col-sm-10">
+        <input type="number" name="fieldMaxValue" class="form-control" ng-model="data.max_value">
+    </div>
+</div>
+</script>
+
+<script type="text/ng-template" id="/partial-field-email.html">
+<div ng-include src="'/partial-field-default-value.html'"></div>
+</script>
+
+<script type="text/ng-template" id="/partial-field-date.html">
+<div ng-include src="'/partial-field-default-value.html'"></div>
+<div class="form-group" style="margin-top: 5px;">
+    <label class="col-sm-2 control-label">Display Format</label>
+    <div ng-form="form" class="col-sm-10">
+        <input type="text" name="fieldDisplayFormat" class="form-control" ng-model="data.display_format" ng-init="data.display_format = data.display_format ? data.display_format : 'd/m/y'" />
+    </div>
+</div>
+</script>
+
+<script type="text/ng-template" id="/partial-field-select.html">
+<div class="form-group" style="margin-top: 5px;">
+    <label class="col-sm-2 control-label">
+        <div>Choices</div>
+        <div><button type="button" class="btn btn-xs btn-primary" ng-click="addChoice()" style="margin-top: 5px;">Add Choice</button></div>
+    </label>
+    <div class="col-sm-10">
+        <div class="row" style="margin-left: 0px; margin-right: 15px;">
+            <div class="col-sm-5"><b>Value *</b></div>
+            <div class="col-sm-5"><b>Label *</b></div>
+            <div class="col-sm-1"><b>Default</b></div>
+        </div>
+        <hr style="margin-top: 0;" />
+        <div style="max-height: 200px; overflow-y: scroll;">
+            <div class="row" ng-form="form" ng-repeat="choice in data.choices" style="margin-left: 0; margin-right: 0; margin-bottom: 5px;">
+                <div class="col-sm-5" ng-class="{'has-error': form.choiceValue.$error.required}">
+                    <input type="text" name="choiceValue" class="form-control" ng-model="choice.value" required />
+                </div>
+                <div class="col-sm-5" ng-class="{'has-error': form.choiceLabel.$error.required}">
+                    <input type="text" name="choiceLabel" class="form-control" ng-model="choice.label" required />
+                </div>
+                <div class="col-sm-1 text-center">
+                    <div class="form-control" style="border: none; box-shadow: none;">
+                        <input type="checkbox" name="default_selected" ng-if="data.multiple" ng-model="choice.default_value" />
+                        <input type="radio" name="default_selected" ng-if="!data.multiple" ng-model="choice.default_value" />
+                    </div>
+                </div>
+                <div class="col-sm-1 text-center">
+                    <div style="border: none; box-shadow: none;">
+                        <button type="button" class="btn btn-link" ng-click="removeChoice(choice)">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group" style="margin-top: 5px;">
+    <label class="col-sm-2 control-label">Select Multiple?</label>
+    <div class="col-sm-10">
+        <select class="form-control" ng-model="data.multiple" ng-options="trueFalse | TrueFalsetoYesNo for trueFalse in TrueFalseOptions">
+            <option ng-if="false"></option>
+        </select>
+    </div>
+</div>
+</script>
+
+<script type="text/ng-template" id="/modal-field-group.html">
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">&times;</button>
+    <h4 class="modal-title" ng-show="data.isNew">Add Field Group</h4>
+    <h4 class="modal-title" ng-show="!data.isNew">Update Field Group</h4>
+</div>
+<form name="formModalFieldGroup" class="smart-form">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">
+                <label class="label">Name of the Group</label>
+            </div>
+            <div class="col-md-8">
+                <label class="input">
+                    <input type="text" name="fieldGroupName" ng-model="data.name" required />
+                </label>
+                <span class="text-danger" ng-show="formModalFieldGroup.fieldGroupName.$error.required">Required!</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="label">Type of the Group</label>
+            </div>
+            <div class="col-md-8">
+                <label class="input">
+                    <select name="fieldGroupType" ng-model="data.form_type" required>
+                        <option> --- </option>
+                        <option value="front-end">Front end</option>
+                        <option ng-show="formAvailable()" value="back-end">Back end</option>
+                    </select>
+                </label>
+                <span class="text-danger" ng-if="formModalFieldGroup.fieldGroupType.$error.required">Required!</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-default" ng-click="ok()" data-ng-disabled="formModalFieldGroup.$invalid">
+            <span ng-if="data.isNew">Add Field Group</span>
+            <span ng-if="!data.isNew">Update Field Group</span>
+        </button>
+    </div>
+</form>
+</script>
+
+<script type="text/ng-template" id="/modal-delete.html">
+<div class="modal-header">
+    <h4 class="modal-title" ng-bind="data.title"></h4>
+</div>
+<form name="formModalFieldGroup" class="smart-form">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div ng-bind="data.message"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">No</button>
+        <button type="button" class="btn btn-default" ng-click="ok()">Yes</button>
+    </div>
+</form>
+</script>

@@ -1,0 +1,302 @@
+{% extends 'settings/base.html' %}
+{% load staticfiles %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section='settings' subsection='settings' %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- row -->
+        <div class="row">
+            <!-- col -->
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h1 class="page-title">
+                    <!-- PAGE HEADER -->
+                    <i class="fa fa-2x fa-fw fa-gear"></i>
+                    <!-- PAGE HEADER -->
+                    Settings
+                </h1>
+            </div>
+            <!-- end col -->
+            <!-- right side of the page with the sparkline graphs -->
+            <!-- col -->
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+            </div>
+        </div>
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content">
+    <form class="smart-form big-form">
+    <!-- row -->
+    <div class="row">
+        <div class="col-sm-8">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <label class="input">
+                    <input type="text" placeholder="Location Type Name">
+                </label>
+            </div>
+            <!-- ends input -->
+        </div>
+        <div class="col-sm-4">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <div class="input input-file">
+                    <input type="text" placeholder="Add logo..." readonly="Add Logo...">
+									<span class="button">
+										<input type="file" id="file" name="file"
+                                               onchange="this.parentNode.nextSibling.value = this.value">
+										Browse
+									</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <div class="textarea-top">
+                    <a data-toggle="modal" href="#entity-editmodal" class="btn btn-default btn-sm pull-right">Add
+                        Form</a>
+                </div>
+                <div id="summernote"></div>
+                <small> NOTE: If you are copy and pasting content from another website/source, please use the "Remove Font Style" button before submitting </small>
+            </div>
+            <!-- ends input -->
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <label class="input">
+                    <input type="text" placeholder="Organization Name">
+                </label>
+            </div>
+            <!-- ends input -->
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+        <div class="col-sm-4">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <label class="input">
+                    <input type="text" placeholder="Address 1">
+                </label>
+            </div>
+            <!-- ends input -->
+        </div>
+        <div class="col-sm-4">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <label class="input">
+                    <input type="text" placeholder="Address 2">
+                </label>
+            </div>
+            <!-- ends input -->
+        </div>
+        <div class="col-sm-4">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <label class="input">
+                    <input type="text" placeholder="Phone">
+                </label>
+            </div>
+            <!-- ends input -->
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+        <div class="col-sm-4">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <label class="input">
+                    <input type="text" placeholder="Contry">
+                </label>
+            </div>
+            <!-- ends input -->
+        </div>
+        <div class="col-sm-4">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <label class="input">
+                    <input type="text" placeholder="City">
+                </label>
+            </div>
+            <!-- ends input -->
+        </div>
+        <div class="col-sm-4">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <label class="input">
+                    <input type="text" placeholder="State">
+                </label>
+            </div>
+            <!-- ends input -->
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <label class="input">
+                    <input type="text" placeholder="Website">
+                </label>
+            </div>
+            <!-- ends input -->
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row section-divider">
+        <div class="col-sm-3">
+            <label class="label">
+                App Privacy:
+            </label>
+        </div>
+        <div class="col-sm-9">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <section>
+                    <label class="select">
+                        <select class="input-lg">
+                            <option value="0">Everyone</option>
+                            <option value="1">Require Login</option>
+                        </select> <i></i> </label>
+                </section>
+            </div>
+            <!-- ends input -->
+        </div>
+    </div>
+    <!-- ends row divider -->
+    <!-- row -->
+    <div class="row section-divider">
+        <div class="col-sm-3">
+            <label class="label">
+                New Registrations
+            </label>
+        </div>
+        <div class="col-sm-9">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <section>
+                    <label class="select">
+                        <select class="input-lg">
+                            <option value="0">Anyone can register</option>
+                            <option value="1">Only admin can create new users</option>
+                        </select> <i></i> </label>
+                </section>
+            </div>
+            <!-- ends input -->
+        </div>
+    </div>
+    <!-- ends row divider -->
+    <!-- row -->
+    <div class="row section-divider">
+        <div class="col-sm-3">
+            <label class="label">
+                Map Design
+            </label>
+        </div>
+        <div class="col-sm-9">
+            <!-- starts input wrap -->
+            <div class="inputWrap">
+                <section>
+                    <label class="select">
+                        <select class="input-lg">
+                            <option value="0">Name of the Map Style</option>
+                            <option value="1">Name of the Map Style</option>
+                        </select> <i></i> </label>
+                </section>
+            </div>
+            <!-- ends input -->
+        </div>
+    </div>
+    <!-- ends row divider -->
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-xl btn-primary pull-right">
+                Update Settings
+            </button>
+        </div>
+    </div>
+    <!-- end row -->
+    </form>
+    </div>
+    <!-- END MAIN CONTENT -->
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <!-- MAIN APP JS FILE -->
+    <!-- JQUERY SUMMERNOTE -->
+    <script src="{% static 'js/plugin/summernote/summernote.min.js' %}"></script>
+    <!--[if IE 8]>
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+		<![endif]-->
+
+    <!-- PAGE RELATED PLUGIN(S)
+    <script src="..."></script>-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /* DO NOT REMOVE : GLOBAL FUNCTIONS!
+             *
+             * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+             *
+             * // activate tooltips
+             * $("[rel=tooltip]").tooltip();
+             *
+             * // activate popovers
+             * $("[rel=popover]").popover();
+             *
+             * // activate popovers with hover states
+             * $("[rel=popover-hover]").popover({ trigger: "hover" });
+             *
+             * // activate inline charts
+             * runAllCharts();
+             *
+             * // setup widgets
+             * setup_widgets_desktop();
+             *
+             * // run form elements
+             * runAllForms();
+             *
+             ********************************
+             *
+             * pageSetUp() is needed whenever you load a page.
+             * It initializes and checks for all basic elements of the page
+             * and makes rendering easier.
+             *
+             */
+            pageSetUp();
+            /* // DOM Position key index //
+             l - Length changing (dropdown)
+             f - Filtering input (search)
+             t - The Table! (datatable)
+             i - Information (records)
+             p - Pagination (paging)
+             r - pRocessing
+             < and > - div elements
+             <"#id" and > - div with an id
+             <"class" and > - div with a class
+             <"#id.class" and > - div with an id and class
+             Also see: http://legacy.datatables.net/usage/features
+             */
+            runAllForms();
+            $('#summernote').summernote();
+            /* END BASIC */
+        })
+    </script>
+{% endblock page_rel_scripts %}

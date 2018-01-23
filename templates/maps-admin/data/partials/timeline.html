@@ -1,0 +1,68 @@
+<div class="col-sm-3">
+    <fieldset>
+        <section>
+            <!-- starts input wrap -->
+            <label class="label">Data Series (Label)</label>
+
+            <div class="inputWrap">
+                <label class="select">
+                    <select class="input-lg series" id="timeline-label">
+                        <option selected value=''></option>
+                            {% for i in data.fields %}
+                                {% if i != 'id' and i != 'import_id' %}
+                                    <option id="{{ i.id }}">
+                                        {{ i }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                    </select> <i></i>
+                </label>
+            </div>
+            <!-- ends input wrap -->
+        </section>
+        <section>
+            <!-- starts input wrap -->
+            <label class="label">Data Series (Start)</label>
+
+            <div class="inputWrap">
+                <label class="select">
+                    <select class="input-lg series" id="timeline-start">
+                        <option selected value=''></option>
+                            {% for i in data.fields %}
+                                {% if i != 'id' and i != 'import_id' %}
+                                    <option id="{{ i.id }}">
+                                        {{ i }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                    </select> <i></i>
+                </label>
+            </div>
+            <!-- ends input wrap -->
+        </section>
+        <section>
+            <!-- starts input wrap -->
+            <label class="label">Data Series (End)</label>
+
+            <div class="inputWrap">
+                <label class="select">
+                    <select class="input-lg series" id="timeline-end">
+                        <option selected value=''></option>
+                            {% for i in data.fields %}
+                                {% if i != 'id' and i != 'import_id' %}
+                                    <option id="{{ i.id }}">
+                                        {{ i }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                    </select> <i></i>
+                </label>
+            </div>
+            <!-- ends input wrap -->
+        </section>
+    </fieldset>
+</div>
+<div class="col-sm-9">
+    <div id="timeline" class="chart">
+    </div>
+</div>

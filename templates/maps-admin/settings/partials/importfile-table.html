@@ -1,0 +1,25 @@
+<div class="tab-pane fade {% if step = 'table' %}in active{% endif %}" id="table">
+    <section id="widget-grid">
+    <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="jarviswidget" id="" data-widget-editbutton="false">
+                <!--<header>-->
+                    <!--<h2></h2>-->
+                <!--</header>-->
+                <div class="widget-content">
+                    <!--<div class="jarviswidget-editbox">-->
+                    <!--</div>-->
+                    <div class="widget-body no-padding">
+                        {% include 'partials/data_table.html' %}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    </section>
+    <a href="/maps-admin/settings-import">
+        <button type="button" class="btn btn-xl btn-primary pull-right">
+            OK
+        </button>
+    </a>
+</div>

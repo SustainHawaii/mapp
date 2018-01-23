@@ -1,0 +1,22 @@
+{% load mapp_tags %}
+
+<table id="preview-table" class="table table-striped table-bordered table-hover" width="100%">
+    <thead>
+        <tr>
+            {% for f in fields %}
+                <th>{{ f }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in dataset %}
+            <tr>
+                {% for k in row %}
+                    {% if k != 'id' and k != 'import_id' %}
+                        <td>{{ row|lookup:k }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

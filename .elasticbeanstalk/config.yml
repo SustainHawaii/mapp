@@ -1,0 +1,10 @@
+branch-defaults:
+  master:
+    environment: mapp-dev
+global:
+  application_name: mapp
+  default_ec2_keyname: aws-eb
+  default_platform: Python 2.7
+  default_region: us-west-2
+  profile: eb-cli
+  sc: git

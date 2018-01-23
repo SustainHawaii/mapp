@@ -1,0 +1,63 @@
+<ul id="viz-tabs" class="nav nav-tabs tab-frontend">
+  <li ng-class="setActiveClass(widget)"
+    ng-repeat="widget in currentviz.widgets"
+    >
+    <a ng-click="showWidget(widget)">[[widget.title || "Visualization" ]][[location.url]]</a>
+  </li>
+</ul>
+<div id="viz-content" class="tab-content tab-frontend">
+  <div class="tab-pane fade in" ng-class="setActiveClass(widget)"
+    ng-repeat="widget in currentviz.widgets"
+    ng-show="selectedWidget == widget">
+
+    <div ng-switch on="widget.viz_type">
+      <!-- widget.viz_type == Chart -->
+      <highchart ng-switch-when="Chart" id="chart1"
+      config="widget.chart_options" style="margin: 0 auto"></highchart>
+      <!-- widget.viz_type == Table -->
+      <table ng-switch-when="table" st-table="widget.display_data" st-safe-src="widget.chart_data"
+        class="table table-striped" st-pipe="loadTableData">
+        <thead>
+          <tr ng-show="widget.config_fields.allow_search">
+            <th>
+              <input st-search placeholder="search table or click headers to sort..."
+              class="input-sm form-control" type="search"/>
+            </th>
+            <tr>
+              <th ng-repeat="col in widget.config_fields.table_columns"
+                st-sort="'[[col.field.ds_fieldName]]'">
+                <strong>[[col.title]]</strong>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="data_row in widget.display_data">
+              <td ng-repeat="row_col in widget.config_fields.table_columns">
+              [[ data_row[row_col.field.ds_fieldName] ]]</td>
+            </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td class="text-center" st-pagination="" st-items-by-page="10"
+            colspan="[[widget.config_fields.table_columns.length]]" ></td>
+          </tr>
+          </tfoot>
+      </table>
+        <!-- widget.viz_type == map -->
+        <div ng-switch-when="map">
+          <map ng-transclude class="dataviz-map"
+            center="widget.chart_options.map_center"
+            options="widget.chart_options.map_options"
+            refresh="widget.chart_options.refresh_map">
+            <div ng-repeat="layer in widget.chart_options.layers">
+               <geojson url="layer.url",
+                  pointoptions="layer.options",
+                  polygonoptions="layer.options",
+                  events="layer.events">
+               </geopoints>
+            </div>
+          </map>
+        </div> <!-- end mapp -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+{% for geo in data.geolocation.result %}
+    <div id='{{ geo.id }}' class='geo_point linkOFF'>
+    {{ geo.name }} ({{ geo.latitude }}, {{ geo.longitude }})
+    </div>
+{% endfor %}

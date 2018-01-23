@@ -1,0 +1,134 @@
+{% extends 'users/base.html' %}
+{% load staticfiles %}
+{% include 'widgets/mobile_nav.html' %}
+{% block left_panel %}
+    {% include 'maps-admin/widgets/left_panel.html' with section='users' subsection='users-addorg' %}
+{% endblock left_panel %}
+
+{% block main_panel %}
+<div id="ribbon">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+            <h1 class="page-title">
+                <i class="fa fa-2x fa-fw fa-user"></i>
+                Users
+                <span>
+                    {% if object %}
+                        Update Organization
+                    {% else %}
+                        Add Organization
+                    {% endif %}
+                </span>
+            </h1>
+        </div>
+    </div>
+</div>
+<div id="content" ng-controller="OrganizationController">
+    <form class="smart-form big-form" name="org_form" id="org_form" novalidate data-role="form">
+        {% csrf_token %}
+        <input type="hidden" ng-init="loadData('{{ object.id }}')" />
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" placeholder="Organization Name" ng-model="organization.name" name="name" required>
+                    </label>
+                    <div class="form-error ng-cloak" ng-show="org_form.$submitted && org_form.name.$error.required">Organization Name required</div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label class="label">View Privacy</label>
+            </div>
+            <div class="col-sm-3">
+                <div class="inputWrap">
+                    <section>
+                        <label class="select">
+                            <select class="input-lg" name="privacy"
+                                    ng-model="organization.privacy" required
+                                    ng-options="opt for opt in privacyOptions">
+                            </select> <i></i>
+                        </label>
+                        <div class="form-error ng-cloak" ng-show="org_form.$submitted && org_form.privacy.$error.required">Privacy required</div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" placeholder="Address" name="address" ng-model="organization.address" />
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" min="0" placeholder="Phone" name="phone" ng-model="organization.phone" />
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" placeholder="Zip" name="zip" ng-model="organization.zip" >
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" placeholder="City" name="city" ng-model="organization.city" >
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="text" placeholder="State" name="state" ng-model="organization.state" >
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="inputWrap">
+                    <label class="input">
+                        <input type="url" placeholder="Website" name="website" ng-model="organization.website" >
+                    </label>
+                    <div class="form-error ng-cloak" ng-show="org_form.website.$error.url">Invalid URL format</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="inputWrap">
+                    <div class="textarea-top"></div>
+                    <div summernote ng-model="organization.description"></div>
+                    <small> NOTE: If you are copy and pasting content from another website/source, please use the "Remove Font Style" button before submitting </small>
+                </div>
+            </div>
+        </div>
+        <div class="text-danger" ng-bind="formErrorMessage"></div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-xl btn-primary pull-right"
+                        ng-disabled="disableSubmit" ng-click="submit()" id="submit">
+                    {% if object %}
+                        Update Organization
+                    {% else %}
+                        Add Organization
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock main_panel %}
+
+{% block page_rel_scripts %}
+    <script src="{% static 'js/angularjs/controllers/org_controller.js' %}"></script>
+{% endblock page_rel_scripts %}
